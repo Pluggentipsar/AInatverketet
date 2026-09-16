@@ -1,0 +1,1833 @@
+{
+  "uppdaterad": "2026-08-18",
+  "antal": 65,
+  "resurser": [
+    {
+      "id": "adekvat-digital-kompetens",
+      "titel": "Adekvat digital kompetens & AI",
+      "url": "https://pluggentipsar.github.io/Adk/",
+      "beskrivning": "Ramverk för adekvat digital kompetens och AI enligt Lgr22 med över 40 färdiga aktiviteter för årskurs 1–9, fyra fokusområden och progressionsmodeller — praktiskt och kostnadsfritt stöd för lärare, arbetslag och skolledning.",
+      "typ": [
+        "lektionsmaterial",
+        "guide"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kallkritik-mik",
+        "etik-bias",
+        "lektionsplanering"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Pluggen tipsar",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "ai-for-skolhuvudman-scenarioverktyg",
+      "titel": "AI för skolhuvudmän – scenarioverktyg",
+      "url": "https://aiforskolhuvudman.se/",
+      "beskrivning": "Öppet, kostnadsfritt scenarioverktyg lanserat 2026 av SKR, Ifous och 18 nationella aktörer. Genom verklighetsnära scenarier, filmer och resurser får huvudmän och skolledare stöd i styrning, juridik, etik och anskaffning av AI-tjänster.",
+      "typ": [
+        "verktyg",
+        "samling"
+      ],
+      "malgrupp": [
+        "huvudman",
+        "skolledare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "juridik-gdpr",
+        "etik-bias",
+        "kompetensutveckling"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "SKR och Ifous",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "ai-for-skolledare",
+      "titel": "AI för skolledare – workshop och kunskapsbank",
+      "url": "https://ai-skolledare-iota.vercel.app",
+      "beskrivning": "Workshopsajt och kunskapsbank för skolledare om AI: riktlinjer, GDPR och AI-förordningen, förändringsledning, AI-litteracitetens sju dimensioner, promptbibliotek med 280 prompter samt ett ledarskapsrollspel. Fritt tillgänglig utan konto.",
+      "typ": [
+        "samling",
+        "guide",
+        "verktyg"
+      ],
+      "malgrupp": [
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "juridik-gdpr",
+        "kompetensutveckling",
+        "ai-litteracitet",
+        "prompting"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "AI för skolledare (fristående workshopsajt)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "ai-skolan-lossman",
+      "titel": "AI Skolan",
+      "url": "https://aiskolan.ai/",
+      "beskrivning": "Martin Lossmans plattform med över 100 AI-verktyg och botar kopplade till Skolverkets styrdokument, färdiga undervisningsmoduler, källkritikövningar och stöd för elevhälsa. Gratis testkonto; licens från 299 kr per år.",
+      "typ": [
+        "verktyg",
+        "lektionsmaterial"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "elever"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "prompting",
+        "kallkritik-mik",
+        "bedomning",
+        "lektionsplanering"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Martin Lossman (AI Skolan)",
+      "sprak": "sv",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "ai-snack",
+      "titel": "AI-snack",
+      "url": "https://open.spotify.com/show/4wMr0Mcg40k17OK7dOi0GD",
+      "beskrivning": "Podd där lärarna Joel Rangsjö, Jonatan Tensetti och Danny Stacey samtalar om AI i skolan: promptteknik, etik, bildgenerering, forskning om elevers AI-användning, skolpolicy och intervjuer med forskare. På svenska, gratis på Spotify.",
+      "typ": [
+        "podd"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "prompting",
+        "etik-bias",
+        "bedomning"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "AI-snack (Rangsjö, Tensetti, Stacey)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "allgot",
+      "titel": "Allgot",
+      "url": "https://www.allgot.se/",
+      "beskrivning": "Svenskt AI-verktyg som genererar lektioner, planeringar, prov, läxor, arbetsblad, feedback och bedömningsstöd förankrade i Lgr22, Gy25 och vuxenutbildningens styrdokument. Abonnemang för enskilda lärare samt skollicenser; kort gratis provperiod.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "lektionsplanering",
+        "bedomning"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Allgot",
+      "sprak": "sv",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "astrid-education",
+      "titel": "Astrid Education",
+      "url": "https://education.withastrid.ai/",
+      "beskrivning": "Svenskutvecklad AI-tjänst där elever tränar muntlig engelska i en app med taligenkänning som ger direkt återkoppling på uttal, medan läraren följer klassens utveckling i en panel. Används i skolor i Sverige och internationellt.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare",
+        "elever"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "sprakutveckling",
+        "differentiering-stod"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Astrid Education",
+      "sprak": "en",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "curipod",
+      "titel": "Curipod",
+      "url": "https://curipod.com/",
+      "beskrivning": "Norskt AI-verktyg där lärare på minuter genererar interaktiva lektioner med omröstningar, ordmoln och skrivuppgifter där elever får AI-återkoppling. Engelskt gränssnitt men skapar innehåll på svenska och är omskrivet på svenska pedagogsajter.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "lektionsplanering",
+        "bedomning"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Curipod",
+      "sprak": "en",
+      "kostnad": "freemium",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "digitala-lektioner-ai",
+      "titel": "Digitala lektioner – Lektioner i AI",
+      "url": "https://digitalalektioner.se/lektioner-i-ai/",
+      "beskrivning": "Kostnadsfria, lärartestade lektioner om AI för grundskolans F–3, 4–6 och 7–9. Eleverna utforskar vad AI är, hur tekniken fungerar och etiska frågor, med färdiga lektionsupplägg som kan anpassas för det egna klassrummet.",
+      "typ": [
+        "lektionsmaterial",
+        "samling"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kallkritik-mik",
+        "etik-bias"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Internetstiftelsen",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "digitala-lektioner-podden",
+      "titel": "Digitala lektioner – podden",
+      "url": "https://digitalalektioner.se/podd/",
+      "beskrivning": "Internetstiftelsens podd där Kristina Alexanderson intervjuar forskare och lärare om AI och digital kompetens i skolan — korta avsnitt på max 20 minuter om vad lärare och elever behöver förstå om tekniken. Kostnadsfri fortbildning.",
+      "typ": [
+        "podd"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kallkritik-mik",
+        "kompetensutveckling"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Internetstiftelsen (Digitala lektioner)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "edaider",
+      "titel": "EdAider",
+      "url": "https://www.edaider.com/",
+      "beskrivning": "Svensk AI-plattform för skolan grundad av forskare, med AI-handledaren Edda som ger elever individanpassat stöd i matematik, NO och svenska samt AI-utbildningar för lärare och skolledare. Data lagras i Sverige och hanteras enligt GDPR.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "elever"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "differentiering-stod",
+        "kompetensutveckling"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "EdAider",
+      "sprak": "sv",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "eduai",
+      "titel": "EduAI",
+      "url": "https://eduai.se",
+      "beskrivning": "Danny Staceys kunskapsportal om AI i svensk utbildning: artiklar och analyser, nedladdningsbara fördjupningsrapporter, förändringsmodeller som ADKAR och SCARF anpassade för skolan samt en AI-coach för strategiskt stöd. Kostnadsfri.",
+      "typ": [
+        "samling",
+        "guide"
+      ],
+      "malgrupp": [
+        "skolledare",
+        "larare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "kompetensutveckling",
+        "forskning-teori"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Danny Stacey (EduAI)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "elements-of-ai-svenska",
+      "titel": "Elements of AI",
+      "url": "https://www.elementsofai.se/",
+      "beskrivning": "Kostnadsfri nätkurs på svenska som ger grunderna i AI utan krav på förkunskaper: vad AI är, vad tekniken kan och inte kan samt hur den påverkar samhället. Svensk version i samarbete med Linköpings universitet, cirka 15–30 timmar med certifikat.",
+      "typ": [
+        "kurs"
+      ],
+      "malgrupp": [
+        "alla"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kompetensutveckling"
+      ],
+      "kalla": "larosate",
+      "kalla_namn": "Helsingfors universitet och Linköpings universitet",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "enstroms-tankar",
+      "titel": "Enströms tankar",
+      "url": "https://enstrm.substack.com/",
+      "beskrivning": "Anders Enströms nyhetsbrev om skolans digitalisering och AI: arbetsdesign, bedömning, skolpolitik och vad AI-effektivisering gör med elevers lärande. Reflekterande texter på svenska och engelska, gratis att prenumerera på.",
+      "typ": [
+        "nyhetsbrev"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "bedomning",
+        "forskning-teori"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Anders Enström",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "falkai",
+      "titel": "Falk AI – Johan Falk",
+      "url": "https://falkai.org",
+      "beskrivning": "Johan Falk, tidigare ledande i Skolverkets AI-arbete, erbjuder föreläsningar, workshoppar och utbildningar om AI för skolor och offentlig sektor. Sajten presenterar också hans åtta böcker, bland annat AI för lärare. På svenska.",
+      "typ": [
+        "kurs"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "kompetensutveckling",
+        "ai-litteracitet",
+        "ledning-strategi"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Johan Falk (falkai.org)",
+      "sprak": "sv",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "goteborg-ubf-ai-i-skolan",
+      "titel": "AI i skolan – Digitalisering UBF (Göteborgs Stad)",
+      "url": "https://sites.google.com/skola.goteborg.se/digitaliseringubf/kompetens-anvandning/AI-UBF/ai-i-skolan",
+      "beskrivning": "Göteborgs utbildningsförvaltnings öppna AI-sajt med riktlinjer för ledare, lärare och elever, metodstöd för undervisning, planering och bedömning, verktygsguider för Gemini och NotebookLM samt webbinarier och forskningslänkar.",
+      "typ": [
+        "samling",
+        "riktlinjer"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "elever"
+      ],
+      "stadium": [
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "lektionsplanering",
+        "bedomning",
+        "kompetensutveckling",
+        "ai-litteracitet"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Göteborgs Stad",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "graspable-ai",
+      "titel": "Graspable AI – nyhetsbrev av Johan Falk",
+      "url": "https://graspableai.substack.com/",
+      "beskrivning": "Johan Falks kostnadsfria nyhetsbrev om att undervisa om AI: grundbegrepp, AI som lärverktyg, deepfakes och samhällsrisker — konkret underlag för lärare som vill lyfta AI i sina ämnen och årskurser. Mestadels på engelska.",
+      "typ": [
+        "nyhetsbrev"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "etik-bias",
+        "kallkritik-mik"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Johan Falk (Graspable AI)",
+      "sprak": "en",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "gu-ai-som-verktyg-i-undervisning",
+      "titel": "Artificiell intelligens (AI) som verktyg i undervisning (PDG448)",
+      "url": "https://www.gu.se/studera/hitta-utbildning/artificiell-intelligens-ai-som-verktyg-i-undervisning-pdg448",
+      "beskrivning": "Distanskurs på 7,5 hp vid Göteborgs universitet för dig med lärarexamen. Du planerar, genomför och utvärderar undervisning med generativ AI och fördjupar dig i etiska dilemman, juridiska aspekter och AI-policyer i skolan.",
+      "typ": [
+        "kurs"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "kompetensutveckling",
+        "lektionsplanering",
+        "etik-bias",
+        "juridik-gdpr"
+      ],
+      "kalla": "larosate",
+      "kalla_namn": "Göteborgs universitet",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "imy-vagledning-gdpr-och-ai",
+      "titel": "Vägledning om GDPR och AI",
+      "url": "https://www.imy.se/verksamhet/dataskydd/innovationsportalen/vagledning-om-gdpr-och-ai/",
+      "beskrivning": "Integritetsskyddsmyndighetens vägledning om hur dataskyddsförordningen ska tillämpas när AI utvecklas och används. Central juridisk grund för skolhuvudmän och skolledare som inför AI-tjänster där elevers personuppgifter kan behandlas.",
+      "typ": [
+        "riktlinjer",
+        "guide"
+      ],
+      "malgrupp": [
+        "huvudman",
+        "skolledare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "juridik-gdpr"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Integritetsskyddsmyndigheten (IMY)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "joelsai",
+      "titel": "joelsai.com – Lära om, med, mot och genom AI",
+      "url": "https://joelsai.com",
+      "beskrivning": "Joel Rangsjös samlade material om AI i undervisningen: 16 guider, 27 workshoppar, 118 verktyg och färdiga elevaktiviteter för F–9 — allt på svenska, gratis, utan konto och fritt att använda i klassrummet, sorterat efter vad du vill göra.",
+      "typ": [
+        "samling",
+        "guide",
+        "lektionsmaterial"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "lektionsplanering",
+        "bild-video",
+        "kallkritik-mik",
+        "kompetensutveckling"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Joel Rangsjö (joelsai.com)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "kodboken-koll-pa-ai",
+      "titel": "Kodboken – Koll på AI",
+      "url": "https://kodboken.se/koll-pa-ai",
+      "beskrivning": "Undervisningspaket i fyra moment för åk 4–6 från Kodcentrums kostnadsfria läromedel Kodboken. Eleverna lär sig vad AI är, tränar egna modeller i Teachable Machine, kopplar AI till Scratch och diskuterar etik. Kopplat till Lgr22.",
+      "typ": [
+        "lektionsmaterial"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "programmering-teknik",
+        "etik-bias"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Kodcentrum",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "kth-ai-kurser-vidareutbildning",
+      "titel": "Kurser inom AI (KTH vidareutbildning)",
+      "url": "https://www.kth.se/utbildning/vidareutbildning/fristaende-kurser/ai-1.1358830",
+      "beskrivning": "KTH:s fristående vidareutbildningskurser inom AI, bland annat den kostnadsfria distanskursen Att undervisa artificiell intelligens på gymnasial nivå för lärare som ska undervisa i det nya AI-ämnet eller integrera AI i sina kurser.",
+      "typ": [
+        "kurs",
+        "samling"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "programmering-teknik",
+        "kompetensutveckling",
+        "ai-litteracitet"
+      ],
+      "kalla": "larosate",
+      "kalla_namn": "KTH",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "lajka-ai-i-skolan",
+      "titel": "Lajka – AI i skolan",
+      "url": "https://lajka.prinsparetsstiftelse.se/utbildningar/ai-i-skolan/",
+      "beskrivning": "Kostnadsfri utbildningsmodul om AI för skolpersonal på Prinsparets Stiftelses plattform Lajka. Går igenom generativ AI, chattbottar, risker som bias och desinformation samt konkreta sätt att använda AI tryggt i undervisningen.",
+      "typ": [
+        "lektionsmaterial",
+        "kurs"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "etik-bias",
+        "kompetensutveckling"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Prinsparets Stiftelse",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "lernico",
+      "titel": "Lernico",
+      "url": "https://www.lernico.ai/",
+      "beskrivning": "AI-plattform med ursprung på KTH som fungerar som digital lärarkollega: genererar lektionsplaneringar utifrån kursplanen, skapar arbetsblad och prov samt föreslår omdömen och feedback. Gratis att testa; skollösningar offereras via demo.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "lektionsplanering",
+        "bedomning"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Lernico",
+      "sprak": "en",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "lexplore",
+      "titel": "Lexplore",
+      "url": "https://lexplore.com/sv/",
+      "beskrivning": "Svensk tjänst som med AI och eyetracking screenar elevers läsförmåga på några minuter och ger skolor objektiva insikter samt rekommenderade läsaktiviteter. Bygger på dyslexiforskning och används systematiskt i flera svenska kommuner.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "sprakutveckling",
+        "differentiering-stod",
+        "bedomning"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Lexplore",
+      "sprak": "sv",
+      "kostnad": "betald",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "liu-aist-labbet",
+      "titel": "AIST-labbet – AI, simulering och undervisning",
+      "url": "https://liu.se/forskning/ai/aist-labb",
+      "beskrivning": "Forskningsmiljö vid Linköpings universitet, en av Nordens största inom AI, simulering och undervisning. Samlar studier om AI-litteracitet i skola och lärarutbildning, workshoppar för lärarlag och nyheter om AI i svensk skola.",
+      "typ": [
+        "forskning",
+        "natverk"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "forskning-teori",
+        "ai-litteracitet",
+        "kompetensutveckling"
+      ],
+      "kalla": "larosate",
+      "kalla_namn": "Linköpings universitet",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "malin-frykman",
+      "titel": "Malin Frykman",
+      "url": "https://www.malinfrykman.se/",
+      "beskrivning": "Malin Frykman, författare av SKR:s vägledning för rektorer, stöttar skolledare i strategiskt AI- och digitaliseringsarbete: föreläsningar, processledning, nulägesanalyser och böcker samt ett kostnadsfritt månadsbrev om AI-ledarskap.",
+      "typ": [
+        "nyhetsbrev",
+        "kurs"
+      ],
+      "malgrupp": [
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "kompetensutveckling"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Malin Frykman",
+      "sprak": "sv",
+      "kostnad": "freemium",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "mediacenter-vasterbotten-ai-i-skolan",
+      "titel": "AI i skolan – föreläsningar (Mediacenter Västerbotten)",
+      "url": "https://www.regionvasterbotten.se/naringsliv-och-samhallsbyggnad/naringsliv-och-utbildning/mediacenter/digital-kompetens/ai-i-skolan",
+      "beskrivning": "Inspelade föreläsningar om AI i skolan, bl.a. Peter Parnes om lärande med generativ AI och Mats Larsnäs om AI och VR i praktiken, med åhörarkopior samt vidarelänkar till Skolverket och Internetstiftelsen för fördjupning.",
+      "typ": [
+        "video"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kompetensutveckling"
+      ],
+      "kalla": "region",
+      "kalla_namn": "Region Västerbotten, Mediacenter",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "mediemyndigheten-bilders-makt",
+      "titel": "Bilders makt – AI och visuell påverkan",
+      "url": "https://mediemyndigheten.se/barn-och-unga/for-vuxna/bilders-makt-ai-och-visuell-paverkan/",
+      "beskrivning": "Kostnadsfritt undervisningsmaterial från Mediemyndigheten i fem delar om AI-genererade bilder, bildspråk, memer och visuell påverkan. Presentationer, lärarmanus och övningar som stärker elevers källkritik i högstadiet och gymnasiet.",
+      "typ": [
+        "lektionsmaterial"
+      ],
+      "malgrupp": [
+        "larare",
+        "elever"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "kallkritik-mik",
+        "bild-video",
+        "ai-litteracitet"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Mediemyndigheten",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "mickekring",
+      "titel": "Micke Kring – blogg",
+      "url": "https://mickekring.se/",
+      "beskrivning": "Micke Kring, med bakgrund i skolans digitalisering och nu på RISE, bloggar om tillämpad AI för skola och lärande: prototyper som AI-studiekompisar och transkriberingsverktyg samt erfarenheter från grundkurser i generativ AI för pedagoger.",
+      "typ": [
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "kompetensutveckling",
+        "programmering-teknik",
+        "ai-litteracitet"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Micke Kring",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "miun-ai-och-etik",
+      "titel": "AI och etik – lektioner för mellanstadiet",
+      "url": "https://www.miun.se/mot-mittuniversitetet/Organisation/Universitetsforvaltning/fus/puls/livslangt-larande/barnensuniversitet/digitalt-laromaterial/ai/",
+      "beskrivning": "Fritt lektionsmaterial om AI och etik för mellanstadiet från Mittuniversitetets Barnens universitet. Tre lektioner om vad AI är, maskininlärning med träningsdata och etiska dilemman, cirka 2,5 timmar totalt, licensierat under Creative Commons.",
+      "typ": [
+        "lektionsmaterial"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "etik-bias"
+      ],
+      "kalla": "larosate",
+      "kalla_namn": "Mittuniversitetet",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "parnes-blogg",
+      "titel": "Peter Parnes – DrPeppar-bloggen",
+      "url": "https://www.parnes.com/blog/",
+      "beskrivning": "Peter Parnes, professor vid Luleå tekniska universitet, bloggar återkommande om AI:s omvandling av utbildning: AI-stödd undervisning och forskning, verktyg i praktiken och nationella rekommendationer för lärosäten. Mestadels på svenska.",
+      "typ": [
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "hogskola"
+      ],
+      "teman": [
+        "forskning-teori",
+        "kompetensutveckling",
+        "programmering-teknik"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Peter Parnes",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "patricia-diaz-blogg",
+      "titel": "Patricia Diaz – blogg",
+      "url": "https://www.patriciadiaz.se/blogg/",
+      "beskrivning": "Patricia Diaz, disputerad vid KTH inom teknik och lärande, bloggar om generativ AI och digitala verktyg i undervisningen: studielägen i ChatGPT, Claude och Gemini, responssystem, språkundervisning och lärares digitala kompetens.",
+      "typ": [
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "sprakutveckling",
+        "kompetensutveckling",
+        "bedomning"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Patricia Diaz",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-eskilstuna-tema-ai",
+      "titel": "Tema AI (Pedagog Eskilstuna)",
+      "url": "https://pedagog.eskilstuna.se/pedagog-eskilstuna/tema/ai",
+      "beskrivning": "Temasida om AI med kom igång-guider för förskola till åk 9 och anpassad grundskola, artiklar om AI-litteracitet, etik och informationssäkerhet, 100 färdiga prompter samt kurstips och verktyg som Gemini och NotebookLM.",
+      "typ": [
+        "samling"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "prompting",
+        "etik-bias",
+        "juridik-gdpr",
+        "kompetensutveckling"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Eskilstuna kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-jonkoping-ai",
+      "titel": "Pedagog Jönköping: AI",
+      "url": "https://pedagog.jonkoping.se/ai",
+      "beskrivning": "Jönköpings kommuns stora AI-tema för pedagoger från förskola till gymnasium: kom igång-guider, begreppslista, promptstöd, lärarhandledningar, föreläsningsmaterial, podd och veckans AI-tips. Målet: vilja, våga och veta hur du använder AI.",
+      "typ": [
+        "samling"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "prompting",
+        "lektionsplanering",
+        "kompetensutveckling"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Jönköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-jonkoping-ai-i-klassrummet",
+      "titel": "AI i klassrummet – lärarhandledning (Pedagog Jönköping)",
+      "url": "https://pedagog.jonkoping.se/ai/ai-i-klassrummet---lararhandledning",
+      "beskrivning": "Lärarhandledning med lektionsingångar i 16 ämnen, AI som studiestrategi, klassens AI-överenskommelse och forskningsgrund. Stöd för att göra AI till ett medvetet, transparent verktyg för lärande i grundskola och gymnasium.",
+      "typ": [
+        "lektionsmaterial",
+        "guide"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "lektionsplanering",
+        "ai-litteracitet",
+        "akademisk-integritet",
+        "etik-bias"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Jönköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-jonkoping-blogg-ai-i-skolan",
+      "titel": "AI i skolan – blogg (Pedagog Jönköping)",
+      "url": "https://pedagog.jonkoping.se/vara-bloggar/ai-i-skolan",
+      "beskrivning": "Blogg där verksamhetsutvecklare inom AI och lärare i Jönköpings kommun delar tips, idéer och reflektioner om AI i undervisningen – med praktiska genomgångar av verktyg som Copilot samt aktuella webbinarier och evenemang.",
+      "typ": [
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "prompting",
+        "lektionsplanering",
+        "kompetensutveckling"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Jönköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-jonkoping-kom-igang-med-ai",
+      "titel": "Kom igång med AI (Pedagog Jönköping)",
+      "url": "https://pedagog.jonkoping.se/ai/kom-igang-med-ai",
+      "beskrivning": "Nybörjarguide som förklarar AI och generativ AI, visar konkret hur du använder Copilot för chatt, bildskapande och sökning samt lyfter försiktighetsprinciper kring elevers integritet, transparens och ansvarsfull användning i skolan.",
+      "typ": [
+        "guide"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "prompting",
+        "juridik-gdpr"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Jönköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-jonkoping-lara-om-ai",
+      "titel": "Lära om AI (Pedagog Jönköping)",
+      "url": "https://pedagog.jonkoping.se/ai/lara-om-ai",
+      "beskrivning": "Utbildningsmaterial om AI:s historia, hur språkmodeller och neurala nätverk fungerar samt risker som bias och desinformation. Ger pedagoger teoretisk grund att stå på – med koppling till praktisk användning i förskola och skola.",
+      "typ": [
+        "guide"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "etik-bias",
+        "kallkritik-mik",
+        "forskning-teori"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Jönköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-jonkoping-podd-fran-a-till-ai",
+      "titel": "Från A till AI – podd från Pedagog Jönköping",
+      "url": "https://pedagog.jonkoping.se/ai/podd---fran-a-till-ai",
+      "beskrivning": "Podd om hur AI kan stärka undervisning och lärande från förskola till gymnasium. Avsnitt om tillgängligt lärande, AI i förskolan, fusk kontra lärande och lärarrollen – med lärare, elever, forskare och utbildningsdirektör som gäster.",
+      "typ": [
+        "podd"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "differentiering-stod",
+        "akademisk-integritet",
+        "kompetensutveckling"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Jönköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-malmo-ai-forskning",
+      "titel": "AI i klassrummet: Det säger forskningen (Pedagog Malmö)",
+      "url": "https://pedagog.malmo.se/bloggposter/ai-i-klassrummet-det-sager-forskningen/",
+      "beskrivning": "Genomgång av forskningsläget kring generativ AI i klassrummet: vad studier säger om elevers och lärares användning, effekter på skrivande och källkritik samt hur du förhåller dig när vetenskaplig grund ännu är begränsad.",
+      "typ": [
+        "blogg",
+        "forskning"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "forskning-teori",
+        "kallkritik-mik",
+        "ai-litteracitet"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Malmö stad",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-malmo-ai-tagg",
+      "titel": "AI-taggade artiklar (Pedagog Malmö)",
+      "url": "https://pedagog.malmo.se/sok/*/tagg/ai/",
+      "beskrivning": "Pedagog Malmös AI-taggade innehåll – ett 60-tal artiklar där stadens pedagoger delar klassrumsexempel, verktygstips och reflektioner om generativ AI, AI-litteracitet, källkritik och forskning. Fylls på löpande av redaktionen.",
+      "typ": [
+        "samling",
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kallkritik-mik",
+        "lektionsplanering",
+        "forskning-teori"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Malmö stad",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-norrkoping-vagledning-generativ-ai",
+      "titel": "Vägledning kring generativ AI (Pedagog Norrköping)",
+      "url": "https://norrkoping.se/skola-och-forskola/pedagog-norrkoping/digital-forskola-och-skola/vagledning-kring-generativ-ai-vid-utbildningskontoret",
+      "beskrivning": "Öppet publicerad vägledning för generativ AI i Norrköpings skolor: att undervisa om och med AI, säker och etisk användning enligt GDPR och upphovsrätt, godkända verktyg som Gemini och Copilot samt koppling till EU:s AI-förordning.",
+      "typ": [
+        "riktlinjer"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "juridik-gdpr",
+        "etik-bias",
+        "ai-litteracitet",
+        "ledning-strategi"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Norrköpings kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-orebro-ai-kompensatoriska",
+      "titel": "AI och det kompensatoriska uppdraget (Pedagog Örebro)",
+      "url": "https://pedagog.orebro.se/pedagogorebro/tema/digitalalarresurser/digitalisering/aiochdetkompensatoriskauppdragetlararensrollaravgorande.5.6888ebfe19b2bdfbd246bef.html",
+      "beskrivning": "Artikel från en fortbildningsdag om AI och skolans kompensatoriska uppdrag: hur AI kan göra lärande tillgängligt, varför elever behöver motståndskraft mot tekniken och varför lärarens professionella roll är avgörande.",
+      "typ": [
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "differentiering-stod",
+        "ai-litteracitet",
+        "etik-bias"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Örebro kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-orebro-ai-tema",
+      "titel": "AI från förskola till gymnasium (Pedagog Örebro)",
+      "url": "https://extra.orebro.se/pedagogorebro/tema/aifranforskolatillgymnasium.4.61617f1419b2c0522ec732c.html",
+      "beskrivning": "Pedagog Örebros temasida med praktiska exempel och vägledning för AI från förskola till gymnasium: riktlinjer och förhållningssätt, kom igång-stöd, styrkor och risker, AI i klassrummet och i planeringen samt forskning och fortbildning.",
+      "typ": [
+        "samling"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "lektionsplanering",
+        "etik-bias",
+        "kompetensutveckling",
+        "forskning-teori"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Örebro kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-stockholm-ai-anvandning-larare",
+      "titel": "AI-användning för lärare (Pedagog Stockholm)",
+      "url": "https://pedagog.stockholm/undervisning-och-larande/ai-anvandning-for-larare/",
+      "beskrivning": "Vägledning med elva principer för lärares AI-användning: godkända verktyg, källkritisk granskning, förhållningssättet människa–AI–människa, transparens mot elever och krav på mänsklig kontroll vid bedömning och återkoppling.",
+      "typ": [
+        "guide",
+        "riktlinjer"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "etik-bias",
+        "juridik-gdpr",
+        "bedomning",
+        "ai-litteracitet"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Stockholms stad",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-stockholm-ai-i-skolan",
+      "titel": "AI i skolan (Pedagog Stockholm)",
+      "url": "https://pedagog.stockholm/ai/",
+      "beskrivning": "Samlingssida för AI i Stockholms stads skolor: vägledningar för praktisk och etisk AI-användning, klassrumsnära artiklar, lärresurser, godkända verktyg som Copilot Chat och ett brett utbud av kompetensutveckling för pedagoger.",
+      "typ": [
+        "samling"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "lektionsplanering",
+        "kompetensutveckling",
+        "etik-bias"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Stockholms stad",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagog-stockholm-sa-anvander-du-ai",
+      "titel": "Så använder du AI i undervisningen (Pedagog Stockholm)",
+      "url": "https://pedagog.stockholm/undervisning-och-larande/sa-anvander-du-ai-i-undervisningen/",
+      "beskrivning": "Praktisk vägledning om att använda AI i undervisningen och undervisa om AI: vilka verktyg som är godkända, tumregler för vad du inte ska skriva till en chattbot samt länkar till kollegialt stöd och Skolverkets material.",
+      "typ": [
+        "guide"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "juridik-gdpr",
+        "lektionsplanering"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Stockholms stad",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "pedagogsajten-helsingborg-ai",
+      "titel": "AI-artiklar (Pedagogsajten Familjen Helsingborg)",
+      "url": "https://pedagogsajten.familjenhelsingborg.se/etikett/ai/",
+      "beskrivning": "AI-taggade artiklar från pedagoger i Familjen Helsingborgs kommuner: satsningar med masterclasses och AI-nätverk, språkundervisning och förskoleprojekt med AI samt samtal om källkritik och hur elever fortsätter tänka själva.",
+      "typ": [
+        "samling",
+        "blogg"
+      ],
+      "malgrupp": [
+        "larare"
+      ],
+      "stadium": [
+        "forskola",
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kallkritik-mik",
+        "sprakutveckling",
+        "bild-video"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Familjen Helsingborg",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolinspektionen-granskning-fusk-gymnasiet",
+      "titel": "Gymnasieskolors åtgärder vid fusk – tematisk kvalitetsgranskning",
+      "url": "https://www.skolinspektionen.se/aktuellt/pagaende-granskningar/gymnasieskolors-atgarder-vid-fusk/",
+      "beskrivning": "Skolinspektionen granskar 30 gymnasieskolors arbete mot fusk när generativ AI gör det lätt att producera texter som ser självständiga ut. Sidan beskriver granskningens frågor och upplägg; samlad rapport väntas senast i april 2027.",
+      "typ": [
+        "forskning"
+      ],
+      "malgrupp": [
+        "skolledare",
+        "huvudman",
+        "larare"
+      ],
+      "stadium": [
+        "gymnasium"
+      ],
+      "teman": [
+        "akademisk-integritet",
+        "bedomning"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolinspektionen",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolspanarna",
+      "titel": "Skolspanarna",
+      "url": "https://www.skolspanarna.se/",
+      "beskrivning": "Podd om skola och digitalisering med Hans, Johan och Patrik, aktiv med över 440 avsnitt. Återkommande AI-teman: AI-verktyg i klassrummet, Gemini i Classroom, upphovsrätt och vad AI gör med elevers lärande. På svenska, gratis.",
+      "typ": [
+        "podd"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "kompetensutveckling",
+        "ai-litteracitet"
+      ],
+      "kalla": "privatperson",
+      "kalla_namn": "Skolspanarna",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolverket-amne-artificiell-intelligens",
+      "titel": "Artificiell intelligens – nytt ämne i gymnasieskolan och komvux",
+      "url": "https://www.skolverket.se/styrning-och-ansvar/forandringar-inom-skolomradet/sidor-tidigare-forandringar/artificiell-intelligens---nytt-amne-i-gymnasieskolan-och-komvux",
+      "beskrivning": "Skolverkets information om ämnet artificiell intelligens som infördes hösten 2024 i gymnasieskolan och komvux: ämnets innehåll och nivåer, vilka program som kan erbjuda det samt behörighetskrav och fortbildning för lärare.",
+      "typ": [
+        "riktlinjer"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "programmering-teknik",
+        "ai-litteracitet",
+        "kompetensutveckling"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolverket",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolverket-lagesbild-ai-2026",
+      "titel": "Artificiell intelligens i undervisningen – lägesbild hösten 2025 och starten på 2026",
+      "url": "https://www.skolverket.se/sok-publikationer/publikationsserier/ovrigt-material/2026/artificiell-intelligens-i-undervisningen---en-lagesbild-over-larares-anvandning-och-hantering-av-ai-under-hosten-2025-och-starten-pa-2026",
+      "beskrivning": "Uppföljande lägesbild från Skolverket (2026): nära åtta av tio lärare i grundskolan har använt AI i arbetet, oftast för planering, och fyra av tio låter elever använda AI. Bygger på enkätsvar från 368 lärare i Skolverkets webbpanel.",
+      "typ": [
+        "forskning"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "forskning-teori",
+        "lektionsplanering",
+        "kompetensutveckling"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolverket",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolverket-lagesbild-ai-grundskolan",
+      "titel": "Artificiell intelligens i undervisningen – grundskolan, förskoleklass och fritidshem",
+      "url": "https://www.skolverket.se/sok-publikationer/publikationsserier/ovrigt-material/2024/artificiell-intelligens-i-undervisningen---grundskolan-forskoleklass-och-fritidshem",
+      "beskrivning": "Skolverkets lägesbild (2024) över AI-användning i grundskolan, förskoleklassen och fritidshemmet, byggd på enkätsvar från cirka 530 lärare. Visar en begränsad men växande användning och lärares behov av fortbildning om AI.",
+      "typ": [
+        "forskning"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "forskning-teori",
+        "kompetensutveckling"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolverket",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolverket-lagesbild-ai-gymnasieskolan",
+      "titel": "Artificiell intelligens i undervisningen – gymnasieskolan",
+      "url": "https://www.skolverket.se/sok-publikationer/publikationsserier/ovrigt-material/2024/artificiell-intelligens-i-undervisningen---gymnasieskolan",
+      "beskrivning": "Lägesbild från Skolverket (2024) om hur gymnasielärare använder och hanterar AI i undervisningen, baserad på enkätsvar från cirka 190 lärare. Visar bland annat hur prov- och uppgiftsformer förändras när elever har tillgång till AI.",
+      "typ": [
+        "forskning"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare"
+      ],
+      "stadium": [
+        "gymnasium"
+      ],
+      "teman": [
+        "forskning-teori",
+        "bedomning",
+        "akademisk-integritet"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolverket",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolverket-rad-om-ai",
+      "titel": "Råd om AI, chattbottar och liknande verktyg",
+      "url": "https://www.skolverket.se/kompetensutveckling/stod-i-arbetet/rad-om-ai-chattbottar-och-liknande-verktyg",
+      "beskrivning": "Skolverkets samlade rekommendationer om AI i skolan: vad generativ AI och chattbottar är, risker som faktafel och fusk, samt stöd för att ta fram ett gemensamt förhållningssätt kring organisation, etik, juridik och pedagogik.",
+      "typ": [
+        "guide",
+        "riktlinjer"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "etik-bias",
+        "juridik-gdpr",
+        "akademisk-integritet",
+        "ledning-strategi"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolverket",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skolverket-webbkurs-larverktyg",
+      "titel": "Att välja och använda lärverktyg – webbkurs",
+      "url": "https://www.skolverket.se/kompetensutveckling/kurser-och-utbildningar/sok-kurser-och-utbildningar/att-valja-och-anvanda-larverktyg---webbkurs",
+      "beskrivning": "Kostnadsfri webbkurs från Skolverket om att välja och använda lärverktyg på vetenskaplig grund, med särskilda delar om gemensamma förhållningssätt till lärverktyg som innehåller AI. För lärare, rektorer och huvudmän.",
+      "typ": [
+        "kurs"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium",
+        "vux"
+      ],
+      "teman": [
+        "kompetensutveckling",
+        "ai-litteracitet",
+        "ledning-strategi"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Skolverket",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "skr-ai-for-skolhuvudman",
+      "titel": "AI för skolhuvudmän (SKR)",
+      "url": "https://skr.se/digitaliseringivalfarden/digitaliseringiskolan/aiforskolhuvudman.10041.html",
+      "beskrivning": "SKR:s sida om det nationella initiativet AI för skolhuvudmän: bakgrund, syfte och länk till det öppna scenarioverktyg som SKR och Ifous tagit fram med 18 nationella aktörer som stöd för styrning och ledning av AI i skolan.",
+      "typ": [
+        "guide"
+      ],
+      "malgrupp": [
+        "huvudman",
+        "skolledare"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "ledning-strategi",
+        "juridik-gdpr",
+        "etik-bias"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Sveriges Kommuner och Regioner",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "spsm-specialpedagogiskt-perspektiv-pa-ai",
+      "titel": "Ett specialpedagogiskt perspektiv på AI",
+      "url": "https://www.spsm.se/laromedel/valja-anvanda-och-utvardera-larverktyg/larverktyg-pa-huvudmannaniva/ett-specialpedagogiskt-perspektiv-pa-ai/",
+      "beskrivning": "SPSM beskriver möjligheter och risker med AI för elever med funktionsnedsättning: omedelbar återkoppling och stöd som kan stärka lärandet, men också risken att grundläggande förmågor inte tränas. Med diskussionsfrågor för kollegiet.",
+      "typ": [
+        "guide"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "differentiering-stod",
+        "etik-bias",
+        "ai-litteracitet"
+      ],
+      "kalla": "myndighet",
+      "kalla_namn": "Specialpedagogiska skolmyndigheten",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "studera-ai",
+      "titel": "Studera.AI",
+      "url": "https://www.studera.ai/",
+      "beskrivning": "Svensk AI-plattform med verktyg för lärare och studerande: lektionsgenerering, bedömning av elevtexter, quiz, flashcards, arbetsblad och prov. Svenskt gränssnitt, servrar i Sverige och GDPR-fokus. Gratisnivå finns, premium från 49 kr/månad.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare",
+        "elever"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium",
+        "vux",
+        "hogskola"
+      ],
+      "teman": [
+        "lektionsplanering",
+        "bedomning"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Studera.AI (Scentia AB)",
+      "sprak": "sv",
+      "kostnad": "freemium",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "sveriges-larare-lararledd-digitalisering",
+      "titel": "Lärarledd digitalisering – rapport om digitalisering och AI",
+      "url": "https://www.sverigeslarare.se/om-oss/opinion-debatt/undersokningar/lararledd-digitalisering/",
+      "beskrivning": "Sveriges Lärares undersökning bland cirka 3 500 lärare om synen på digitalisering och AI i skolan. Visar försiktig AI-användning, oro för fusk och ogenomtänkta investeringar samt tydliga krav på kompetensutveckling. Fri PDF.",
+      "typ": [
+        "forskning"
+      ],
+      "malgrupp": [
+        "larare",
+        "skolledare",
+        "huvudman"
+      ],
+      "stadium": [
+        "alla"
+      ],
+      "teman": [
+        "forskning-teori",
+        "kompetensutveckling",
+        "akademisk-integritet"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Sveriges Lärare",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "teachable-machine",
+      "titel": "Teachable Machine",
+      "url": "https://teachablemachine.withgoogle.com/",
+      "beskrivning": "Googles kostnadsfria webbverktyg där elever utan att koda tränar egna maskininlärningsmodeller med egen data. Vanligt inslag i svenska AI-lektioner, bland annat i Kodcentrums Koll på AI, för att konkret visa hur en AI lär sig av träningsdata.",
+      "typ": [
+        "verktyg"
+      ],
+      "malgrupp": [
+        "larare",
+        "elever"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "programmering-teknik"
+      ],
+      "kalla": "foretag",
+      "kalla_namn": "Google",
+      "sprak": "en",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "tekniska-museet-framtidens-manniska",
+      "titel": "Tekniska museet – Framtidens människa (skolprogram)",
+      "url": "https://www.tekniskamuseet.se/skolprogram/framtidens-manniska-teknik-och-etik/",
+      "beskrivning": "Bokningsbart skolprogram på Tekniska museet där elever i åk 7–9 och gymnasiet utforskar AI, genredigering och bioteknik i utställningen Hyper Human. Guidad visning i halvklass med uppgifter och etiska diskussioner, kostnadsfritt för skolklasser.",
+      "typ": [
+        "kurs"
+      ],
+      "malgrupp": [
+        "larare",
+        "elever"
+      ],
+      "stadium": [
+        "grundskola",
+        "gymnasium"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "etik-bias"
+      ],
+      "kalla": "organisation",
+      "kalla_namn": "Tekniska museet",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "trelleborg-ai-forandrar-larandet",
+      "titel": "AI förändrar lärandet i Trelleborgs skolor",
+      "url": "https://www.trelleborg.se/nyheter/ai-forandrar-larandet-i-trelleborgs-skolor/",
+      "beskrivning": "Reportage om hur Trelleborgs skolor använder generativ AI för att individanpassa material, bl.a. i svenska som andraspråk och läxhjälp, om kommunens AI-nätverk och kommande utbildningssatsningar i Googles AI-verktyg.",
+      "typ": [
+        "blogg"
+      ],
+      "malgrupp": [
+        "alla"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "differentiering-stod",
+        "sprakutveckling",
+        "kompetensutveckling"
+      ],
+      "kalla": "kommun",
+      "kalla_namn": "Trelleborgs kommun",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    },
+    {
+      "id": "ur-fran-ai-till-o",
+      "titel": "Från AI till Ö",
+      "url": "https://urplay.se/serie/238920-fran-ai-till-o",
+      "beskrivning": "UR-serie för mellanstadiet (åk 4–6) som förklarar vad AI är, hur generativ AI och maskininlärning fungerar och hur tekniken påverkar vardagen. Korta avsnitt på cirka tio minuter som kompletteras med lärarhandledning och arbetsmaterial.",
+      "typ": [
+        "video",
+        "lektionsmaterial"
+      ],
+      "malgrupp": [
+        "elever",
+        "larare"
+      ],
+      "stadium": [
+        "grundskola"
+      ],
+      "teman": [
+        "ai-litteracitet",
+        "kallkritik-mik"
+      ],
+      "kalla": "media",
+      "kalla_namn": "UR (Sveriges Utbildningsradio)",
+      "sprak": "sv",
+      "kostnad": "gratis",
+      "tillagd": "2026-08-18",
+      "status": "aktiv"
+    }
+  ]
+}

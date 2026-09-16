@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-nätverket — AI och pedagogik i svensk skola</title>
+  <meta name="description" content="Det bästa som redan finns om AI i skolan — samlat, granskat och sökbart. Guider, lektioner, verktyg, riktlinjer och forskning från myndigheter, kommuner och lärare.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0,0..1;1,9..144,300..900,0,0..1&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stil.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='90'%3E✳%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="topp">
+  <div class="ram topp__inre">
+    <svg class="topp__stjarna" viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="translate(50 50)">
+        <path d="M0-46 L4-8 L42-19 L10 0 L42 19 L4 8 L0 46 L-4 8 L-42 19 L-10 0 L-42-19 L-4-8 Z" fill="currentColor"/>
+      </g>
+    </svg>
+    <p class="topp__overrad">Ett nav för AI och pedagogik i svensk skola</p>
+    <h1 class="topp__rubrik">AI-nätverket<span class="topp__punkt">.</span></h1>
+    <p class="topp__ingress">
+      Det bästa som redan finns om AI i skolan — samlat, granskat och sökbart.
+      <span id="ingress-stat"></span>
+    </p>
+  </div>
+</header>
+
+<main>
+  <section class="sok ram" aria-label="Sök i katalogen">
+    <div class="sok__falt">
+      <svg class="sok__ikon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <input id="sokfalt" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Sök — till exempel ”lektioner om bias” eller ”riktlinjer gdpr”"
+             aria-label="Sök i katalogen">
+      <button id="rensa-sok" class="sok__rensa" type="button" hidden aria-label="Rensa sökningen">×</button>
+    </div>
+
+    <div class="filter">
+      <div class="filter__grupp" data-grupp="typ">
+        <span class="filter__etikett">Jag letar efter</span>
+        <div class="chips" id="chips-typ" role="group" aria-label="Filtrera på resurstyp"></div>
+      </div>
+      <div class="filter__grupp" data-grupp="teman">
+        <span class="filter__etikett">Tema</span>
+        <div class="chips" id="chips-teman" role="group" aria-label="Filtrera på tema"></div>
+      </div>
+      <div class="filter__rad">
+        <details class="meny" data-grupp="malgrupp">
+          <summary>Målgrupp<span class="meny__antal" hidden></span></summary>
+          <div class="meny__lista"></div>
+        </details>
+        <details class="meny" data-grupp="stadium">
+          <summary>Stadium<span class="meny__antal" hidden></span></summary>
+          <div class="meny__lista"></div>
+        </details>
+        <details class="meny" data-grupp="kostnad">
+          <summary>Kostnad<span class="meny__antal" hidden></span></summary>
+          <div class="meny__lista"></div>
+        </details>
+        <button id="rensa-allt" class="filter__rensa" type="button" hidden>Rensa alla filter</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="resultat ram" aria-label="Sökresultat">
+    <p class="resultat__antal" id="antal" role="status" aria-live="polite"></p>
+    <div class="kortnat" id="kortnat"></div>
+    <div class="tomt" id="tomt" hidden>
+      <p class="tomt__stjarna" aria-hidden="true">✳</p>
+      <p class="tomt__rubrik">Inget här — än.</p>
+      <p>Ingen resurs matchar sökningen. Prova ett bredare ord, eller
+         <button class="tomt__knapp" id="tomt-rensa" type="button">rensa allt</button>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="fot">
+  <div class="ram fot__inre">
+    <p class="fot__rubrik">Byggt av lärare, för lärare<span class="topp__punkt">.</span></p>
+    <p class="fot__text">
+      Varje resurs i katalogen är hämtad, läst och handgranskad innan den togs in — kurateringen är
+      hela poängen. Vi länkar alltid till upphovspersonernas egna sidor och återpublicerar ingenting.
+    </p>
+    <p class="fot__text">Saknar du något som borde finnas här? Tipsfunktion är på väg.</p>
+    <p class="fot__meta" id="fot-meta"></p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+/* AI-nätverket — svensk folkbildning möter modern redaktionell design.
+   Papper, bläck och falurött; Fraunces + Schibsted Grotesk. */
+
+:root {
+  --papper: #f7f1e5;
+  --kort: #fffdf6;
+  --black: #292219;
+  --dampad: #6f6552;
+  --falu: #9e2f20;
+  --falu-djup: #7f2417;
+  --linje: rgba(41, 34, 25, 0.55);
+  --linje-svag: rgba(41, 34, 25, 0.16);
+  --skugga: rgba(41, 34, 25, 0.92);
+
+  --k-myndighet: #2b5b8a;
+  --k-kommun: #2e6e4e;
+  --k-region: #1f6d6d;
+  --k-larosate: #4a4e94;
+  --k-organisation: #8a6a1f;
+  --k-foretag: #7a3e78;
+  --k-privatperson: #9e2f20;
+  --k-media: #55606e;
+
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --grotesk: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papper: #1a1712;
+    --kort: #232019;
+    --black: #ede4d3;
+    --dampad: #a89b83;
+    --falu: #e0684a;
+    --falu-djup: #f08a6e;
+    --linje: rgba(237, 228, 211, 0.6);
+    --linje-svag: rgba(237, 228, 211, 0.16);
+    --skugga: rgba(0, 0, 0, 0.9);
+
+    --k-myndighet: #7aaad8;
+    --k-kommun: #7dbb97;
+    --k-region: #6fb8b8;
+    --k-larosate: #9c9fd8;
+    --k-organisation: #cfa84e;
+    --k-foretag: #c489c2;
+    --k-privatperson: #e0846a;
+    --k-media: #9fadbd;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--grotesk);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--black);
+  background: var(--papper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Pappersgryn över hela sidan */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--falu); color: var(--papper); }
+
+:focus-visible { outline: 3px solid var(--falu); outline-offset: 3px; }
+
+.ram { max-width: 1120px; margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2.5rem); }
+
+/* ---------- Masthuvud ---------- */
+
+.topp { border-bottom: 2px solid var(--black); overflow: hidden; }
+
+.topp__inre { position: relative; padding-block: clamp(2.6rem, 7vw, 5rem) clamp(2rem, 5vw, 3.2rem); }
+
+.topp__stjarna {
+  position: absolute;
+  top: clamp(-60px, -6vw, -20px);
+  right: clamp(-70px, -5vw, -20px);
+  width: clamp(160px, 24vw, 320px);
+  color: var(--falu);
+  opacity: 0.12;
+  animation: snurr 90s linear infinite;
+}
+
+@keyframes snurr { to { transform: rotate(360deg); } }
+
+.topp__overrad {
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--falu);
+  margin-bottom: 1rem;
+}
+
+.topp__rubrik {
+  font-family: var(--display);
+  font-weight: 620;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-size: clamp(3rem, 9.5vw, 6.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+
+.topp__punkt { color: var(--falu); }
+
+.topp__ingress {
+  margin-top: 1.3rem;
+  font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+  max-width: 56ch;
+  color: var(--dampad);
+}
+
+.topp__ingress strong { color: var(--black); font-weight: 700; }
+
+/* ---------- Sök ---------- */
+
+.sok { padding-block: clamp(1.8rem, 4vw, 2.8rem) 0.6rem; }
+
+.sok__falt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--kort);
+  border: 2px solid var(--black);
+  border-radius: 3px;
+  box-shadow: 6px 6px 0 var(--falu);
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.sok__falt:focus-within { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 var(--falu); }
+
+.sok__ikon { width: 1.25rem; flex: none; margin-inline: 1.05rem 0.2rem; color: var(--dampad); }
+
+#sokfalt {
+  flex: 1;
+  font: inherit;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--black);
+  background: none;
+  border: 0;
+  padding: 1.02rem 0.8rem;
+}
+
+#sokfalt::placeholder { color: var(--dampad); opacity: 0.75; }
+#sokfalt:focus { outline: none; }
+#sokfalt::-webkit-search-cancel-button { display: none; }
+
+.sok__rensa {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--dampad);
+  background: none;
+  border: 0;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+.sok__rensa:hover { color: var(--falu); }
+
+/* ---------- Filter ---------- */
+
+.filter { margin-top: 1.6rem; display: grid; gap: 0.95rem; }
+
+.filter__grupp { display: grid; grid-template-columns: 7.2rem 1fr; gap: 0.6rem; align-items: baseline; }
+
+.filter__etikett {
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--dampad);
+  padding-top: 0.35rem;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+.chip {
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--black);
+  background: none;
+  border: 1.5px solid var(--linje);
+  border-radius: 999px;
+  padding: 0.28rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.13s ease, color 0.13s ease, border-color 0.13s ease;
+}
+
+.chip:hover { border-color: var(--black); }
+
+.chip[aria-pressed="true"] { background: var(--black); border-color: var(--black); color: var(--papper); }
+
+#chips-teman .chip[aria-pressed="true"] { background: var(--falu); border-color: var(--falu); color: #fff8ef; }
+
+.filter__rad { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+
+.meny { position: relative; }
+
+.meny > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  border: 1.5px solid var(--linje);
+  border-radius: 999px;
+  padding: 0.28rem 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+.meny > summary::-webkit-details-marker { display: none; }
+.meny > summary::after { content: "▾"; font-size: 0.7em; transition: transform 0.15s ease; }
+.meny[open] > summary::after { transform: rotate(180deg); }
+.meny[open] > summary, .meny > summary:hover { border-color: var(--black); }
+
+.meny__antal {
+  background: var(--falu);
+  color: #fff8ef;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+}
+
+.meny__lista {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 0.55rem);
+  left: 0;
+  min-width: 240px;
+  background: var(--kort);
+  border: 2px solid var(--black);
+  border-radius: 3px;
+  box-shadow: 6px 6px 0 var(--skugga);
+  padding: 0.55rem;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.meny__lista label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  padding: 0.34rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.meny__lista label:hover { background: var(--linje-svag); }
+.meny__lista input { accent-color: var(--falu); width: 1rem; height: 1rem; }
+
+.filter__rensa {
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--falu);
+  background: none;
+  border: 0;
+  padding: 0.28rem 0.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Resultat ---------- */
+
+.resultat { padding-block: 1.7rem 4rem; }
+
+.resultat__antal {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--dampad);
+  margin-bottom: 1.2rem;
+}
+.resultat__antal em { font-style: normal; color: var(--falu); font-weight: 700; }
+
+.kortnat {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
+  gap: 1.35rem 1.2rem;
+}
+
+.kort {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  background: var(--kort);
+  border: 1.5px solid var(--black);
+  border-radius: 3px;
+  box-shadow: 4px 4px 0 var(--skugga);
+  padding: 1.15rem 1.25rem 1.05rem;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  animation: kort-upp 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 45ms);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+@keyframes kort-upp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.kort:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--falu); }
+
+.kort__topp { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; }
+
+.kalla {
+  --k: var(--k-media);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: color-mix(in oklab, var(--k) 72%, var(--black));
+  background: color-mix(in oklab, var(--k) 13%, transparent);
+  border-radius: 999px;
+  padding: 0.16rem 0.65rem;
+}
+.kalla::before { content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--k); }
+
+.kort__typ {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dampad);
+  white-space: nowrap;
+}
+
+.kort__stampel {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--falu);
+  border: 1.5px solid var(--falu);
+  border-radius: 3px;
+  padding: 0.06rem 0.4rem;
+  transform: rotate(-2deg);
+}
+
+.kort h3 {
+  font-family: var(--display);
+  font-weight: 580;
+  font-size: 1.32rem;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+.kort:hover h3 { color: var(--falu); }
+
+.kort__beskrivning {
+  font-size: 0.92rem;
+  color: var(--dampad);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.kort__fot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--linje-svag);
+}
+
+.tagg {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--dampad);
+  border: 1px solid var(--linje-svag);
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+}
+
+.kort__doman {
+  margin-left: auto;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--falu);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Tomt läge ---------- */
+
+.tomt { text-align: center; padding: 4rem 1rem 2rem; }
+.tomt__stjarna { font-size: 3rem; color: var(--falu); animation: snurr 30s linear infinite; display: inline-block; }
+.tomt__rubrik { font-family: var(--display); font-weight: 600; font-size: 1.8rem; margin: 0.6rem 0 0.4rem; }
+.tomt p { color: var(--dampad); }
+.tomt__knapp {
+  font: inherit;
+  color: var(--falu);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Fot ---------- */
+
+.fot { background: var(--black); color: var(--papper); margin-top: 2rem; }
+
+@media (prefers-color-scheme: dark) {
+  .fot { background: #11100c; border-top: 1px solid var(--linje-svag); }
+}
+
+.fot__inre { padding-block: 3rem 2.6rem; }
+
+.fot__rubrik {
+  font-family: var(--display);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin-bottom: 0.9rem;
+}
+
+.fot__text { max-width: 62ch; font-size: 0.95rem; opacity: 0.82; margin-bottom: 0.55rem; }
+
+.fot__meta {
+  margin-top: 1.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 680px) {
+  .filter__grupp { grid-template-columns: 1fr; gap: 0.3rem; }
+  .filter__etikett { padding-top: 0; }
+  .kortnat { grid-template-columns: 1fr; }
+  .kort__typ { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topp__stjarna, .tomt__stjarna { animation: none; }
+  .kort { animation: none; }
+  .sok__falt, .kort, .chip { transition: none; }
+}

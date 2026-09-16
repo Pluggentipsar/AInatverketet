@@ -1,0 +1,110 @@
+{
+  "uppdaterad": "2026-08-18",
+  "kandidater": [
+    {
+      "titel": "AI i skolan – föreläsning med Martin Lossman (UR)",
+      "url": "https://urplay.se/program/236529-ai-i-skolan",
+      "varfor": "Programmet ligger under UR:s lärarfortbildningsutbud och kräver inloggning (UR Access) för uppspelning."
+    },
+    {
+      "titel": "Skolstudion: AI i framtidens skola (UR)",
+      "url": "https://urplay.se/program/218957-skolstudion-ai-i-framtidens-skola",
+      "varfor": "Avsnittet kräver inloggning via UR Access eller mediecentral och kan inte ses öppet."
+    },
+    {
+      "titel": "Källkritik och generativ AI (Skolverkets lärportal)",
+      "url": "https://larportalen.skolverket.se/api/resource/P05132762",
+      "varfor": "PDF:ns textinnehåll gick inte att verifiera vid hämtning och Lärportalens modulsidor kräver JavaScript, så kanonisk ingångssida kunde inte bekräftas."
+    },
+    {
+      "titel": "Att undervisa artificiell intelligens på gymnasial nivå – tekniska perspektiv (Umeå universitet)",
+      "url": "https://www.umu.se/institutionen-for-tillampad-utbildningsvetenskap/utbildning/att-undervisa-artificiell-intelligens-pa-gymnasial-niva-tekniska-perspektiv-ht25/",
+      "varfor": "Sidan avser kursomgången HT25 som redan passerat; oklart om ny omgång ges och sidan är inte innehållsverifierad."
+    },
+    {
+      "titel": "AI-litteracitet i skolan – seminarieserie (Linköpings universitet)",
+      "url": "https://liu.se/samverkan/skolsamverkan/ai-litteracitet-i-skolan",
+      "varfor": "Seminarieserien gavs hösten 2024 med stängd anmälan och riktade sig främst till Östergötland; troligen inaktuell som katalogresurs."
+    },
+    {
+      "titel": "Kvutis – Kvalitet och Utveckling i Svedala",
+      "url": "https://kvutis.se/",
+      "varfor": "Sajten är aktiv men ingen AI-specifik sektion eller artikelsamling hittades vid sökning och genomgång; innehållet fokuserar på systematiskt kvalitetsarbete, ledarskap och undervisning generellt."
+    },
+    {
+      "titel": "Pedagog Uppsala",
+      "url": "https://pedagog.uppsala.se/",
+      "varfor": "Ingen samlad AI-sektion hittades; AI nämns endast i enstaka reportage (t.ex. om läsanalysverktyget Lexplore), vilket inte räcker för att kvala in som AI-resurs."
+    },
+    {
+      "titel": "Malmö stads AI-vägledningar per skolform (Komin)",
+      "url": "https://komin.malmo.se/",
+      "varfor": "Malmö stads officiella AI-vägledningar för skolformerna ligger på intranätet Komin och kräver inloggning – kunde inte verifieras öppet."
+    },
+    {
+      "titel": "Pedagog Värmland – AI-artiklar",
+      "url": "https://pedagogvarmland.se/",
+      "varfor": "Endast spridda AI-artiklar (bl.a. en extern gratis-e-bok från 2023 och EU-projektet SmartStart) utan samlad AI-sektion; sajten drivs dessutom närmare Karlstads universitet än en kommun."
+    },
+    {
+      "titel": "AI i undervisningen – digital utbildningsdag (Pedagog Stockholm)",
+      "url": "https://pedagog.stockholm/ai-dagen/",
+      "varfor": "Tidsbunden anmälningssida för en utbildningsdag vecka 44; inga inspelningar eller öppet material publicerade på sidan."
+    },
+    {
+      "titel": "Insikt om AI – Artificiell Intelligens (Pedagog Härryda)",
+      "url": "https://www.harryda.se/barnochutbildning/pedagogharryda/allaartiklar/artiklar/insiktomaiartificiellintelligens.5.61008d7d1870d65e13c2ee.html",
+      "varfor": "Verifierad artikel men publicerad i mars 2023 – innehållet om ChatGPT är delvis daterat och hänvisar i huvudsak vidare till Skolverkets material."
+    },
+    {
+      "titel": "Pedagogiska resurser – Ystads kommun",
+      "url": "https://sites.google.com/ystad.se/pedagog/pedagogiska-resurser",
+      "varfor": "AI är bara ett kort avsnitt på en allmän verktygssida (Skolup, Copilot); kommunens AI-riktlinjer omnämns men är inte öppet publicerade."
+    },
+    {
+      "titel": "Pedagog Mölndal – AI-inlägg i Digitala bloggen",
+      "url": "https://www.molndal.se/pedagog-molndal/bloggar/digitala-bloggen/digitala-bloggen/2024-03-18-nyfikenhet-pa-ai.html",
+      "varfor": "Spridda blogginlägg om AI från 2023–2024 utan samlad AI-sektion; tunt och delvis inaktuellt innehåll, ej djupverifierat."
+    },
+    {
+      "titel": "AI-litteracitet i svenskämnet (lektionsupplägg)",
+      "url": "https://ailitt.osc-fr1.scalingo.io",
+      "varfor": "Länkas från AI för skolledare-sajten men svarade 503 Service Unavailable vid tre hämtningsförsök 2026-08-18; innehållet kunde inte verifieras."
+    },
+    {
+      "titel": "Legend of Rektor (ledarskapsrollspel)",
+      "url": "https://legendofrektor.osc-fr1.scalingo.io",
+      "varfor": "Länkas från AI för skolledare-sajten men svarade 503 Service Unavailable vid hämtning; spelet kunde inte verifieras direkt."
+    },
+    {
+      "titel": "AI i skolan (Facebook-grupp)",
+      "url": "https://www.facebook.com/groups/aiiskolan",
+      "varfor": "Facebook kräver inloggning: gruppnamn, medlemsantal och beskrivning gick inte att verifiera öppet, och exakt gruppadress är obekräftad."
+    },
+    {
+      "titel": "AI i praktiken, lärarna (P1, Sveriges Radio)",
+      "url": "https://www.sverigesradio.se/avsnitt/tack-mamma-pappa-och-chatgpt-ai-i-praktiken-i-skolan-del-1",
+      "varfor": "Sveriges Radios sida svarade 403 Forbidden vid hämtning; den tredelade dokumentärserien från 2024 omnämns i sökresultat men kunde inte läsas direkt."
+    },
+    {
+      "titel": "PedagoAI",
+      "url": "https://pedagoai.se/",
+      "varfor": "Sidan svarar men visade i princip inget läsbart innehåll vid hämtning; funktioner, prismodell och aktuell status kunde inte verifieras."
+    },
+    {
+      "titel": "MagicSchool AI",
+      "url": "https://www.magicschool.ai/",
+      "varfor": "Populärt internationellt lärarverktyg, men engelskt gränssnitt och ingen tydlig dokumenterad bred användning i svensk skola hittades vid sökning på svenska pedagogsajter."
+    },
+    {
+      "titel": "Alice Labs (AI i skolan)",
+      "url": "https://alicelabs.ai/industri/skolan",
+      "varfor": "Sidan beskriver ett konsulterbjudande med workshops och pilotprojekt snarare än ett självbetjäningsverktyg för lärare; ingen öppen produkt- eller prisinformation gick att verifiera."
+    },
+    {
+      "titel": "Skolstudion (UR)",
+      "url": "https://urplay.se/serie/218953-skolstudion",
+      "varfor": "Serien finns på UR Play men avsnitten är från 2020, före den generativa AI-vågen, och arbetsmaterial saknas; tveksamt aktuell som AI-resurs."
+    }
+  ]
+}

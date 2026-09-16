@@ -1,0 +1,73 @@
+{
+  "typ": {
+    "samling": "Samling/hubb",
+    "verktyg": "AI-verktyg",
+    "guide": "Guide/genomgång",
+    "lektionsmaterial": "Lektionsmaterial",
+    "kurs": "Kurs/utbildning",
+    "riktlinjer": "Riktlinjer/policy",
+    "forskning": "Forskning/rapport",
+    "blogg": "Blogg",
+    "podd": "Podd",
+    "video": "Video",
+    "natverk": "Nätverk/community",
+    "nyhetsbrev": "Nyhetsbrev"
+  },
+  "malgrupp": {
+    "larare": "Lärare",
+    "skolledare": "Skolledare",
+    "huvudman": "Huvudman",
+    "elever": "Elever",
+    "vardnadshavare": "Vårdnadshavare",
+    "alla": "Alla"
+  },
+  "stadium": {
+    "forskola": "Förskola",
+    "grundskola": "Grundskola",
+    "gymnasium": "Gymnasium",
+    "vux": "Vuxenutbildning",
+    "hogskola": "Högskola/universitet",
+    "alla": "Alla stadier"
+  },
+  "teman": {
+    "ai-litteracitet": "AI-litteracitet",
+    "prompting": "Prompting",
+    "kallkritik-mik": "Källkritik & MIK",
+    "etik-bias": "Etik & bias",
+    "juridik-gdpr": "Juridik & GDPR",
+    "bedomning": "Bedömning",
+    "akademisk-integritet": "Akademisk integritet",
+    "lektionsplanering": "Lektionsplanering",
+    "differentiering-stod": "Differentiering & stöd",
+    "sprakutveckling": "Språkutveckling",
+    "bild-video": "Bild & video",
+    "programmering-teknik": "Programmering & teknik",
+    "ledning-strategi": "Ledning & strategi",
+    "kompetensutveckling": "Kompetensutveckling",
+    "forskning-teori": "Forskning & teori"
+  },
+  "kalla": {
+    "myndighet": "Myndighet",
+    "kommun": "Kommun",
+    "region": "Region",
+    "larosate": "Lärosäte",
+    "organisation": "Organisation",
+    "foretag": "Företag",
+    "privatperson": "Privatperson",
+    "media": "Media"
+  },
+  "sprak": {
+    "sv": "Svenska",
+    "en": "Engelska"
+  },
+  "kostnad": {
+    "gratis": "Gratis",
+    "freemium": "Freemium",
+    "betald": "Betald"
+  },
+  "status": {
+    "aktiv": "Aktiv",
+    "granskas": "Granskas",
+    "dod-lank": "Död länk"
+  }
+}
