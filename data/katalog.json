@@ -1,5 +1,5 @@
 {
-  "uppdaterad": "2026-08-18",
+  "uppdaterad": "2026-11-26",
   "antal": 65,
   "resurser": [
     {
@@ -29,7 +29,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "ai-for-skolhuvudman-scenarioverktyg",
@@ -58,7 +59,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "ai-for-skolledare",
@@ -89,7 +91,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "ai-skolan-lossman",
@@ -122,7 +125,8 @@
       "sprak": "sv",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "ai-snack",
@@ -150,7 +154,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "allgot",
@@ -177,7 +182,8 @@
       "sprak": "sv",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "astrid-education",
@@ -204,7 +210,8 @@
       "sprak": "en",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "curipod",
@@ -230,7 +237,8 @@
       "sprak": "en",
       "kostnad": "freemium",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "digitala-lektioner-ai",
@@ -257,7 +265,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "digitala-lektioner-podden",
@@ -283,7 +292,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "edaider",
@@ -312,7 +322,8 @@
       "sprak": "sv",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "eduai",
@@ -341,7 +352,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "elements-of-ai-svenska",
@@ -366,7 +378,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "enstroms-tankar",
@@ -394,7 +407,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "falkai",
@@ -422,7 +436,8 @@
       "sprak": "sv",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "goteborg-ubf-ai-i-skolan",
@@ -454,7 +469,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "graspable-ai",
@@ -480,7 +496,8 @@
       "sprak": "en",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "gu-ai-som-verktyg-i-undervisning",
@@ -507,7 +524,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "imy-vagledning-gdpr-och-ai",
@@ -533,7 +551,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "joelsai",
@@ -564,7 +583,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "kodboken-koll-pa-ai",
@@ -590,7 +610,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "kth-ai-kurser-vidareutbildning",
@@ -618,12 +639,13 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "lajka-ai-i-skolan",
       "titel": "Lajka – AI i skolan",
-      "url": "https://lajka.prinsparetsstiftelse.se/utbildningar/ai-i-skolan/",
+      "url": "https://lajka.prinsparetsstiftelse.se/lektion/ai-i-skolan/",
       "beskrivning": "Kostnadsfri utbildningsmodul om AI för skolpersonal på Prinsparets Stiftelses plattform Lajka. Går igenom generativ AI, chattbottar, risker som bias och desinformation samt konkreta sätt att använda AI tryggt i undervisningen.",
       "typ": [
         "lektionsmaterial",
@@ -647,7 +669,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "lernico",
@@ -673,12 +696,13 @@
       "sprak": "en",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "lexplore",
       "titel": "Lexplore",
-      "url": "https://lexplore.com/sv/",
+      "url": "https://lexplore.com/",
       "beskrivning": "Svensk tjänst som med AI och eyetracking screenar elevers läsförmåga på några minuter och ger skolor objektiva insikter samt rekommenderade läsaktiviteter. Bygger på dyslexiforskning och används systematiskt i flera svenska kommuner.",
       "typ": [
         "verktyg"
@@ -701,7 +725,8 @@
       "sprak": "sv",
       "kostnad": "betald",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "liu-aist-labbet",
@@ -730,7 +755,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "malin-frykman",
@@ -757,7 +783,8 @@
       "sprak": "sv",
       "kostnad": "freemium",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "mediacenter-vasterbotten-ai-i-skolan",
@@ -784,12 +811,13 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "mediemyndigheten-bilders-makt",
       "titel": "Bilders makt – AI och visuell påverkan",
-      "url": "https://mediemyndigheten.se/barn-och-unga/for-vuxna/bilders-makt-ai-och-visuell-paverkan/",
+      "url": "https://mediemyndigheten.se/barn-och-unga/undervisningsmaterial-och-stod/bilders-makt-ai-och-visuell-paverkan/",
       "beskrivning": "Kostnadsfritt undervisningsmaterial från Mediemyndigheten i fem delar om AI-genererade bilder, bildspråk, memer och visuell påverkan. Presentationer, lärarmanus och övningar som stärker elevers källkritik i högstadiet och gymnasiet.",
       "typ": [
         "lektionsmaterial"
@@ -812,7 +840,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "mickekring",
@@ -839,7 +868,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "miun-ai-och-etik",
@@ -864,7 +894,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "parnes-blogg",
@@ -890,7 +921,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "patricia-diaz-blogg",
@@ -917,7 +949,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-eskilstuna-tema-ai",
@@ -946,7 +979,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-jonkoping-ai",
@@ -975,7 +1009,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-jonkoping-ai-i-klassrummet",
@@ -1004,7 +1039,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-jonkoping-blogg-ai-i-skolan",
@@ -1032,7 +1068,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-jonkoping-kom-igang-med-ai",
@@ -1060,7 +1097,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-jonkoping-lara-om-ai",
@@ -1089,7 +1127,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-jonkoping-podd-fran-a-till-ai",
@@ -1119,7 +1158,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-malmo-ai-forskning",
@@ -1148,7 +1188,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-malmo-ai-tagg",
@@ -1178,7 +1219,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-norrkoping-vagledning-generativ-ai",
@@ -1209,7 +1251,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-orebro-ai-kompensatoriska",
@@ -1237,7 +1280,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-orebro-ai-tema",
@@ -1268,7 +1312,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-stockholm-ai-anvandning-larare",
@@ -1297,7 +1342,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-stockholm-ai-i-skolan",
@@ -1326,7 +1372,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagog-stockholm-sa-anvander-du-ai",
@@ -1353,7 +1400,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "dod-lank",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "pedagogsajten-helsingborg-ai",
@@ -1383,7 +1431,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolinspektionen-granskning-fusk-gymnasiet",
@@ -1410,7 +1459,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolspanarna",
@@ -1436,7 +1486,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolverket-amne-artificiell-intelligens",
@@ -1465,7 +1516,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "dod-lank",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolverket-lagesbild-ai-2026",
@@ -1493,7 +1545,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolverket-lagesbild-ai-grundskolan",
@@ -1520,7 +1573,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolverket-lagesbild-ai-gymnasieskolan",
@@ -1547,7 +1601,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolverket-rad-om-ai",
@@ -1578,7 +1633,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skolverket-webbkurs-larverktyg",
@@ -1608,7 +1664,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "skr-ai-for-skolhuvudman",
@@ -1635,7 +1692,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "spsm-specialpedagogiskt-perspektiv-pa-ai",
@@ -1663,7 +1721,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "studera-ai",
@@ -1692,7 +1751,8 @@
       "sprak": "sv",
       "kostnad": "freemium",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "sveriges-larare-lararledd-digitalisering",
@@ -1720,7 +1780,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "teachable-machine",
@@ -1747,7 +1808,8 @@
       "sprak": "en",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "tekniska-museet-framtidens-manniska",
@@ -1774,7 +1836,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "dod-lank",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "trelleborg-ai-forandrar-larandet",
@@ -1800,7 +1863,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     },
     {
       "id": "ur-fran-ai-till-o",
@@ -1827,7 +1891,8 @@
       "sprak": "sv",
       "kostnad": "gratis",
       "tillagd": "2026-08-18",
-      "status": "aktiv"
+      "status": "aktiv",
+      "senast_kontrollerad": "2026-11-26"
     }
   ]
 }

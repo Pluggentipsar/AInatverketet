@@ -8,6 +8,12 @@ const rot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const katalog = JSON.parse(readFileSync(join(rot, "data", "katalog.json"), "utf8"));
 const taxonomi = JSON.parse(readFileSync(join(rot, "data", "taxonomi.json"), "utf8"));
 
+// Döda länkar stannar i katalogfilen för granskning men publiceras aldrig.
+const bortfiltrerade = katalog.resurser.filter((r) => r.status === "dod-lank").length;
+katalog.resurser = katalog.resurser.filter((r) => r.status !== "dod-lank");
+katalog.antal = katalog.resurser.length;
+if (bortfiltrerade) console.log(`Filtrerade bort ${bortfiltrerade} resurser med status dod-lank.`);
+
 mkdirSync(join(rot, "site"), { recursive: true });
 writeFileSync(
   join(rot, "site", "data.js"),

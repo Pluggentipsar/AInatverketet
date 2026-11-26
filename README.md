@@ -35,6 +35,17 @@ node scripts/serve.mjs
 Öppna sedan http://localhost:4173. Efter ändringar i `data/katalog.json`:
 kör `node scripts/bygg-site-data.mjs` för att uppdatera sajtens data.
 
+## Länkkoll
+
+```
+node scripts/kontrollera-lankar.mjs
+```
+
+Hämtar varje resurs-URL, uppdaterar `senast_kontrollerad` och sätter status
+(`aktiv`/`granskas`/`dod-lank`). Omdirigeringar rapporteras men URL:er ändras
+aldrig automatiskt. Resurser med status `dod-lank` ligger kvar i katalogen för
+granskning men filtreras bort när sajtens data byggs. `--dry-run` skriver inget.
+
 ## Klickbar framtidsskiss
 
 Publicerad på here.now: **https://mellow-summit-4fhe.here.now/**
