@@ -76,6 +76,9 @@ body::after {
 
 :focus-visible { outline: 3px solid var(--falu); outline-offset: 3px; }
 
+.prototyp-lank { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 0.8rem; padding: 0.7rem 1rem; background: var(--falu); color: var(--papper); font-size: 0.8rem; }
+.prototyp-lank a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+
 .ram { max-width: 1120px; margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2.5rem); }
 
 /* ---------- Masthuvud ---------- */

@@ -1,0 +1,22 @@
+{
+  "id": "pedagog-jonkoping",
+  "namn": "Pedagog Jönköping",
+  "origin": "https://pedagog.jonkoping.se",
+  "prefix": ["/ai", "/blogglistning", "/nyhetslistning"],
+  "max_sidor": 25,
+  "paus_sekunder": 1.2,
+  "start": [
+    "/ai",
+    "/ai/lektionsmaterial-ai/ai-vanner-i-klassrummet",
+    "/ai/lara-om-ai",
+    "/ai/ai-i-arbetsrummet---pedagogisk-planering/pedagogiska-tankemodeller",
+    "/ai/ai-i-klassrummet---lararhandledning/lektionsingangar-for-ditt-amne/matematik",
+    "/ai/ai-i-klassrummet---lararhandledning/lektionsingangar-for-ditt-amne/engelska",
+    "/ai/ai-i-klassrummet---lararhandledning/lektionsingangar-for-ditt-amne/biologi",
+    "/ai/ai-i-arbetsrummet---pedagogisk-planering/pedagogiska-tankemodeller/ecpa---enskilt-chatbot-par-alla",
+    "/ai/ai-i-arbetsrummet---pedagogisk-planering/pedagogiska-tankemodeller/processkrivning-2.0",
+    "/nyhetslistning/nyhetsarkiv/2026-09-15-larare-arrangerar-ai-konferens-for-kollegor",
+    "/blogglistning/bloggarkiv/2026-02-03-ai-som-assisterande-teknik---hur-paverkar-det-elever-",
+    "/nyhetslistning"
+  ]
+}

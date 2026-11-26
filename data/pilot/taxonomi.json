@@ -1,0 +1,7 @@
+{
+  "anvandning": {"forsta": "Förstå AI själv", "om": "Undervisa om AI", "med": "Använda AI med elever", "planera": "Planera och utveckla"},
+  "amne": {"matematik": "Matematik", "engelska": "Engelska", "svenska": "Svenska", "biologi": "Biologi", "historia": "Historia", "samhallskunskap": "Samhällskunskap", "bild": "Bild"},
+  "stadium": {"forskola": "Förskola", "f3": "F–3", "46": "Åk 4–6", "79": "Åk 7–9", "gy": "Gymnasiet"},
+  "materialtyp": {"ovning": "Övning", "lektion": "Lektionsupplägg", "metod": "Metod / tankemodell", "introduktion": "Introduktion / guide", "reflektion": "Reflektion / erfarenhet", "samling": "Samling", "annat": "Behöver bedömas"},
+  "verktyg": {"utan": "Utan digitala verktyg", "alternativ": "Med eller utan digitala verktyg", "elever": "Elever använder AI", "digitalt": "Digitala verktyg behövs", "okant": "Ej angivet"}
+}

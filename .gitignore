@@ -1,3 +1,6 @@
 node_modules/
 Thumbs.db
 .DS_Store
+.herenow/
+.cache/
+__pycache__/
