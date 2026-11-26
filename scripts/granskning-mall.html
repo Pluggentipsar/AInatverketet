@@ -1,0 +1,525 @@
+<title>Granskningsrummet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: en lugn redaktionsspalt — AI-nätverkets identitet: papper, bläck, falurött. */
+:root {
+  --papper: #f7f1e5;
+  --kort: #fffdf6;
+  --black: #292219;
+  --dampad: #6f6552;
+  --falu: #9e2f20;
+  --gron: #2e6e4e;
+  --ockra: #8a6a1f;
+  --linje: rgba(41, 34, 25, 0.45);
+  --linje-svag: rgba(41, 34, 25, 0.14);
+  --skugga: rgba(41, 34, 25, 0.9);
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --grotesk: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papper: #1a1712; --kort: #232019; --black: #ede4d3; --dampad: #a89b83;
+    --falu: #e0684a; --gron: #7dbb97; --ockra: #cfa84e;
+    --linje: rgba(237, 228, 211, 0.5); --linje-svag: rgba(237, 228, 211, 0.15);
+    --skugga: rgba(0, 0, 0, 0.9);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --papper: #1a1712; --kort: #232019; --black: #ede4d3; --dampad: #a89b83;
+  --falu: #e0684a; --gron: #7dbb97; --ockra: #cfa84e;
+  --linje: rgba(237, 228, 211, 0.5); --linje-svag: rgba(237, 228, 211, 0.15);
+  --skugga: rgba(0, 0, 0, 0.9);
+  color-scheme: dark;
+}
+
+body { background: var(--papper); color: var(--black); font-family: var(--grotesk); font-size: 15px; line-height: 1.55; overflow-wrap: break-word; }
+.sida {
+  max-width: 860px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.2rem 4rem;
+}
+a { color: var(--falu); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--falu); outline-offset: 2px; }
+::selection { background: var(--falu); color: var(--papper); }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -0.01em; text-wrap: balance; }
+
+.overrad { font-weight: 800; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--falu); margin: 0 0 0.6rem; }
+h1 { font-size: clamp(1.9rem, 7vw, 3.4rem); font-weight: 620; line-height: 1.02; margin: 0 0 0.9rem; font-variation-settings: "SOFT" 0, "WONK" 1; overflow-wrap: anywhere; }
+.punkt { color: var(--falu); }
+.ingress { color: var(--dampad); max-width: 60ch; margin: 0 0 1.2rem; font-size: 1.02rem; }
+
+.steg { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0 0 1.8rem; padding: 0; list-style: none; }
+.steg li { flex: 1 1 200px; background: var(--kort); border: 1.5px solid var(--black); border-radius: 3px; box-shadow: 3px 3px 0 var(--skugga); padding: 0.7rem 0.9rem; font-size: 0.88rem; }
+.steg b { display: block; font-family: var(--display); font-size: 1.02rem; margin-bottom: 0.15rem; }
+
+.status { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.4rem; border-block: 2px solid var(--black); padding: 0.7rem 0.2rem; margin-bottom: 2rem; }
+.status__text { font-family: var(--display); font-style: italic; font-size: 0.98rem; color: var(--dampad); }
+.status__text em { font-style: normal; font-weight: 700; color: var(--falu); }
+.stapel { flex: 1 1 160px; height: 8px; min-width: 120px; background: var(--linje-svag); border-radius: 99px; overflow: hidden; }
+.stapel > div { height: 100%; width: 0%; background: var(--falu); border-radius: 99px; transition: width 0.4s ease; }
+.deltagare { display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--dampad); }
+.deltagare img { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--black); background: var(--kort); }
+
+.banner { background: var(--kort); border: 1.5px solid var(--falu); border-radius: 3px; box-shadow: 3px 3px 0 var(--falu); padding: 0.75rem 1rem; font-size: 0.9rem; margin-bottom: 1.6rem; }
+
+.filterrad { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.4rem; }
+.filterrad button { font: inherit; font-size: 0.84rem; font-weight: 600; color: var(--black); background: none; border: 1.5px solid var(--linje); border-radius: 999px; padding: 0.24rem 0.8rem; cursor: pointer; }
+.filterrad button[aria-pressed="true"] { background: var(--black); border-color: var(--black); color: var(--papper); }
+
+section { margin-bottom: 2.6rem; }
+h2 { font-size: 1.55rem; font-weight: 600; margin: 0 0 0.3rem; }
+.sektionsintro { color: var(--dampad); font-size: 0.92rem; max-width: 62ch; margin: 0 0 1.2rem; }
+
+.grupp { margin-bottom: 1.6rem; }
+.grupp__rubrik { font-family: var(--display); font-weight: 600; font-size: 1.08rem; margin: 0 0 0.6rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+.grupp__rubrik span { font-family: var(--grotesk); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dampad); }
+.kortlista { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.85rem; }
+.kort { min-width: 0; }
+
+.kort { background: var(--kort); border: 1.5px solid var(--black); border-radius: 3px; box-shadow: 4px 4px 0 var(--skugga); padding: 0.95rem 1.1rem; }
+.kort--avsnitt { margin-left: 1.3rem; }
+.kort__topp { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; margin-bottom: 0.4rem; }
+.tagg { font-size: 0.7rem; font-weight: 700; border: 1px solid var(--linje); border-radius: 999px; padding: 0.08rem 0.5rem; color: var(--dampad); }
+.tagg--typ { background: var(--black); border-color: var(--black); color: var(--papper); }
+.tagg--varning { border-color: var(--ockra); color: var(--ockra); }
+.kort__datum { margin-left: auto; font-size: 0.74rem; color: var(--dampad); }
+.kort h3 { font-size: 1.14rem; font-weight: 600; margin: 0 0 0.3rem; }
+.kort h3 a { color: inherit; text-decoration-color: var(--linje); }
+.kort h3 a:hover { color: var(--falu); }
+.kort__beskrivning { margin: 0 0 0.55rem; font-size: 0.9rem; color: var(--dampad); max-width: 68ch; }
+.kort__beskrivning i { font-size: 0.78rem; }
+
+details.kallstod { font-size: 0.84rem; margin-bottom: 0.6rem; }
+details.kallstod summary { cursor: pointer; color: var(--falu); font-weight: 600; }
+details.kallstod ul { margin: 0.4rem 0 0; padding-left: 1.1rem; color: var(--dampad); }
+details.kallstod li { margin-bottom: 0.2rem; }
+details.kallstod q { font-style: italic; }
+.grund { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.grund--uttryckligt { color: var(--gron); }
+.grund--regel { color: var(--ockra); }
+
+.rostrad { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; border-top: 1px solid var(--linje-svag); padding-top: 0.6rem; }
+.rost { font: inherit; font-size: 0.86rem; font-weight: 600; background: none; color: var(--black); border: 1.5px solid var(--linje); border-radius: 999px; padding: 0.26rem 0.8rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
+.rost:hover { border-color: var(--black); }
+.rost .antal { font-size: 0.74rem; font-weight: 800; color: var(--dampad); }
+.rost[aria-pressed="true"][data-v="ja"], .rost[aria-pressed="true"][data-v="ersatt"] { background: var(--gron); border-color: var(--gron); color: #fff8ef; }
+.rost[aria-pressed="true"][data-v="nej"], .rost[aria-pressed="true"][data-v="stryk"] { background: var(--falu); border-color: var(--falu); color: #fff8ef; }
+.rost[aria-pressed="true"][data-v="osaker"] { background: var(--ockra); border-color: var(--ockra); color: #fff8ef; }
+.rost[aria-pressed="true"] .antal { color: inherit; }
+.rost:disabled { opacity: 0.55; cursor: not-allowed; }
+.rostare { display: flex; gap: 0.2rem; align-items: center; }
+.rostare img { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--linje); background: var(--kort); }
+.oenig { margin-left: auto; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ockra); }
+
+.komm { margin-top: 0.6rem; }
+.komm__lista { display: grid; gap: 0.45rem; margin-bottom: 0.5rem; }
+.komm__post { display: flex; gap: 0.5rem; font-size: 0.86rem; }
+.komm__post img { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--linje); flex: none; margin-top: 0.1rem; background: var(--kort); }
+.komm__post > div { min-width: 0; }
+.komm__meta { font-size: 0.72rem; color: var(--dampad); }
+.komm__text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.komm form { display: flex; gap: 0.4rem; }
+.komm input, .anteckna textarea { flex: 1; min-width: 0; font: inherit; font-size: 0.88rem; color: var(--black); background: var(--papper); border: 1.5px solid var(--linje); border-radius: 3px; padding: 0.4rem 0.6rem; }
+.komm input::placeholder, .anteckna textarea::placeholder { color: var(--dampad); opacity: 0.8; }
+.knapp { font: inherit; font-size: 0.86rem; font-weight: 700; background: var(--black); color: var(--papper); border: 1.5px solid var(--black); border-radius: 3px; padding: 0.4rem 0.9rem; cursor: pointer; }
+.knapp:hover { background: var(--falu); border-color: var(--falu); }
+.knapp:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.anteckna form { display: grid; gap: 0.5rem; justify-items: start; }
+.anteckna textarea { width: 100%; resize: vertical; }
+
+.fot { border-top: 2px solid var(--black); margin-top: 1rem; padding-top: 1rem; font-size: 0.8rem; color: var(--dampad); }
+
+@media (max-width: 560px) {
+  .kort--avsnitt { margin-left: 0.6rem; }
+  .kort__datum { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .stapel > div { transition: none; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0,0..1;1,9..144,300..900,0,0..1&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+<div class="sida">
+  <header>
+    <p class="overrad">AI-nätverket · Redaktionsmöte</p>
+    <h1>Granskningsrummet<span class="punkt">.</span></h1>
+    <p class="ingress">Här fattar vi besluten om vad som ska in i katalogen. Allt ni röstar och
+    skriver sparas gemensamt och ligger till grund för nästa bygge — inget behöver exporteras
+    eller mejlas efteråt.</p>
+    <ol class="steg">
+      <li><b>1. Titta</b>Öppna länken på kortet och ögna igenom sidan hos källan.</li>
+      <li><b>2. Rösta</b>Ta med, avvisa eller markera osäker. Du kan ändra dig när som helst.</li>
+      <li><b>3. Kommentera</b>Skriv varför — särskilt vid avslag eller tvekan. Kommentarerna blir arbetslista.</li>
+    </ol>
+  </header>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <div class="status">
+    <p class="status__text" id="progress">Läser in röster …</p>
+    <div class="stapel" aria-hidden="true"><div id="stapel"></div></div>
+    <div class="deltagare" id="deltagare"></div>
+  </div>
+
+  <div class="filterrad" id="filter" role="group" aria-label="Filtrera punkter">
+    <button type="button" data-f="alla" aria-pressed="true" id="f-alla">Alla punkter</button>
+    <button type="button" data-f="ogranskade" aria-pressed="false" id="f-ogranskade">Utan röster</button>
+    <button type="button" data-f="oeniga" aria-pressed="false" id="f-oeniga">Oeniga</button>
+  </div>
+
+  <section aria-labelledby="r-beslut">
+    <h2 id="r-beslut">Tre katalogbeslut</h2>
+    <p class="sektionsintro">Länkkollen i november hittade tre resurser i katalogen vars sidor
+    försvunnit hos källan. De visas inte på sajten just nu. Vad gör vi med dem?</p>
+    <div class="kortlista" id="beslut"></div>
+  </section>
+
+  <section aria-labelledby="r-pilot">
+    <h2 id="r-pilot">Pilotkandidater: Pedagog Jönköping</h2>
+    <p class="sektionsintro">Insamlaren har hämtat 25 sidor och föreslår kandidaterna nedan,
+    grupperade per sida hos källan. Beskrivningarna är pilotutkast, inte källans egna texter.
+    Fäll ut <i>Varför föreslagen &amp; källstöd</i> för att se vad som är uttryckliga
+    källuppgifter och vad som är regeltolkningar.</p>
+    <div id="pilot"></div>
+  </section>
+
+  <section class="anteckna" aria-labelledby="r-ant">
+    <h2 id="r-ant">Mötesanteckningar</h2>
+    <p class="sektionsintro">Sådant som inte hör till en enskild punkt: principfrågor,
+    nästa steg, idéer till Joel och Claude.</p>
+    <div class="komm__lista" id="ant-lista"></div>
+    <form id="ant-form">
+      <textarea id="ant-text" rows="3" placeholder="Skriv en anteckning …"></textarea>
+      <button class="knapp" type="submit" id="ant-knapp">Spara anteckning</button>
+    </form>
+  </section>
+
+  <footer class="fot">
+    <p>Granskningsrummet hör till AI-nätverket. Röster och kommentarer sparas i sidans delade
+    databas och läses av Claude när besluten ska verkställas. Katalogen ändras aldrig härifrån
+    automatiskt — allt går via valideringen i repot.</p>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const DATA = __DATA__;
+
+/* ---------- Hjälpare ---------- */
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[t]));
+const el = (id) => document.getElementById(id);
+const tax = DATA.tax;
+const etikett = (grupp, slug) => (tax[grupp] && tax[grupp][slug]) || slug;
+const FALT = { anvandning: "Användning", amne: "Ämne", stadium: "Stadium", verktyg: "Verktyg", materialtyp: "Materialtyp", undervisningstid: "Tid" };
+const GRUND = { uttryckligt: "källan anger", regel: "regeltolkning" };
+const VAL = {
+  kandidat: [["ja", "Ta med"], ["nej", "Avvisa"], ["osaker", "Osäker"]],
+  beslut: [["stryk", "Stryk ur katalogen"], ["ersatt", "Ersätt/uppdatera"], ["osaker", "Osäker — kolla mer"]],
+};
+
+/* ---------- Tillstånd ---------- */
+let db = null, user = null, uid = null;
+let roster = {};        // uid -> { rost: {punktId: val} }
+let kommentarer = [];   // {id, resurs, text, av, nar}
+let anteckningar = [];
+let skrivlage = "okant"; // okant | ja | nej
+let filter = "alla";
+let skrivko = Promise.resolve();
+
+const ALLA_PUNKTER = [...DATA.beslut.map((b) => b.id), ...DATA.resurser.map((r) => r.id)];
+
+/* ---------- Statisk rendering ---------- */
+const taggar = (r) => {
+  const t = [];
+  t.push('<span class="tagg tagg--typ">' + esc(etikett("materialtyp", r.materialtyp)) + "</span>");
+  t.push('<span class="tagg">' + (r.niva === "avsnitt" ? "Avsnitt" : "Sida") + "</span>");
+  for (const s of r.stadium) t.push('<span class="tagg">' + esc(etikett("stadium", s)) + "</span>");
+  if (r.verktyg && r.verktyg !== "okant") t.push('<span class="tagg">' + esc(etikett("verktyg", r.verktyg)) + "</span>");
+  for (const a of r.anvandning) t.push('<span class="tagg">' + esc(etikett("anvandning", a)) + "</span>");
+  for (const a of r.amne) t.push('<span class="tagg">' + esc(etikett("amne", a)) + "</span>");
+  if (r.urval === "avvakta") t.push('<span class="tagg tagg--varning">Avvakta: listningssida</span>');
+  return t.join("");
+};
+
+const kallstod = (r) => {
+  const rader = [];
+  if (r.urvalsskal) rader.push("<li>" + esc(r.urvalsskal) + "</li>");
+  for (const b of r.belagg || []) {
+    const grund = '<span class="grund grund--' + esc(b.grund) + '">' + esc(GRUND[b.grund] || b.grund) + "</span>";
+    const varde = esc(FALT[b.falt] || b.falt) + ": " + esc(etikett(b.falt, b.varde));
+    rader.push("<li>" + varde + " — " + grund + (b.utdrag ? " · <q>" + esc(b.utdrag) + "</q>" : "") + (b.plats ? " <i>(" + esc(b.plats) + ")</i>" : "") + "</li>");
+  }
+  if (!rader.length) return "";
+  return '<details class="kallstod"><summary>Varför föreslagen &amp; källstöd</summary><ul>' + rader.join("") + "</ul></details>";
+};
+
+const interaktion = (id, slag) => {
+  const knappar = VAL[slag].map(([v, namn]) =>
+    '<button class="rost" type="button" data-id="' + esc(id) + '" data-v="' + v + '" aria-pressed="false">' +
+    esc(namn) + ' <span class="antal"></span><span class="rostare"></span></button>').join("");
+  return '<div class="rostrad" id="rr-' + esc(id) + '">' + knappar + '<span class="oenig" id="oenig-' + esc(id) + '" hidden>Oeniga</span></div>' +
+    '<div class="komm"><div class="komm__lista" id="kl-' + esc(id) + '"></div>' +
+    '<form data-id="' + esc(id) + '" class="komm-form"><input id="ki-' + esc(id) + '" type="text" maxlength="2000" placeholder="Kommentera …"><button class="knapp" type="submit">Skicka</button></form></div>';
+};
+
+const kortHtml = (r) => {
+  const utkast = r.beskrivning_grund === "skrivet_pilotutkast" ? " <i>(pilotutkast)</i>" : r.beskrivning_grund === "mall" ? " <i>(mallbeskrivning)</i>" : "";
+  return '<article class="kort' + (r.niva === "avsnitt" ? " kort--avsnitt" : "") + '" id="p-' + esc(r.id) + '">' +
+    '<div class="kort__topp">' + taggar(r) + (r.kallans_datum ? '<span class="kort__datum">Källans datum: ' + esc(r.kallans_datum) + "</span>" : "") + "</div>" +
+    "<h3><a href=\"" + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.titel) + "</a></h3>" +
+    '<p class="kort__beskrivning">' + esc(r.beskrivning) + utkast + "</p>" +
+    kallstod(r) + interaktion(r.id, "kandidat") + "</article>";
+};
+
+const beslutHtml = (b) => {
+  return '<article class="kort" id="p-' + esc(b.id) + '">' +
+    '<div class="kort__topp"><span class="tagg tagg--typ">Katalogbeslut</span><span class="tagg tagg--varning">Död länk</span></div>' +
+    "<h3>" + esc(b.titel) + "</h3>" +
+    '<p class="kort__beskrivning">' + b.html + "</p>" +
+    interaktion(b.id, "beslut") + "</article>";
+};
+
+const renderaStatiskt = () => {
+  el("beslut").innerHTML = DATA.beslut.map(beslutHtml).join("");
+  const grupper = new Map();
+  for (const r of DATA.resurser) {
+    const nyckel = r.sid_url;
+    if (!grupper.has(nyckel)) grupper.set(nyckel, []);
+    grupper.get(nyckel).push(r);
+  }
+  let html = "";
+  for (const [sidUrl, lista] of grupper) {
+    lista.sort((a, b) => (a.niva === "sida" ? -1 : b.niva === "sida" ? 1 : 0));
+    const huvud = lista.find((x) => x.niva === "sida");
+    const rubrik = huvud ? huvud.titel : lista[0].parent_titel || sidUrl;
+    const antalAvsnitt = lista.filter((x) => x.niva === "avsnitt").length;
+    html += '<div class="grupp"><p class="grupp__rubrik">' + esc(rubrik) +
+      " <span>" + (antalAvsnitt ? "sida + " + antalAvsnitt + " avsnitt" : "sida") + "</span></p>" +
+      '<div class="kortlista">' + lista.map(kortHtml).join("") + "</div></div>";
+  }
+  el("pilot").innerHTML = html;
+};
+
+/* ---------- Dynamisk rendering ---------- */
+const minaRoster = () => (uid && roster[uid] && roster[uid].rost) || {};
+
+const rosterPerPunkt = (id) => {
+  const per = {};
+  for (const [vem, doc] of Object.entries(roster)) {
+    const v = doc && doc.rost && doc.rost[id];
+    if (v) (per[v] = per[v] || []).push(vem);
+  }
+  return per;
+};
+
+let profilIds = new Set();
+
+const renderaDynamiskt = () => {
+  profilIds = new Set();
+  const mina = minaRoster();
+  let granskade = 0, oeniga = 0;
+
+  for (const id of ALLA_PUNKTER) {
+    const per = rosterPerPunkt(id);
+    const varianter = Object.keys(per);
+    const harRoster = varianter.length > 0;
+    if (harRoster) granskade++;
+    const arOenig = varianter.length > 1;
+    if (arOenig) oeniga++;
+
+    const rad = el("rr-" + id);
+    if (rad) {
+      for (const knapp of rad.querySelectorAll(".rost")) {
+        const v = knapp.dataset.v;
+        const vilka = per[v] || [];
+        knapp.setAttribute("aria-pressed", String(mina[id] === v));
+        knapp.querySelector(".antal").textContent = vilka.length ? String(vilka.length) : "";
+        const hallare = knapp.querySelector(".rostare");
+        hallare.innerHTML = "";
+        for (const vem of vilka.slice(0, 5)) {
+          profilIds.add(vem);
+          const bild = document.createElement("img");
+          bild.dataset.uidAvatar = vem;
+          bild.alt = "";
+          hallare.appendChild(bild);
+        }
+      }
+      const oenigMark = el("oenig-" + id);
+      if (oenigMark) oenigMark.hidden = !arOenig;
+    }
+
+    const lista = el("kl-" + id);
+    if (lista) {
+      lista.innerHTML = "";
+      for (const k of kommentarer.filter((x) => x.resurs === id)) lista.appendChild(kommNod(k));
+    }
+
+    const kortEl = el("p-" + id);
+    if (kortEl) {
+      const visa = filter === "alla" || (filter === "ogranskade" && !harRoster) || (filter === "oeniga" && arOenig);
+      kortEl.hidden = !visa;
+    }
+  }
+
+  for (const grupp of document.querySelectorAll(".grupp")) {
+    grupp.hidden = ![...grupp.querySelectorAll(".kort")].some((k) => !k.hidden);
+  }
+
+  el("progress").innerHTML = "<em>" + granskade + "</em> av " + ALLA_PUNKTER.length + " punkter har röster" + (oeniga ? " · <em>" + oeniga + "</em> oeniga" : "");
+  el("stapel").style.width = Math.round((100 * granskade) / ALLA_PUNKTER.length) + "%";
+
+  const deltagarIds = new Set(Object.keys(roster));
+  for (const k of kommentarer) if (k.av) deltagarIds.add(k.av);
+  for (const a of anteckningar) if (a.av) deltagarIds.add(a.av);
+  const deltagare = el("deltagare");
+  deltagare.innerHTML = deltagarIds.size ? "" : "Inga deltagare ännu — bli först!";
+  for (const vem of [...deltagarIds].slice(0, 12)) {
+    profilIds.add(vem);
+    const bild = document.createElement("img");
+    bild.dataset.uidAvatar = vem;
+    bild.alt = "";
+    deltagare.appendChild(bild);
+  }
+
+  const antLista = el("ant-lista");
+  antLista.innerHTML = "";
+  for (const a of anteckningar) antLista.appendChild(kommNod(a));
+
+  fyllProfiler();
+};
+
+const kommNod = (k) => {
+  const rad = document.createElement("div");
+  rad.className = "komm__post";
+  const bild = document.createElement("img");
+  bild.alt = "";
+  if (k.av) { bild.dataset.uidAvatar = k.av; profilIds.add(k.av); }
+  const kropp = document.createElement("div");
+  const meta = document.createElement("div");
+  meta.className = "komm__meta";
+  const namn = document.createElement("span");
+  if (k.av) { namn.dataset.uidName = k.av; namn.textContent = "…"; } else namn.textContent = "Okänd";
+  meta.appendChild(namn);
+  meta.appendChild(document.createTextNode(k.nar ? " · " + new Date(k.nar).toLocaleString("sv-SE", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : ""));
+  const text = document.createElement("div");
+  text.className = "komm__text";
+  text.textContent = k.text || "";
+  kropp.appendChild(meta);
+  kropp.appendChild(text);
+  rad.appendChild(bild);
+  rad.appendChild(kropp);
+  return rad;
+};
+
+const fyllProfiler = async () => {
+  if (!user || profilIds.size === 0) return;
+  const ids = [...profilIds];
+  const profiler = await user.profiles(ids);
+  for (const nod of document.querySelectorAll("[data-uid-name]")) {
+    const p = profiler[nod.dataset.uidName];
+    if (p) nod.textContent = p.name || "Någon";
+  }
+  for (const nod of document.querySelectorAll("[data-uid-avatar]")) {
+    const p = profiler[nod.dataset.uidAvatar];
+    if (p) { nod.src = p.avatarUrl; nod.title = p.name || ""; }
+  }
+};
+
+/* ---------- Skrivningar ---------- */
+const visaBanner = (text) => { const b = el("banner"); b.textContent = text; b.hidden = false; };
+
+const skrivfel = (e) => {
+  if (e && e.code === "invalid_argument" && skrivlage !== "ja") {
+    skrivlage = "nej";
+    visaBanner("Ditt konto har bara läsbehörighet på den här sidan. Be Joel ge dig minst rollen Contributor/Redigera i delningsmenyn, ladda sedan om.");
+  } else {
+    visaBanner("Det gick inte att spara just nu. Försök igen om en stund.");
+  }
+};
+
+const rosta = (id, v) => {
+  if (!db || !uid) { visaBanner("Logga in på claude.ai för att rösta — sidan går att läsa utan konto, men röster kräver inloggning."); return; }
+  const mina = { ...minaRoster() };
+  if (mina[id] === v) delete mina[id]; else mina[id] = v;
+  roster = { ...roster, [uid]: { ...(roster[uid] || {}), rost: mina } };
+  renderaDynamiskt();
+  skrivko = skrivko.then(() =>
+    db.doc("roster/" + uid).set({ rost: mina, nar: new Date().toISOString() })
+      .then(() => { skrivlage = "ja"; })
+      .catch(skrivfel)
+  );
+};
+
+const skicka = (samling, kropp, falt) => {
+  if (!db || !uid) { visaBanner("Logga in på claude.ai för att skriva — sidan går att läsa utan konto."); return false; }
+  db.collection(samling).add({ ...kropp, av: uid, nar: new Date().toISOString() })
+    .then(() => { skrivlage = "ja"; })
+    .catch(skrivfel);
+  return true;
+};
+
+/* ---------- Händelser ---------- */
+document.addEventListener("click", (e) => {
+  const knapp = e.target.closest(".rost");
+  if (knapp) rosta(knapp.dataset.id, knapp.dataset.v);
+  const filterKnapp = e.target.closest("#filter button");
+  if (filterKnapp) {
+    filter = filterKnapp.dataset.f;
+    for (const b of document.querySelectorAll("#filter button")) b.setAttribute("aria-pressed", String(b === filterKnapp));
+    renderaDynamiskt();
+  }
+});
+
+document.addEventListener("submit", (e) => {
+  const form = e.target.closest(".komm-form");
+  if (form) {
+    e.preventDefault();
+    const input = form.querySelector("input");
+    const text = input.value.trim();
+    if (text && skicka("kommentarer", { resurs: form.dataset.id, text })) input.value = "";
+  }
+  if (e.target.id === "ant-form") {
+    e.preventDefault();
+    const text = el("ant-text").value.trim();
+    if (text && skicka("anteckningar", { text })) el("ant-text").value = "";
+  }
+});
+
+/* ---------- Start ---------- */
+renderaStatiskt();
+renderaDynamiskt();
+
+(async () => {
+  const anv = (n) => (window.claude && window.claude.use) ? window.claude.use(n) : Promise.resolve(null);
+  [db, user] = await Promise.all([anv("db"), anv("user")]);
+  if (user) uid = await user.id();
+  if (!db) {
+    visaBanner("Du läser utan inloggning. Alla punkter syns, men för att rösta och kommentera: logga in på claude.ai och öppna länken igen.");
+    el("progress").textContent = "Röster visas när du är inloggad.";
+    return;
+  }
+
+  let laddTimer = setTimeout(() => visaBanner("Rösterna går inte att nå ännu — det som visas kan vara ofullständigt."), 10000);
+  const klar = (snap) => { if (laddTimer && !snap.metadata.fromCache) { clearTimeout(laddTimer); laddTimer = null; el("banner").hidden = skrivlage !== "nej"; } };
+
+  db.collection("roster").onSnapshot((snap) => {
+    roster = {};
+    for (const d of snap.docs) roster[d.id] = d.data();
+    klar(snap);
+    renderaDynamiskt();
+  }, () => visaBanner("Rösterna kunde inte läsas. Ladda om sidan senare."));
+
+  db.collection("kommentarer").orderBy("nar").onSnapshot((snap) => {
+    kommentarer = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    renderaDynamiskt();
+  }, () => {});
+
+  db.collection("anteckningar").orderBy("nar").onSnapshot((snap) => {
+    anteckningar = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    renderaDynamiskt();
+  }, () => {});
+})();
+</script>
