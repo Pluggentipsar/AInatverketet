@@ -523,7 +523,7 @@
   el("rensa-allt").addEventListener("click", rensaAllt);
   el("tomt-rensa").addEventListener("click", rensaAllt);
 
-  // Spotlight: korten lyser där muspekaren är.
+  // Spotlight + mjuk 3D-tilt: korten lyser och lutar mot muspekaren.
   let spotRaf = 0;
   document.addEventListener("pointermove", (e) => {
     const kort = e.target.closest?.(".kort");
@@ -531,9 +531,21 @@
     spotRaf = requestAnimationFrame(() => {
       spotRaf = 0;
       const b = kort.getBoundingClientRect();
-      kort.style.setProperty("--mx", `${e.clientX - b.left}px`);
-      kort.style.setProperty("--my", `${e.clientY - b.top}px`);
+      const x = e.clientX - b.left, y = e.clientY - b.top;
+      kort.style.setProperty("--mx", `${x}px`);
+      kort.style.setProperty("--my", `${y}px`);
+      if (!reduceradRorelse.matches) {
+        kort.style.setProperty("--ry", `${((x / b.width) - 0.5) * 5}deg`);
+        kort.style.setProperty("--rx", `${(0.5 - (y / b.height)) * 5}deg`);
+      }
     });
+  });
+  document.addEventListener("pointerout", (e) => {
+    const kort = e.target.closest?.(".kort");
+    if (kort && !kort.contains(e.relatedTarget)) {
+      kort.style.removeProperty("--rx");
+      kort.style.removeProperty("--ry");
+    }
   });
 
   /* ---------- Init ---------- */
@@ -566,4 +578,51 @@
   synkaKontroller();
   uppdateraDom();
   visaVy(lasHash() ?? ((state.q || aktivaFilter()) ? "katalog" : "hem"), true);
+
+  /* ---------- Gradientväven: levande canvas-material bakom innehållet ---------- */
+  (() => {
+    const duk = el("duk");
+    if (!duk?.getContext || reduceradRorelse.matches) return;
+    const ctx = duk.getContext("2d");
+    const morkt = matchMedia("(prefers-color-scheme: dark)");
+    // Lågupplöst rendering som skalas upp av webbläsaren — mjukt och billigt.
+    const SKALA = 0.22;
+    const matt = () => { duk.width = Math.max(1, innerWidth * SKALA); duk.height = Math.max(1, innerHeight * SKALA); };
+    matt();
+    addEventListener("resize", matt);
+
+    const blobbar = [
+      { farg: [58, 75, 216], bx: 0.2, by: 0.1, r: 0.55, fart: 0.21, fas: 0 },
+      { farg: [124, 92, 240], bx: 0.85, by: 0.05, r: 0.5, fart: 0.17, fas: 2.1 },
+      { farg: [255, 150, 110], bx: 0.7, by: 0.85, r: 0.45, fart: 0.13, fas: 4.2 },
+      { farg: [58, 75, 216], bx: 0.1, by: 0.9, r: 0.4, fart: 0.19, fas: 5.3 },
+    ];
+
+    let pausad = false;
+    document.addEventListener("visibilitychange", () => {
+      pausad = document.hidden;
+      if (!pausad) requestAnimationFrame(ritaVav);
+    });
+
+    const ritaVav = (t) => {
+      if (pausad) return;
+      const { width: w, height: h } = duk;
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = morkt.matches ? "screen" : "source-over";
+      const styrka = morkt.matches ? 0.16 : 0.14;
+      for (const b of blobbar) {
+        const tid = (t ?? 0) / 1000 * b.fart + b.fas;
+        const x = (b.bx + Math.sin(tid) * 0.1 + Math.cos(tid * 0.7) * 0.06) * w;
+        const y = (b.by + Math.cos(tid * 0.9) * 0.1 + Math.sin(tid * 0.5) * 0.05) * h;
+        const r = b.r * Math.max(w, h);
+        const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+        g.addColorStop(0, `rgba(${b.farg[0]},${b.farg[1]},${b.farg[2]},${styrka})`);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+      }
+      requestAnimationFrame(ritaVav);
+    };
+    requestAnimationFrame(ritaVav);
+  })();
 })();

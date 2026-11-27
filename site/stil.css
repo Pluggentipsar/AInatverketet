@@ -3,10 +3,10 @@
    Instrument Serif + Instrument Sans, dämpad ultramarin accent. */
 
 :root {
-  --grund: #fafaf7;
-  --yta: #ffffff;
-  --yta2: #f1f1ec;
-  --linje: #e6e5df;
+  --grund: #f7f5f0;
+  --yta: #fffefb;
+  --yta2: #f0eee7;
+  --linje: #e6e3da;
   --text: #1b1b20;
   --text2: #70707a;
   --accent: #3a4bd8;
@@ -15,12 +15,12 @@
   --grad: linear-gradient(135deg, #3a4bd8 0%, #7c5cf0 100%);
   --inre-ljus: rgba(255, 255, 255, 0.65);
   --varning: #b07d2a;
-  --skugga-vila: 0 1px 2px rgba(20, 20, 30, 0.05);
-  --skugga-hov: 0 16px 40px -12px rgba(20, 20, 30, 0.18);
-  --skugga-glod: 0 18px 44px -14px color-mix(in srgb, var(--accent) 30%, rgba(20, 20, 30, 0.25));
+  --skugga-vila: 0 1px 2px rgba(28, 25, 45, 0.04), 0 10px 28px -16px rgba(28, 25, 45, 0.14);
+  --skugga-hov: 0 2px 4px rgba(28, 25, 45, 0.05), 0 20px 48px -16px rgba(28, 25, 45, 0.2);
+  --skugga-glod: 0 2px 4px rgba(28, 25, 45, 0.05), 0 20px 48px -14px color-mix(in srgb, var(--accent) 32%, rgba(28, 25, 45, 0.22));
   --radie: 16px;
   --sidbredd: 250px;
-  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --serif: "Fraunces", "Instrument Serif", Georgia, "Times New Roman", serif;
   --sans: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
 
   --k-myndighet: #39618c;
@@ -77,6 +77,10 @@ body {
   accent-color: var(--accent);
 }
 
+/* Levande gradientväv (canvas) bakom allt innehåll; CSS-auroran nedan är basen
+   för den som har reducerad rörelse eller ingen JS. */
+.duk { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+
 /* Ambient aurora — mjuka färgfält som långsamt driver bakom allt innehåll */
 body::before {
   content: "";
@@ -129,7 +133,13 @@ body::after {
 }
 .ogonbryn::before { content: "✳"; color: var(--accent); margin-right: 0.45rem; font-size: 0.9em; }
 
-h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.1rem); margin-top: 0.3rem; text-wrap: balance; }
+/* Fraunces med hög optisk kontrast — lätt, skarp, karaktärsfull */
+.hero__rubrik, h2, .kort__titel, .qv__titel, .mer__kort h3, .tomt__rubrik, .palett__rad .titel, .kort__platta b {
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+  letter-spacing: -0.01em;
+}
+
+h2 { font-family: var(--serif); font-weight: 420; font-size: clamp(1.6rem, 3vw, 2.1rem); margin-top: 0.3rem; text-wrap: balance; }
 
 kbd {
   font-family: var(--sans);
@@ -373,8 +383,8 @@ kbd {
 .hero__rubrik {
   margin-top: 1.3rem;
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 360;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
   line-height: 1.04;
   letter-spacing: -0.015em;
   max-width: 17ch;
@@ -702,6 +712,7 @@ a.mer__lank:hover { text-decoration: underline; text-underline-offset: 4px; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 1.2rem;
+  perspective: 1400px;
 }
 
 .kort {
@@ -735,7 +746,11 @@ a.mer__lank:hover { text-decoration: underline; text-underline-offset: 4px; }
 }
 .kort:hover::after { opacity: 1; }
 
-.kort:hover { transform: translateY(-3px); box-shadow: var(--skugga-glod), inset 0 1px 0 var(--inre-ljus); border-color: color-mix(in srgb, var(--accent) 26%, var(--linje)); }
+.kort:hover {
+  transform: translateY(-3px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  box-shadow: var(--skugga-glod), inset 0 1px 0 var(--inre-ljus);
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--linje));
+}
 
 .kort__spara {
   position: absolute;
@@ -846,8 +861,8 @@ a.mer__lank:hover { text-decoration: underline; text-underline-offset: 4px; }
 .kort h3 { font-size: inherit; }
 .kort__titel {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: 1.38rem;
+  font-weight: 460;
+  font-size: 1.34rem;
   line-height: 1.14;
   letter-spacing: -0.005em;
   color: inherit;
