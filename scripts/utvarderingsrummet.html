@@ -1,0 +1,508 @@
+<title>Utvärderingsrummet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Utvärderingsrummet — AI-nätverkets mötesdagordning. Samma formspråk som sajten:
+   ljust, Fraunces + Instrument Sans, ultramarin accent. */
+:root {
+  --grund: #f7f5f0;
+  --yta: #fffefb;
+  --yta2: #f0eee7;
+  --linje: #e6e3da;
+  --text: #1b1b20;
+  --text2: #70707a;
+  --accent: #3a4bd8;
+  --accent-tint: #edeffc;
+  --gron: #3a7d5c;
+  --gron-tint: #e2efe8;
+  --varning: #b07d2a;
+  --varning-tint: #f6ecd9;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --grund: #121214; --yta: #1a1a1e; --yta2: #222227; --linje: #2b2b31;
+    --text: #f1f1f3; --text2: #a2a2ab; --accent: #93a0ff; --accent-tint: #23263c;
+    --gron: #86c2a0; --gron-tint: #1d2a23; --varning: #d4a955; --varning-tint: #2c2517;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --grund: #121214; --yta: #1a1a1e; --yta2: #222227; --linje: #2b2b31;
+  --text: #f1f1f3; --text2: #a2a2ab; --accent: #93a0ff; --accent-tint: #23263c;
+  --gron: #86c2a0; --gron-tint: #1d2a23; --varning: #d4a955; --varning-tint: #2c2517;
+  color-scheme: dark;
+}
+
+body { background: var(--grund); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-wrap: break-word; }
+.sida {
+  max-width: 820px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.4rem 4rem;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+::selection { background: var(--accent); color: #fff; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 420; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(2.1rem, 7vw, 3rem); line-height: 1.05; margin: 0 0 0.8rem; }
+h1 em { font-style: italic; color: var(--accent); }
+.ogonbryn { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin: 0 0 0.6rem; }
+.ogonbryn::before { content: "✳"; color: var(--accent); margin-right: 0.4rem; }
+.ingress { color: var(--text2); max-width: 60ch; margin: 0 0 1.4rem; font-size: 1rem; }
+
+.instruktion { background: var(--yta); border: 1px solid var(--linje); border-radius: 16px; padding: 1.1rem 1.3rem; margin-bottom: 1.6rem; }
+.instruktion ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.35rem; font-size: 0.93rem; }
+.instruktion li::marker { color: var(--accent); font-weight: 700; }
+.instruktion b { font-weight: 650; }
+.instruktion .viktigt { background: var(--varning-tint); border-radius: 10px; padding: 0.6rem 0.8rem; margin-top: 0.8rem; font-size: 0.9rem; }
+
+.status { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.4rem; border-block: 1px solid var(--linje); padding: 0.75rem 0.1rem; margin-bottom: 2rem; }
+.status__text { font-size: 0.92rem; color: var(--text2); }
+.status__text em { font-style: normal; font-weight: 700; color: var(--accent); }
+.stapel { flex: 1 1 150px; min-width: 110px; height: 7px; background: var(--yta2); border-radius: 99px; overflow: hidden; }
+.stapel > div { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #7c5cf0); border-radius: 99px; transition: width 0.4s ease; }
+.deltagare { display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--text2); }
+.deltagare img { width: 23px; height: 23px; border-radius: 50%; border: 1.5px solid var(--linje); background: var(--yta); }
+
+.banner { background: var(--yta); border: 1px solid var(--accent); border-radius: 12px; box-shadow: 0 8px 24px -12px rgba(20,20,30,0.2); padding: 0.75rem 1rem; font-size: 0.9rem; margin-bottom: 1.4rem; }
+
+section.amne { margin-bottom: 2.6rem; }
+.amne__huvud { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
+.amne__nr { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 1.3rem; flex: none; }
+h2 { font-size: 1.6rem; margin: 0; }
+.amne__verktyg { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.sag {
+  font: inherit; font-size: 0.78rem; font-weight: 650; color: var(--accent);
+  background: var(--accent-tint); border: 0; border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer;
+}
+.sag:hover { filter: brightness(0.97); }
+.sag--klar { color: var(--gron); background: var(--gron-tint); }
+.oppna {
+  font-size: 0.78rem; font-weight: 650; color: var(--text2); text-decoration: none;
+  background: var(--yta2); border-radius: 999px; padding: 0.3rem 0.8rem;
+}
+.oppna:hover { color: var(--text); }
+.amne__intro { color: var(--text2); font-size: 0.92rem; max-width: 64ch; margin: 0.3rem 0 1rem; }
+.sag-tips { font-size: 0.8rem; color: var(--text2); margin: 0 0 1rem; }
+.sag-tips q { font-style: italic; color: var(--text); }
+
+.punkt { background: var(--yta); border: 1px solid var(--linje); border-radius: 14px; padding: 0.95rem 1.1rem; margin-bottom: 0.8rem; }
+.punkt__rubrik { font-weight: 650; font-size: 0.98rem; margin: 0 0 0.15rem; }
+.punkt__fraga { color: var(--text2); font-size: 0.88rem; margin: 0 0 0.7rem; }
+.rostrad { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.rost {
+  font: inherit; font-size: 0.84rem; font-weight: 600; color: var(--text);
+  background: var(--yta2); border: 1px solid transparent; border-radius: 999px;
+  padding: 0.26rem 0.8rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.rost:hover { border-color: var(--linje); }
+.rost .antal { font-size: 0.72rem; font-weight: 800; color: var(--text2); }
+.rost[aria-pressed="true"] .antal { color: inherit; }
+.rost[aria-pressed="true"][data-v="funkar"] { background: var(--gron); color: #fff; }
+.rost[aria-pressed="true"][data-v="andra"] { background: var(--accent); color: #fff; }
+.rost[aria-pressed="true"][data-v="prata"] { background: var(--varning); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .rost[aria-pressed="true"] { color: #14151f; }
+}
+:root[data-theme="dark"] .rost[aria-pressed="true"] { color: #14151f; }
+.rostare { display: flex; gap: 0.15rem; }
+.rostare img { width: 19px; height: 19px; border-radius: 50%; border: 1px solid var(--linje); background: var(--yta); }
+.oenig { margin-left: auto; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--varning); }
+
+.komm { margin-top: 0.65rem; }
+.komm__lista { display: grid; gap: 0.45rem; margin-bottom: 0.5rem; }
+.komm__post { display: flex; gap: 0.5rem; font-size: 0.87rem; }
+.komm__post img { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--linje); flex: none; margin-top: 0.1rem; background: var(--yta); }
+.komm__post > div { min-width: 0; }
+.komm__meta { font-size: 0.72rem; color: var(--text2); }
+.komm__text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.komm form { display: flex; gap: 0.4rem; }
+.komm input, .anteckna textarea {
+  flex: 1; min-width: 0; font: inherit; font-size: 0.88rem; color: var(--text);
+  background: var(--grund); border: 1px solid var(--linje); border-radius: 9px; padding: 0.42rem 0.65rem;
+}
+.komm input:focus, .anteckna textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 13%, transparent); }
+.knapp {
+  font: inherit; font-size: 0.86rem; font-weight: 650; background: var(--accent); color: #fff;
+  border: 0; border-radius: 999px; padding: 0.42rem 1rem; cursor: pointer;
+}
+.knapp:hover { filter: brightness(1.06); }
+.knapp:disabled { opacity: 0.55; cursor: not-allowed; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .knapp { color: #14151f; } }
+:root[data-theme="dark"] .knapp { color: #14151f; }
+
+.anteckna form { display: grid; gap: 0.5rem; justify-items: start; }
+.anteckna textarea { width: 100%; resize: vertical; }
+.sektionsmarke { font-size: 0.8rem; font-weight: 700; color: var(--accent); }
+
+.fot { border-top: 1px solid var(--linje); margin-top: 1.4rem; padding-top: 1rem; font-size: 0.8rem; color: var(--text2); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<div class="sida">
+  <header>
+    <p class="ogonbryn">AI-nätverket · Nätverksträffens dagordning</p>
+    <h1>Utvärderingsrummet<em>.</em></h1>
+    <p class="ingress">Här fattar vi besluten om sajtens UI, UX, innehåll och formuleringar.
+    Gå igenom sektionerna i ordning — de är mötets dagordning. Allt ni röstar och skriver
+    sparas gemensamt och blir byggunderlag.</p>
+  </header>
+
+  <div class="instruktion">
+    <b>Så funkar mötet</b>
+    <ol>
+      <li>Ha <a href="https://pluggentipsar.github.io/AInatverketet/" target="_blank" rel="noopener">sajten</a> öppen bredvid — varje sektion har en <i>Öppna vyn</i>-knapp som tar dig rätt.</li>
+      <li>För varje punkt: titta, prova, och rösta <b>Funkar</b> (behåll), <b>Ändra</b> (gör om — skriv hur!) eller <b>Prata mer</b> (olöst fråga).</li>
+      <li>Kommentera fritt under varje punkt — särskilt vid <i>Ändra</i>. Konkreta formuleringar är guld.</li>
+    </ol>
+    <p class="viktigt">🎙️ <b>Spelar ni in mötet?</b> När ni byter sektion: tryck på
+    <i>▶ Nu pratar vi om …</i>-knappen <u>och säg det högt</u>. Då får både anteckningarna
+    och transkriptet tydliga kapitelmarkeringar som Claude kan följa efteråt.</p>
+  </div>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <div class="status">
+    <p class="status__text" id="progress">Läser in röster …</p>
+    <div class="stapel" aria-hidden="true"><div id="stapel"></div></div>
+    <div class="deltagare" id="deltagare"></div>
+  </div>
+
+  <div id="sektioner"></div>
+
+  <section class="amne anteckna" aria-labelledby="r-ant">
+    <div class="amne__huvud"><span class="amne__nr">✳</span><h2 id="r-ant">Mötesanteckningar</h2></div>
+    <p class="amne__intro">Beslut, idéer och nästa steg som inte hör till en enskild punkt.
+    Sektionsmarkeringarna från ▶-knapparna hamnar också här.</p>
+    <div class="komm__lista" id="ant-lista"></div>
+    <form id="ant-form">
+      <textarea id="ant-text" rows="3" placeholder="Skriv en anteckning …"></textarea>
+      <button class="knapp" type="submit">Spara anteckning</button>
+    </form>
+  </section>
+
+  <footer class="fot">
+    <p>Utvärderingsrummet hör till AI-nätverket. Röster, kommentarer och anteckningar sparas i
+    sidans delade databas och läses av Claude när besluten ska byggas in. Transkript från mötet
+    kan läsas ihop med sektionsmarkeringarna.</p>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* ---------- Dagordningen ---------- */
+const BAS = "https://pluggentipsar.github.io/AInatverketet/";
+const SEKTIONER = [
+  { id: "helhet", namn: "Helheten", lank: BAS, intro: "Första intrycket, innan vi zoomar in.",
+    punkter: [
+      { id: "riktning", rubrik: "Designriktningen", fraga: "Ljus, modern app-känsla med sidomeny — är det rätt väg för vår målgrupp?" },
+      { id: "namnet", rubrik: "Namnet ”AI-nätverket”", fraga: "Håller namnet? Finns bättre förslag? (Skriv dem som kommentar.)" },
+      { id: "startlage", rubrik: "Startläget", fraga: "Ska förstagångsbesökaren landa på Hem (berättelsen) eller direkt i Katalogen (nyttan)?" },
+    ] },
+  { id: "hem", namn: "Hem-vyn", lank: BAS + "#/hem", intro: "Berättelsen som möter en ny besökare.",
+    punkter: [
+      { id: "rubriken", rubrik: "Rubriken & taglinen", fraga: "”Det bästa om AI i skolan. Samlat, granskat, sökbart.” — säger den rätt sak? Formulera gärna om i kommentaren." },
+      { id: "ingangarna", rubrik: "De sex behovsingångarna", fraga: "Är det rätt sex vägar in? Stämmer etiketterna med hur en lärare tänker?" },
+      { id: "rorelsen", rubrik: "Rörelse & material", fraga: "Gradientväven, animationerna, korten som lutar — lagom levande eller för mycket?" },
+    ] },
+  { id: "katalog", namn: "Katalogen", lank: BAS + "#/katalog", intro: "Kärnan: hitta rätt resurs snabbt. Testa att söka ”lektioner om bias”.",
+    punkter: [
+      { id: "korten", rubrik: "Resurskorten", fraga: "Rätt mängd information? (Bild, källa, beskrivning, taggar, betald-märkning.)" },
+      { id: "snabbvyn", rubrik: "Snabbvyn", fraga: "Kortklick öppnar detaljer i en ruta istället för att lämna sajten — bra, eller vill man direkt till källan?" },
+      { id: "filtren", rubrik: "Filtren", fraga: "Begripliga grupper? För många teman? Saknas något filter (t.ex. ämne)?" },
+      { id: "soket", rubrik: "Sökupplevelsen", fraga: "Prova egna sökningar — motsvarar träffarna och ordningen förväntan?" },
+    ] },
+  { id: "lektioner", namn: "Lektionsbanken", lank: BAS + "#/lektioner", intro: "Skiss: kollegors upplägg om och med AI. Öppna en lektion och titta på mallen.",
+    punkter: [
+      { id: "lek-behov", rubrik: "Behovet", fraga: "Förtjänar lektionsdelning en egen yta, eller räcker katalogen?" },
+      { id: "lek-mall", rubrik: "Lektionsmallen", fraga: "Syfte, material, steg med tider, lärarreflektion — rätt fält? Saknas något (t.ex. koppling till läroplan)?" },
+      { id: "lek-vem", rubrik: "Vem får dela?", fraga: "Öppet för alla, granskat av redaktion, eller något däremellan?" },
+    ] },
+  { id: "forum", namn: "Forumet", lank: BAS + "#/forum", intro: "Skiss: trådar, kategorier, svar. Öppna en tråd och testa att svara.",
+    punkter: [
+      { id: "forum-behov", rubrik: "Behovet", fraga: "Ska vi bygga ett eget forum — eller möts folk redan tillräckligt bra i befintliga grupper?" },
+      { id: "forum-kategorier", rubrik: "Kategorierna", fraga: "Kom igång / Ämnen & undervisning / Bedömning & lärande / Skolutveckling / Om nätverket — rätt indelning?" },
+      { id: "forum-krav", rubrik: "Konton & moderering", fraga: "Vad kräver vi för att skriva? Vem modererar, och efter vilka principer?" },
+    ] },
+  { id: "traffar", namn: "Träffarna", lank: BAS + "#/traffar", intro: "Skiss: fikasamtal och verkstäder med anmälan. Testa anmälningsflödet.",
+    punkter: [
+      { id: "traff-behov", rubrik: "Behovet", fraga: "Tillför träffar i plattformen något utöver kalenderinbjudningar och befintliga kanaler?" },
+      { id: "traff-skapa", rubrik: "Att skapa träffar", fraga: "Vem får skapa? Vilka uppgifter är obligatoriska?" },
+      { id: "traff-anmalan", rubrik: "Anmälan", fraga: "Hur ska anmälan funka på riktigt — konto, e-post, kalenderfil, påminnelser?" },
+    ] },
+  { id: "innehall", namn: "Innehåll & formuleringar", lank: BAS, intro: "Orden är också design. Läs copyn med rödpennan framme.",
+    punkter: [
+      { id: "tonen", rubrik: "Tonen", fraga: "Du-tilltal, ”handplockade”, ”Byggt av lärare, för lärare” — rätt röst för oss?" },
+      { id: "beskrivningarna", rubrik: "Resursbeskrivningarna", fraga: "Öppna några kort — är beskrivningarna lagom långa, sakliga, hjälpsamma?" },
+      { id: "saknas", rubrik: "Det som saknas", fraga: "Källor, resurstyper eller teman som borde in i katalogen? Lista i kommentarerna." },
+    ] },
+  { id: "prioritering", namn: "Prioritering & nästa steg", lank: BAS, intro: "Sista sektionen: vad bygger vi först?",
+    punkter: [
+      { id: "prio-forum", rubrik: "Bygga forumet på riktigt", fraga: "Rösta Funkar = hög prioritet, Ändra = senare, Prata mer = osäker." },
+      { id: "prio-traffar", rubrik: "Bygga träffarna på riktigt", fraga: "Samma skala som ovan." },
+      { id: "prio-lektioner", rubrik: "Bygga lektionsbanken på riktigt", fraga: "Samma skala som ovan." },
+      { id: "prio-tips", rubrik: "Tipsfunktion för nya resurser", fraga: "Formulär + granskningskö så katalogen växer. Samma skala som ovan." },
+    ] },
+];
+
+/* ---------- Hjälpare ---------- */
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[t]));
+const el = (id) => document.getElementById(id);
+const VAL = [["funkar", "Funkar"], ["andra", "Ändra"], ["prata", "Prata mer"]];
+const ALLA_PUNKTER = SEKTIONER.flatMap((s) => s.punkter.map((p) => s.id + "." + p.id));
+
+/* ---------- Tillstånd ---------- */
+let db = null, user = null, uid = null;
+let roster = {};
+let kommentarer = [];
+let anteckningar = [];
+let skrivlage = "okant";
+let skrivko = Promise.resolve();
+
+/* ---------- Statisk rendering ---------- */
+const rendera = () => {
+  el("sektioner").innerHTML = SEKTIONER.map((s, i) => `
+<section class="amne" id="s-${esc(s.id)}" aria-labelledby="r-${esc(s.id)}">
+  <div class="amne__huvud">
+    <span class="amne__nr">${i + 1}.</span>
+    <h2 id="r-${esc(s.id)}">${esc(s.namn)}</h2>
+    <div class="amne__verktyg">
+      <a class="oppna" href="${esc(s.lank)}" target="_blank" rel="noopener">Öppna vyn ↗</a>
+      <button class="sag" type="button" data-sag="${esc(s.namn)}" id="sag-${esc(s.id)}">▶ Nu pratar vi om ${esc(s.namn.toLowerCase())}</button>
+    </div>
+  </div>
+  <p class="amne__intro">${esc(s.intro)}</p>
+  <p class="sag-tips">Säg samtidigt högt: <q>Nu pratar vi om ${esc(s.namn.toLowerCase())}</q> — för transkriptet.</p>
+  ${s.punkter.map((p) => {
+    const pid = s.id + "." + p.id;
+    return `
+  <div class="punkt" id="p-${esc(pid)}">
+    <p class="punkt__rubrik">${esc(p.rubrik)}</p>
+    <p class="punkt__fraga">${esc(p.fraga)}</p>
+    <div class="rostrad" id="rr-${esc(pid)}">
+      ${VAL.map(([v, namn]) => `<button class="rost" type="button" data-id="${esc(pid)}" data-v="${v}" aria-pressed="false">${namn} <span class="antal"></span><span class="rostare"></span></button>`).join("")}
+      <span class="oenig" id="oenig-${esc(pid)}" hidden>Oeniga</span>
+    </div>
+    <div class="komm"><div class="komm__lista" id="kl-${esc(pid)}"></div>
+      <form data-id="${esc(pid)}" class="komm-form"><input id="ki-${esc(pid)}" type="text" maxlength="2000" placeholder="Kommentera — särskilt vid Ändra …"><button class="knapp" type="submit">Skicka</button></form>
+    </div>
+  </div>`;
+  }).join("")}
+</section>`).join("");
+};
+
+/* ---------- Dynamisk rendering ---------- */
+const minaRoster = () => (uid && roster[uid] && roster[uid].rost) || {};
+const rosterPerPunkt = (id) => {
+  const per = {};
+  for (const [vem, doc] of Object.entries(roster)) {
+    const v = doc && doc.rost && doc.rost[id];
+    if (v) (per[v] = per[v] || []).push(vem);
+  }
+  return per;
+};
+
+let profilIds = new Set();
+
+const renderaDynamiskt = () => {
+  profilIds = new Set();
+  const mina = minaRoster();
+  let granskade = 0, oeniga = 0;
+
+  for (const id of ALLA_PUNKTER) {
+    const per = rosterPerPunkt(id);
+    const varianter = Object.keys(per);
+    if (varianter.length) granskade++;
+    const arOenig = varianter.length > 1;
+    if (arOenig) oeniga++;
+
+    const rad = el("rr-" + id);
+    if (rad) {
+      for (const knapp of rad.querySelectorAll(".rost")) {
+        const v = knapp.dataset.v;
+        const vilka = per[v] || [];
+        knapp.setAttribute("aria-pressed", String(mina[id] === v));
+        knapp.querySelector(".antal").textContent = vilka.length ? String(vilka.length) : "";
+        const hallare = knapp.querySelector(".rostare");
+        hallare.innerHTML = "";
+        for (const vem of vilka.slice(0, 5)) {
+          profilIds.add(vem);
+          const bild = document.createElement("img");
+          bild.dataset.uidAvatar = vem;
+          bild.alt = "";
+          hallare.appendChild(bild);
+        }
+      }
+      el("oenig-" + id).hidden = !arOenig;
+    }
+    const lista = el("kl-" + id);
+    if (lista) {
+      lista.innerHTML = "";
+      for (const k of kommentarer.filter((x) => x.resurs === id)) lista.appendChild(kommNod(k));
+    }
+  }
+
+  el("progress").innerHTML = "<em>" + granskade + "</em> av " + ALLA_PUNKTER.length + " punkter har röster" + (oeniga ? " · <em>" + oeniga + "</em> oeniga" : "");
+  el("stapel").style.width = Math.round((100 * granskade) / ALLA_PUNKTER.length) + "%";
+
+  const deltagarIds = new Set(Object.keys(roster));
+  for (const k of kommentarer) if (k.av) deltagarIds.add(k.av);
+  for (const a of anteckningar) if (a.av) deltagarIds.add(a.av);
+  const deltagare = el("deltagare");
+  deltagare.innerHTML = deltagarIds.size ? "" : "Inga deltagare ännu — bli först!";
+  for (const vem of [...deltagarIds].slice(0, 12)) {
+    profilIds.add(vem);
+    const bild = document.createElement("img");
+    bild.dataset.uidAvatar = vem;
+    bild.alt = "";
+    deltagare.appendChild(bild);
+  }
+
+  for (const s of SEKTIONER) {
+    const markerad = anteckningar.some((a) => a.slag === "sektion" && a.sektion === s.namn);
+    const knapp = el("sag-" + s.id);
+    if (knapp && markerad) { knapp.classList.add("sag--klar"); knapp.textContent = "✓ Markerad i anteckningarna"; }
+  }
+
+  const antLista = el("ant-lista");
+  antLista.innerHTML = "";
+  for (const a of anteckningar) antLista.appendChild(kommNod(a));
+
+  fyllProfiler();
+};
+
+const kommNod = (k) => {
+  const rad = document.createElement("div");
+  rad.className = "komm__post";
+  const bild = document.createElement("img");
+  bild.alt = "";
+  if (k.av) { bild.dataset.uidAvatar = k.av; profilIds.add(k.av); }
+  const kropp = document.createElement("div");
+  const meta = document.createElement("div");
+  meta.className = "komm__meta";
+  const namn = document.createElement("span");
+  if (k.av) { namn.dataset.uidName = k.av; namn.textContent = "…"; } else namn.textContent = "Okänd";
+  meta.appendChild(namn);
+  meta.appendChild(document.createTextNode(k.nar ? " · " + new Date(k.nar).toLocaleString("sv-SE", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : ""));
+  const text = document.createElement("div");
+  text.className = "komm__text" + (k.slag === "sektion" ? " sektionsmarke" : "");
+  text.textContent = k.text || "";
+  kropp.appendChild(meta);
+  kropp.appendChild(text);
+  rad.appendChild(bild);
+  rad.appendChild(kropp);
+  return rad;
+};
+
+const fyllProfiler = async () => {
+  if (!user || profilIds.size === 0) return;
+  const profiler = await user.profiles([...profilIds]);
+  for (const nod of document.querySelectorAll("[data-uid-name]")) {
+    const p = profiler[nod.dataset.uidName];
+    if (p) nod.textContent = p.name || "Någon";
+  }
+  for (const nod of document.querySelectorAll("[data-uid-avatar]")) {
+    const p = profiler[nod.dataset.uidAvatar];
+    if (p) { nod.src = p.avatarUrl; nod.title = p.name || ""; }
+  }
+};
+
+/* ---------- Skrivningar ---------- */
+const visaBanner = (text) => { const b = el("banner"); b.textContent = text; b.hidden = false; };
+
+const skrivfel = (e) => {
+  if (e && e.code === "invalid_argument" && skrivlage !== "ja") {
+    skrivlage = "nej";
+    visaBanner("Ditt konto har bara läsbehörighet här. Be Joel ge dig minst rollen Contributor/Redigera i delningsmenyn, och ladda sedan om sidan.");
+  } else {
+    visaBanner("Det gick inte att spara just nu. Försök igen om en stund.");
+  }
+};
+
+const rosta = (id, v) => {
+  if (!db || !uid) { visaBanner("Logga in på claude.ai för att rösta — sidan går att läsa utan konto."); return; }
+  const mina = { ...minaRoster() };
+  if (mina[id] === v) delete mina[id]; else mina[id] = v;
+  roster = { ...roster, [uid]: { ...(roster[uid] || {}), rost: mina } };
+  renderaDynamiskt();
+  skrivko = skrivko.then(() =>
+    db.doc("roster/" + uid).set({ rost: mina, nar: new Date().toISOString() })
+      .then(() => { skrivlage = "ja"; })
+      .catch(skrivfel)
+  );
+};
+
+const skicka = (samling, kropp) => {
+  if (!db || !uid) { visaBanner("Logga in på claude.ai för att skriva — sidan går att läsa utan konto."); return false; }
+  db.collection(samling).add({ ...kropp, av: uid, nar: new Date().toISOString() })
+    .then(() => { skrivlage = "ja"; })
+    .catch(skrivfel);
+  return true;
+};
+
+/* ---------- Händelser ---------- */
+document.addEventListener("click", (e) => {
+  const rostKnapp = e.target.closest(".rost");
+  if (rostKnapp) { rosta(rostKnapp.dataset.id, rostKnapp.dataset.v); return; }
+  const sag = e.target.closest(".sag");
+  if (sag && !sag.classList.contains("sag--klar")) {
+    const tid = new Date().toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
+    skicka("anteckningar", { text: `— Nu pratar vi om: ${sag.dataset.sag} (${tid}) —`, slag: "sektion", sektion: sag.dataset.sag });
+  }
+});
+
+document.addEventListener("submit", (e) => {
+  const form = e.target.closest(".komm-form");
+  if (form) {
+    e.preventDefault();
+    const input = form.querySelector("input");
+    const text = input.value.trim();
+    if (text && skicka("kommentarer", { resurs: form.dataset.id, text })) input.value = "";
+  }
+  if (e.target.id === "ant-form") {
+    e.preventDefault();
+    const text = el("ant-text").value.trim();
+    if (text && skicka("anteckningar", { text })) el("ant-text").value = "";
+  }
+});
+
+/* ---------- Start ---------- */
+rendera();
+renderaDynamiskt();
+
+(async () => {
+  const anv = (n) => (window.claude && window.claude.use) ? window.claude.use(n) : Promise.resolve(null);
+  [db, user] = await Promise.all([anv("db"), anv("user")]);
+  if (user) uid = await user.id();
+  if (!db) {
+    visaBanner("Du läser utan inloggning. Alla punkter syns, men för att rösta och kommentera: logga in på claude.ai och öppna länken igen.");
+    el("progress").textContent = "Röster visas när du är inloggad.";
+    return;
+  }
+
+  let laddTimer = setTimeout(() => visaBanner("Rösterna går inte att nå ännu — det som visas kan vara ofullständigt."), 10000);
+  const klar = (snap) => { if (laddTimer && !snap.metadata.fromCache) { clearTimeout(laddTimer); laddTimer = null; el("banner").hidden = skrivlage !== "nej"; } };
+
+  db.collection("roster").onSnapshot((snap) => {
+    roster = {};
+    for (const d of snap.docs) roster[d.id] = d.data();
+    klar(snap);
+    renderaDynamiskt();
+  }, () => visaBanner("Rösterna kunde inte läsas. Ladda om sidan senare."));
+
+  db.collection("kommentarer").orderBy("nar").onSnapshot((snap) => {
+    kommentarer = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    renderaDynamiskt();
+  }, () => {});
+
+  db.collection("anteckningar").orderBy("nar").onSnapshot((snap) => {
+    anteckningar = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    renderaDynamiskt();
+  }, () => {});
+})();
+</script>
