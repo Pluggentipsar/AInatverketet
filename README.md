@@ -1,5 +1,8 @@
 # AI-nätverket
 
+**Live: https://pluggentipsar.github.io/AInatverketet/** — publiceras automatiskt
+från `site/` vid varje push till `main` (GitHub Pages, `.github/workflows/pages.yml`).
+
 Ett nav för AI och pedagogik i svensk skola: en kuraterad, sökbar katalog över det bästa
 som redan finns (myndigheter, kommuner, privatpersoner, verktyg, lektionsmaterial) — och
 på sikt en plats att dela och tänka tillsammans.
