@@ -523,6 +523,19 @@
   el("rensa-allt").addEventListener("click", rensaAllt);
   el("tomt-rensa").addEventListener("click", rensaAllt);
 
+  // Spotlight: korten lyser där muspekaren är.
+  let spotRaf = 0;
+  document.addEventListener("pointermove", (e) => {
+    const kort = e.target.closest?.(".kort");
+    if (!kort || spotRaf) return;
+    spotRaf = requestAnimationFrame(() => {
+      spotRaf = 0;
+      const b = kort.getBoundingClientRect();
+      kort.style.setProperty("--mx", `${e.clientX - b.left}px`);
+      kort.style.setProperty("--my", `${e.clientY - b.top}px`);
+    });
+  });
+
   /* ---------- Init ---------- */
 
   byggChips("typ", el("chips-typ"));
@@ -533,8 +546,21 @@
 
   const datum = new Date(katalog.uppdaterad + "T12:00:00").toLocaleDateString("sv-SE", { day: "numeric", month: "long", year: "numeric" });
   const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
-  el("hero-pill").innerHTML = `<em>${resurser.length}</em> granskade resurser från <em>${kallor}</em> källor`;
+  el("hero-pill").innerHTML = `<em data-mal="${resurser.length}">0</em> granskade resurser från <em data-mal="${kallor}">0</em> källor`;
   el("fot-meta").textContent = `${resurser.length} resurser · Senast uppdaterad ${datum} · Alla länkar kontrollerade`;
+
+  // Räkna upp siffrorna i hero-pillen.
+  for (const nod of el("hero-pill").querySelectorAll("[data-mal]")) {
+    const mal = Number(nod.dataset.mal);
+    if (reduceradRorelse.matches) { nod.textContent = mal; continue; }
+    const start = performance.now();
+    const ticka = (nu) => {
+      const andel = Math.min((nu - start) / 750, 1);
+      nod.textContent = Math.round(mal * (1 - Math.pow(1 - andel, 3)));
+      if (andel < 1) requestAnimationFrame(ticka);
+    };
+    requestAnimationFrame(ticka);
+  }
 
   lasUrl();
   synkaKontroller();
