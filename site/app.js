@@ -1,9 +1,10 @@
-/* AI-nätverket — sök, filter, behovsingångar och rendering. Inga beroenden. */
+/* AI-nätverket — sök, filter, snabbvy, kommandopalett och Min lista. Inga beroenden. */
 (() => {
   "use strict";
 
   const { taxonomi, katalog } = window.AINAT;
   const resurser = katalog.resurser;
+  const perId = new Map(resurser.map((r) => [r.id, r]));
 
   const el = (id) => document.getElementById(id);
   const kortnat = el("kortnat");
@@ -48,7 +49,6 @@
     return i >= 5 && i >= token.length - 3;
   };
 
-  // Förberedda sökfält per resurs: [text, vikt]
   const index = resurser.map((r) => ({
     r,
     falt: [
@@ -72,10 +72,16 @@
         else if (token.length >= 5 && ord.some((o) => nastanLika(o, token))) traff = 0.45;
         if (traff * vikt > bast) bast = traff * vikt;
       }
-      if (bast === 0) return 0; // alla sökord måste träffa någonstans
+      if (bast === 0) return 0;
       summa += bast;
     }
     return summa;
+  };
+
+  const tokenisera = (q) => {
+    let tokens = vika(q.trim()).split(/[^a-z0-9]+/).filter(Boolean);
+    const barande = tokens.filter((t) => t.length > 2 && !STOPP.has(t));
+    return barande.length ? barande : tokens;
   };
 
   /* ---------- Tillstånd ---------- */
@@ -101,41 +107,62 @@
 
   const aktivaFilter = () => GRUPPER.some((g) => state[g].size > 0);
 
-  /* ---------- Filtrering ---------- */
+  /* ---------- Min lista (localStorage) ---------- */
 
-  const matchar = (r) => {
-    if (state.typ.size && !r.typ.some((v) => state.typ.has(v))) return false;
-    if (state.teman.size && !r.teman.some((v) => state.teman.has(v))) return false;
-    if (state.malgrupp.size && !r.malgrupp.some((v) => state.malgrupp.has(v))) return false;
-    if (state.stadium.size && !r.stadium.some((v) => state.stadium.has(v))) return false;
-    if (state.kostnad.size && !state.kostnad.has(r.kostnad)) return false;
-    return true;
+  const lasSparade = () => {
+    try { return new Set(JSON.parse(localStorage.getItem("ainat-lista") || "[]").filter((id) => perId.has(id))); }
+    catch { return new Set(); }
+  };
+  let sparade = lasSparade();
+  const skrivSparade = () => { try { localStorage.setItem("ainat-lista", JSON.stringify([...sparade])); } catch {} };
+
+  const uppdateraListbadge = () => {
+    const badge = el("lista-antal");
+    badge.hidden = sparade.size === 0;
+    badge.textContent = sparade.size;
   };
 
-  const urval = () => {
-    let tokens = vika(state.q.trim()).split(/[^a-z0-9]+/).filter(Boolean);
-    const barande = tokens.filter((t) => t.length > 2 && !STOPP.has(t));
-    if (barande.length) tokens = barande;
-    let lista = index.filter(({ r }) => matchar(r));
-    if (tokens.length) {
-      lista = lista
-        .map((post) => ({ post, p: poangsatt(post, tokens) }))
-        .filter((x) => x.p > 0)
-        .sort((a, b) => b.p - a.p)
-        .map((x) => x.post);
+  const vaxlaSparad = (id) => {
+    sparade.has(id) ? sparade.delete(id) : sparade.add(id);
+    skrivSparade();
+    uppdateraListbadge();
+    for (const knapp of document.querySelectorAll(`[data-spara="${CSS.escape(id)}"]`)) {
+      knapp.setAttribute("aria-pressed", String(sparade.has(id)));
+      knapp.querySelector("use")?.setAttribute("href", sparade.has(id) ? "#ik-bokmarke-fylld" : "#ik-bokmarke");
     }
-    return lista.map(({ r }) => r);
+    if (el("qv").dataset.id === id) fyllQvSpara(id);
+    if (el("lista").open) ritaLista();
+  };
+
+  const ritaLista = () => {
+    el("lista-rubrik").textContent = sparade.size
+      ? `${sparade.size} sparade ${sparade.size === 1 ? "resurs" : "resurser"}`
+      : "Tomt här än";
+    const rader = el("lista-rader");
+    if (!sparade.size) {
+      rader.innerHTML = `<p class="lista__tom">Spara resurser med bokmärket på korten, så samlas de här.</p>`;
+      return;
+    }
+    rader.innerHTML = [...sparade].map((id) => {
+      const r = perId.get(id);
+      const mini = r.bild
+        ? `<img class="mini" src="${esc(r.bild)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<span class=&quot;mini--platta&quot;>${esc((r.titel || "?")[0])}</span>'">`
+        : `<span class="mini--platta">${esc((r.titel || "?")[0])}</span>`;
+      return `<div class="lista__rad">${mini}
+        <span class="info"><b>${esc(r.titel)}</b><span>${esc(r.kalla_namn)} · ${esc(doman(r.url))}</span></span>
+        <button class="bort" type="button" data-bort="${esc(id)}" aria-label="Ta bort ${esc(r.titel)}">×</button></div>`;
+    }).join("");
   };
 
   /* ---------- Behovsingångar ---------- */
 
   const INGANGAR = [
-    { ik: "kompass", titel: "Kom igång själv", text: "Guider och kurser som ger dig grunderna — i din egen takt.", filter: { typ: ["guide", "kurs"] } },
-    { ik: "tavla", titel: "Till klassrummet", text: "Färdiga lektioner och material om AI, redo till måndag.", filter: { typ: ["lektionsmaterial", "video"] } },
-    { ik: "verktyg", titel: "Verktyg att prova", text: "AI-tjänster byggda för skolan, med kostnaden ärligt utmärkt.", filter: { typ: ["verktyg"] } },
-    { ik: "paragraf", titel: "Riktlinjer & juridik", text: "GDPR, policyer och vägledningar att luta sig mot.", filter: { teman: ["juridik-gdpr"] } },
-    { ik: "flagga", titel: "Leda & besluta", text: "För rektor och huvudman: strategi, styrning, införande.", filter: { malgrupp: ["skolledare", "huvudman"] } },
-    { ik: "bok", titel: "Följa & fördjupa", text: "Poddar, nyhetsbrev, bloggar och forskning som håller dig à jour.", filter: { typ: ["podd", "nyhetsbrev", "blogg", "forskning"] } },
+    { ik: "kompass", titel: "Kom igång själv", text: "Guider och kurser som ger dig grunderna i din egen takt.", filter: { typ: ["guide", "kurs"] } },
+    { ik: "tavla", titel: "Till klassrummet", text: "Färdiga lektioner och material om AI.", filter: { typ: ["lektionsmaterial", "video"] } },
+    { ik: "verktyg", titel: "Verktyg att prova", text: "AI-tjänster byggda för skolan.", filter: { typ: ["verktyg"] } },
+    { ik: "paragraf", titel: "Riktlinjer & juridik", text: "GDPR, policyer och vägledningar.", filter: { teman: ["juridik-gdpr"] } },
+    { ik: "flagga", titel: "Leda & besluta", text: "För rektor och huvudman.", filter: { malgrupp: ["skolledare", "huvudman"] } },
+    { ik: "bok", titel: "Följa & fördjupa", text: "Poddar, nyhetsbrev, bloggar och forskning.", filter: { typ: ["podd", "nyhetsbrev", "blogg", "forskning"] } },
   ];
 
   const raknaIngang = (filter) =>
@@ -163,6 +190,30 @@
     });
   };
 
+  /* ---------- Filtrering ---------- */
+
+  const matchar = (r) => {
+    if (state.typ.size && !r.typ.some((v) => state.typ.has(v))) return false;
+    if (state.teman.size && !r.teman.some((v) => state.teman.has(v))) return false;
+    if (state.malgrupp.size && !r.malgrupp.some((v) => state.malgrupp.has(v))) return false;
+    if (state.stadium.size && !r.stadium.some((v) => state.stadium.has(v))) return false;
+    if (state.kostnad.size && !state.kostnad.has(r.kostnad)) return false;
+    return true;
+  };
+
+  const urval = () => {
+    const tokens = tokenisera(state.q);
+    let lista = index.filter(({ r }) => matchar(r));
+    if (tokens.length) {
+      lista = lista
+        .map((post) => ({ post, p: poangsatt(post, tokens) }))
+        .filter((x) => x.p > 0)
+        .sort((a, b) => b.p - a.p)
+        .map((x) => x.post);
+    }
+    return lista.map(({ r }) => r);
+  };
+
   /* ---------- Rendering ---------- */
 
   const kortHtml = (r, i) => {
@@ -179,8 +230,13 @@
     const favicon = r.favicon
       ? `<img src="${esc(r.favicon)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">`
       : "";
+    const sparad = sparade.has(r.id);
     return `
-<a class="kort" style="--i:${Math.min(i, 11)}" href="${esc(r.url)}" target="_blank" rel="noopener">
+<article class="kort" style="--i:${Math.min(i, 11)}" data-id="${esc(r.id)}">
+  <button class="kort__spara" type="button" data-spara="${esc(r.id)}" aria-pressed="${sparad}"
+          title="${sparad ? "Ta bort från Min lista" : "Spara i Min lista"}" aria-label="Spara ${esc(r.titel)} i Min lista">
+    <svg aria-hidden="true"><use href="${sparad ? "#ik-bokmarke-fylld" : "#ik-bokmarke"}"></use></svg>
+  </button>
   <span class="kort__media${r.bild ? "" : " kort__media--miss"}" style="${kVar}" aria-hidden="true">
     ${bild}<span class="kort__platta"><b>${esc(initial)}</b></span>
   </span>
@@ -190,14 +246,18 @@
       ${stampel}
       <span class="kort__typ">${esc(typEtikett)}</span>
     </span>
-    <h3>${esc(r.titel)}</h3>
+    <h3><button class="kort__titel" type="button" data-qv="${esc(r.id)}">${esc(r.titel)}</button></h3>
     <p class="kort__beskrivning">${esc(r.beskrivning)}</p>
-    <span class="kort__fot">${teman}${fler}<span class="kort__doman">${favicon}${esc(doman(r.url))}</span></span>
+    <span class="kort__fot">${teman}${fler}
+      <a class="kort__doman" href="${esc(r.url)}" target="_blank" rel="noopener" aria-label="Öppna ${esc(r.titel)} hos ${esc(doman(r.url))}">
+        ${favicon}${esc(doman(r.url))} <svg aria-hidden="true"><use href="#ik-extern"></use></svg>
+      </a>
+    </span>
   </span>
-</a>`;
+</article>`;
   };
 
-  const rita = () => {
+  const uppdateraDom = () => {
     const lista = urval();
     kortnat.innerHTML = lista.map(kortHtml).join("");
     el("tomt").hidden = lista.length > 0;
@@ -227,6 +287,103 @@
     }
     skrivUrl();
   };
+
+  // Mjuk omritning med View Transitions där det stöds.
+  const reduceradRorelse = matchMedia("(prefers-reduced-motion: reduce)");
+  const rita = () => {
+    if (document.startViewTransition && !reduceradRorelse.matches) document.startViewTransition(uppdateraDom);
+    else uppdateraDom();
+  };
+
+  /* ---------- Snabbvyn (dialog) ---------- */
+
+  const qv = el("qv");
+
+  const fyllQvSpara = (id) => {
+    const knapp = el("qv-spara");
+    const sparad = sparade.has(id);
+    knapp.innerHTML = `<svg aria-hidden="true"><use href="${sparad ? "#ik-bokmarke-fylld" : "#ik-bokmarke"}"></use></svg> ${sparad ? "Sparad i Min lista" : "Spara i Min lista"}`;
+    knapp.setAttribute("aria-pressed", String(sparad));
+  };
+
+  const oppnaQv = (id) => {
+    const r = perId.get(id);
+    if (!r) return;
+    qv.dataset.id = id;
+    const media = el("qv-media");
+    media.className = "qv__media" + (r.bild ? " har-bild" : "");
+    media.innerHTML = r.bild
+      ? `<img src="${esc(r.bild)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.classList.remove('har-bild')">`
+      : "";
+    el("qv-topp").innerHTML =
+      `<span class="kalla" style="--k: var(--k-${esc(r.kalla)})">${esc(r.kalla_namn)}</span>` +
+      (r.kostnad !== "gratis" ? `<span class="kort__stampel">${esc(etikett("kostnad", r.kostnad))}</span>` : "") +
+      `<span class="kort__typ">${esc(r.typ.map((t) => etikett("typ", t)).join(" · "))}</span>`;
+    el("qv-titel").textContent = r.titel;
+    el("qv-beskrivning").textContent = r.beskrivning;
+    el("qv-taggar").innerHTML = [
+      ...r.teman.map((t) => etikett("teman", t)),
+      ...r.malgrupp.map((t) => etikett("malgrupp", t)),
+      ...r.stadium.map((t) => etikett("stadium", t)),
+    ].map((namn) => `<span class="tagg">${esc(namn)}</span>`).join("");
+    const oppna = el("qv-oppna");
+    oppna.href = r.url;
+    fyllQvSpara(id);
+    qv.showModal();
+  };
+
+  /* ---------- Kommandopaletten ---------- */
+
+  const palett = el("palett");
+  const palettInput = el("palett-input");
+  const palettResultat = el("palett-resultat");
+  let palettVal = 0;
+  let palettTraffar = [];
+
+  const ritaPalett = () => {
+    const tokens = tokenisera(palettInput.value);
+    palettTraffar = !tokens.length
+      ? resurser.slice(0, 7)
+      : index
+          .map((post) => ({ post, p: poangsatt(post, tokens) }))
+          .filter((x) => x.p > 0)
+          .sort((a, b) => b.p - a.p)
+          .slice(0, 8)
+          .map((x) => x.post.r);
+    palettVal = Math.min(palettVal, Math.max(0, palettTraffar.length - 1));
+    palettResultat.innerHTML = palettTraffar.length
+      ? palettTraffar.map((r, i) => `
+<button class="palett__rad" type="button" role="option" aria-selected="${i === palettVal}" data-qv-palett="${esc(r.id)}">
+  <span class="titel">${esc(r.titel)}</span>
+  <span class="meta">${esc(r.kalla_namn)} · ${esc(etikett("typ", r.typ[0]))}</span>
+</button>`).join("")
+      : `<p class="palett__tom">Inga träffar på ”${esc(palettInput.value)}”.</p>`;
+  };
+
+  const oppnaPalett = () => {
+    palettInput.value = "";
+    palettVal = 0;
+    ritaPalett();
+    palett.showModal();
+    palettInput.focus();
+  };
+
+  palettInput.addEventListener("input", () => { palettVal = 0; ritaPalett(); });
+  palettInput.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); palettVal = Math.min(palettVal + 1, palettTraffar.length - 1); ritaPalett(); }
+    if (e.key === "ArrowUp") { e.preventDefault(); palettVal = Math.max(palettVal - 1, 0); ritaPalett(); }
+    if (e.key === "Enter" && palettTraffar[palettVal]) {
+      palett.close();
+      oppnaQv(palettTraffar[palettVal].id);
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      palett.open ? palett.close() : oppnaPalett();
+    }
+  });
 
   /* ---------- Kontroller ---------- */
 
@@ -277,12 +434,42 @@
     rita();
   };
 
-  /* ---------- Init ---------- */
+  /* ---------- Händelser ---------- */
 
-  byggChips("typ", el("chips-typ"));
-  byggChips("teman", el("chips-teman"));
-  for (const meny of document.querySelectorAll(".meny")) byggMeny(meny);
-  byggIngangar();
+  document.addEventListener("click", (e) => {
+    const spara = e.target.closest("[data-spara]");
+    if (spara) { vaxlaSparad(spara.dataset.spara); return; }
+    const bort = e.target.closest("[data-bort]");
+    if (bort) { vaxlaSparad(bort.dataset.bort); return; }
+    const palettRad = e.target.closest("[data-qv-palett]");
+    if (palettRad) { palett.close(); oppnaQv(palettRad.dataset.qvPalett); return; }
+    const stang = e.target.closest("[data-stang]");
+    if (stang) { stang.closest("dialog")?.close(); return; }
+    const kort = e.target.closest(".kort");
+    if (kort && !e.target.closest("a")) { oppnaQv(kort.dataset.id); return; }
+    if (!e.target.closest(".meny")) for (const meny of document.querySelectorAll(".meny[open]")) meny.open = false;
+  });
+
+  // Klick på backdrop stänger dialogen.
+  for (const dialog of document.querySelectorAll("dialog")) {
+    dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+  }
+
+  el("qv-spara").addEventListener("click", () => { const id = qv.dataset.id; if (id) vaxlaSparad(id); });
+
+  el("nav-lista").addEventListener("click", () => { ritaLista(); el("lista").showModal(); });
+  el("lista-rensa").addEventListener("click", () => {
+    sparade.clear(); skrivSparade(); uppdateraListbadge(); ritaLista(); rita();
+  });
+  el("lista-kopiera").addEventListener("click", async () => {
+    const text = [...sparade].map((id) => { const r = perId.get(id); return `${r.titel}\n${r.url}`; }).join("\n\n");
+    const knapp = el("lista-kopiera");
+    try { await navigator.clipboard.writeText(text); knapp.textContent = "Kopierat!"; }
+    catch { knapp.textContent = "Kunde inte kopiera"; }
+    setTimeout(() => { knapp.textContent = "Kopiera alla länkar"; }, 1600);
+  });
+
+  el("oppna-palett").addEventListener("click", oppnaPalett);
 
   let timer;
   sokfalt.addEventListener("input", () => {
@@ -299,9 +486,13 @@
   el("rensa-allt").addEventListener("click", rensaAllt);
   el("tomt-rensa").addEventListener("click", rensaAllt);
 
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".meny")) for (const meny of document.querySelectorAll(".meny[open]")) meny.open = false;
-  });
+  /* ---------- Init ---------- */
+
+  byggChips("typ", el("chips-typ"));
+  byggChips("teman", el("chips-teman"));
+  for (const meny of document.querySelectorAll(".meny")) byggMeny(meny);
+  byggIngangar();
+  uppdateraListbadge();
 
   const datum = new Date(katalog.uppdaterad + "T12:00:00").toLocaleDateString("sv-SE", { day: "numeric", month: "long", year: "numeric" });
   const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
@@ -310,5 +501,5 @@
 
   lasUrl();
   synkaKontroller();
-  rita();
+  uppdateraDom();
 })();
