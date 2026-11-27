@@ -1,4 +1,4 @@
-/* AI-nätverket — sök, filter, snabbvy, kommandopalett och Min lista. Inga beroenden. */
+/* AI-nätverket — app-skal med vyer, sök, filter, snabbvy, palett och Min lista. */
 (() => {
   "use strict";
 
@@ -9,6 +9,7 @@
   const el = (id) => document.getElementById(id);
   const kortnat = el("kortnat");
   const sokfalt = el("sokfalt");
+  const skal = document.querySelector(".skal");
 
   const esc = (s) =>
     String(s ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[t]));
@@ -19,14 +20,61 @@
     try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return ""; }
   };
 
+  const reduceradRorelse = matchMedia("(prefers-reduced-motion: reduce)");
+  const mjukt = (fn) => {
+    if (document.startViewTransition && !reduceradRorelse.matches) document.startViewTransition(fn);
+    else fn();
+  };
+
+  /* ---------- Router & sidomeny ---------- */
+
+  const VYER = ["hem", "katalog", "forum", "traffar", "lista"];
+  const VY_TITLAR = { hem: "AI-nätverket — AI och pedagogik i svensk skola", katalog: "Katalogen — AI-nätverket", forum: "Forum — AI-nätverket", traffar: "Träffar — AI-nätverket", lista: "Min lista — AI-nätverket" };
+  let aktivVy = "hem";
+
+  const visaVy = (vy, direkt = false) => {
+    if (!VYER.includes(vy)) vy = "hem";
+    const byt = () => {
+      aktivVy = vy;
+      for (const sektion of document.querySelectorAll(".vy")) sektion.classList.toggle("aktiv", sektion.dataset.vy === vy);
+      for (const lank of document.querySelectorAll(".sidomeny__nav a")) {
+        if (lank.dataset.vy === vy) lank.setAttribute("aria-current", "page");
+        else lank.removeAttribute("aria-current");
+      }
+      document.title = VY_TITLAR[vy];
+      if (vy === "lista") ritaLista();
+      skal.classList.remove("menyOppen");
+      el("bakplatta").hidden = true;
+      window.scrollTo({ top: 0, behavior: "instant" });
+    };
+    direkt ? byt() : mjukt(byt);
+    if (location.hash !== `#/${vy}`) history.replaceState(null, "", `${location.pathname}${location.search}#/${vy}`);
+  };
+
+  const lasHash = () => (location.hash.match(/^#\/(\w+)/) || [])[1] ?? null;
+  addEventListener("hashchange", () => { const vy = lasHash(); if (vy && vy !== aktivVy) visaVy(vy); });
+
+  // Kollapsbar sidomeny — läget minns per webbläsare.
+  const sattKollaps = (pa) => {
+    skal.classList.toggle("kollapsad", pa);
+    el("kollaps").title = pa ? "Fäll ut menyn" : "Fäll ihop menyn";
+    try { localStorage.setItem("ainat-sidomeny", pa ? "kollapsad" : "oppen"); } catch {}
+  };
+  el("kollaps").addEventListener("click", () => {
+    if (matchMedia("(max-width: 880px)").matches) { skal.classList.remove("menyOppen"); el("bakplatta").hidden = true; }
+    else sattKollaps(!skal.classList.contains("kollapsad"));
+  });
+  try { if (localStorage.getItem("ainat-sidomeny") === "kollapsad") sattKollaps(true); } catch {}
+
+  el("oppna-meny").addEventListener("click", () => { skal.classList.add("menyOppen"); el("bakplatta").hidden = false; });
+  el("bakplatta").addEventListener("click", () => { skal.classList.remove("menyOppen"); el("bakplatta").hidden = true; });
+
   /* ---------- Fuzzy-sök ---------- */
 
   const vika = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
-  // Småord som inte ska krävas i sökningen ("lektioner om bias" → "lektioner", "bias").
   const STOPP = new Set(["om", "och", "i", "pa", "for", "att", "med", "en", "ett", "av", "till", "det", "den", "de", "ar", "hur", "vad", "du", "din", "dina", "ska", "kan", "som", "vid"]);
 
-  // Tillåter ett stavfel: insättning, borttagning, byte eller omkastning (skolverkte → skolverket).
   const nastanLika = (a, b) => {
     if (Math.abs(a.length - b.length) > 1) return false;
     let i = 0, j = 0, fel = 0;
@@ -41,7 +89,6 @@
     return fel + (a.length - i) + (b.length - j) <= 1;
   };
 
-  // Ordstamsmatchning för svenska sammansättningar: "lektioner" träffar "lektionsmaterial".
   const delarStam = (ord, token) => {
     let i = 0;
     const max = Math.min(ord.length, token.length);
@@ -102,7 +149,7 @@
     if (state.q) p.set("q", state.q);
     for (const g of GRUPPER) if (state[g].size) p.set(g, [...state[g]].join(","));
     const qs = p.toString();
-    history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
+    history.replaceState(null, "", `${location.pathname}${qs ? "?" + qs : ""}${location.hash}`);
   };
 
   const aktivaFilter = () => GRUPPER.some((g) => state[g].size > 0);
@@ -131,7 +178,7 @@
       knapp.querySelector("use")?.setAttribute("href", sparade.has(id) ? "#ik-bokmarke-fylld" : "#ik-bokmarke");
     }
     if (el("qv").dataset.id === id) fyllQvSpara(id);
-    if (el("lista").open) ritaLista();
+    if (aktivVy === "lista") ritaLista();
   };
 
   const ritaLista = () => {
@@ -140,7 +187,7 @@
       : "Tomt här än";
     const rader = el("lista-rader");
     if (!sparade.size) {
-      rader.innerHTML = `<p class="lista__tom">Spara resurser med bokmärket på korten, så samlas de här.</p>`;
+      rader.innerHTML = `<p class="lista__tom">Spara resurser med bokmärket på korten i katalogen, så samlas de här.</p>`;
       return;
     }
     rader.innerHTML = [...sparade].map((id) => {
@@ -185,8 +232,8 @@
       for (const g of GRUPPER) state[g].clear();
       for (const [g, varden] of Object.entries(ing.filter)) state[g] = new Set(varden);
       synkaKontroller();
-      rita();
-      el("resultat").scrollIntoView({ behavior: "smooth", block: "start" });
+      uppdateraDom();
+      visaVy("katalog");
     });
   };
 
@@ -273,12 +320,6 @@
     el("rensa-sok").hidden = !state.q;
     el("rensa-allt").hidden = !aktivaFilter();
 
-    const hopp = el("sok-hopp");
-    hopp.hidden = !state.q.trim();
-    hopp.textContent = lista.length
-      ? `Visa ${lista.length} ${lista.length === 1 ? "träff" : "träffar"} ↓`
-      : "Inga träffar — prova ett annat ord";
-
     for (const meny of document.querySelectorAll(".meny")) {
       const g = meny.dataset.grupp;
       const badge = meny.querySelector(".meny__antal");
@@ -288,14 +329,9 @@
     skrivUrl();
   };
 
-  // Mjuk omritning med View Transitions där det stöds.
-  const reduceradRorelse = matchMedia("(prefers-reduced-motion: reduce)");
-  const rita = () => {
-    if (document.startViewTransition && !reduceradRorelse.matches) document.startViewTransition(uppdateraDom);
-    else uppdateraDom();
-  };
+  const rita = () => mjukt(uppdateraDom);
 
-  /* ---------- Snabbvyn (dialog) ---------- */
+  /* ---------- Snabbvyn ---------- */
 
   const qv = el("qv");
 
@@ -326,8 +362,7 @@
       ...r.malgrupp.map((t) => etikett("malgrupp", t)),
       ...r.stadium.map((t) => etikett("stadium", t)),
     ].map((namn) => `<span class="tagg">${esc(namn)}</span>`).join("");
-    const oppna = el("qv-oppna");
-    oppna.href = r.url;
+    el("qv-oppna").href = r.url;
     fyllQvSpara(id);
     qv.showModal();
   };
@@ -450,16 +485,14 @@
     if (!e.target.closest(".meny")) for (const meny of document.querySelectorAll(".meny[open]")) meny.open = false;
   });
 
-  // Klick på backdrop stänger dialogen.
   for (const dialog of document.querySelectorAll("dialog")) {
     dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
   }
 
   el("qv-spara").addEventListener("click", () => { const id = qv.dataset.id; if (id) vaxlaSparad(id); });
 
-  el("nav-lista").addEventListener("click", () => { ritaLista(); el("lista").showModal(); });
   el("lista-rensa").addEventListener("click", () => {
-    sparade.clear(); skrivSparade(); uppdateraListbadge(); ritaLista(); rita();
+    sparade.clear(); skrivSparade(); uppdateraListbadge(); ritaLista(); uppdateraDom();
   });
   el("lista-kopiera").addEventListener("click", async () => {
     const text = [...sparade].map((id) => { const r = perId.get(id); return `${r.titel}\n${r.url}`; }).join("\n\n");
@@ -470,17 +503,21 @@
   });
 
   el("oppna-palett").addEventListener("click", oppnaPalett);
+  el("storsok").addEventListener("click", () => { visaVy("katalog"); sokfalt.focus(); });
 
   let timer;
   sokfalt.addEventListener("input", () => {
     clearTimeout(timer);
-    timer = setTimeout(() => { state.q = sokfalt.value; rita(); }, 70);
+    timer = setTimeout(() => {
+      state.q = sokfalt.value;
+      if (state.q.trim() && aktivVy !== "katalog") visaVy("katalog", true);
+      rita();
+    }, 70);
   });
   sokfalt.addEventListener("keydown", (e) => {
     if (e.key === "Escape") { state.q = ""; sokfalt.value = ""; rita(); }
-    if (e.key === "Enter") { state.q = sokfalt.value; rita(); el("resultat").scrollIntoView({ behavior: "smooth", block: "start" }); }
+    if (e.key === "Enter") { state.q = sokfalt.value; if (aktivVy !== "katalog") visaVy("katalog", true); rita(); }
   });
-  el("sok-hopp").addEventListener("click", () => el("resultat").scrollIntoView({ behavior: "smooth", block: "start" }));
 
   el("rensa-sok").addEventListener("click", () => { state.q = ""; sokfalt.value = ""; sokfalt.focus(); rita(); });
   el("rensa-allt").addEventListener("click", rensaAllt);
@@ -502,4 +539,5 @@
   lasUrl();
   synkaKontroller();
   uppdateraDom();
+  visaVy(lasHash() ?? ((state.q || aktivaFilter()) ? "katalog" : "hem"), true);
 })();

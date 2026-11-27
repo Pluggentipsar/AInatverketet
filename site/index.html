@@ -15,6 +15,15 @@
 
 <svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <symbol id="ik-hem" viewBox="0 0 24 24">
+      <path d="M4.5 10.5 12 4l7.5 6.5V20h-5.4v-5.2h-4.2V20H4.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ik-rutnat" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7">
+        <rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/>
+        <rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/>
+      </g>
+    </symbol>
     <symbol id="ik-kompass" viewBox="0 0 24 24">
       <circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
       <path d="M15.2 8.8 13 13 8.8 15.2 11 11 Z" fill="currentColor"/>
@@ -60,163 +69,227 @@
       <rect x="4" y="5.5" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
       <path d="M4 10h16M8.5 3.8v3.2M15.5 3.8v3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
     </symbol>
+    <symbol id="ik-sok" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ik-sidomeny" viewBox="0 0 24 24">
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M9.5 4.5v15" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    </symbol>
   </defs>
 </svg>
 
-<nav class="nav">
-  <div class="ram nav__inre">
-    <a class="nav__marke" href="./"><span aria-hidden="true">✳</span> AI-nätverket</a>
-    <div class="nav__lankar">
-      <a href="#resultat">Katalogen</a>
-      <a href="#mer">På gång</a>
-      <button class="nav__lista" id="nav-lista" type="button" aria-haspopup="dialog">
-        <svg aria-hidden="true"><use href="#ik-bokmarke"></use></svg>
-        Min lista <span class="nav__antal" id="lista-antal" hidden></span>
-      </button>
-      <a class="nav__cta" href="prototyp/index.html">Framtidsskissen →</a>
-    </div>
-  </div>
-</nav>
+<div class="skal">
 
-<header class="hero">
-  <div class="ram hero__inre">
-    <p class="hero__pill" id="hero-pill">Granskad katalog · uppdaterad löpande</p>
-    <h1 class="hero__rubrik">Det bästa om AI i skolan.<br><em>Samlat, granskat, sökbart.</em></h1>
-    <p class="hero__ingress">
-      Guider, lektioner, verktyg och riktlinjer från myndigheter, kommuner och
-      lärare — utvalda för hand, beskrivna på svenska och alltid länkade till källan.
-    </p>
-    <div class="sok__falt">
-      <svg class="sok__ikon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+<div class="bakplatta" id="bakplatta" hidden></div>
+
+<aside class="sidomeny" id="sidomeny">
+  <div class="sidomeny__topp">
+    <a class="sidomeny__marke" href="#/hem"><span aria-hidden="true">✳</span><span class="sidomeny__text">AI-nätverket</span></a>
+    <button class="sidomeny__kollaps" id="kollaps" type="button" title="Fäll ihop menyn" aria-label="Fäll ihop menyn">
+      <svg aria-hidden="true"><use href="#ik-sidomeny"></use></svg>
+    </button>
+  </div>
+  <nav class="sidomeny__nav" aria-label="Huvudmeny">
+    <a href="#/hem" data-vy="hem"><svg aria-hidden="true"><use href="#ik-hem"></use></svg><span class="sidomeny__text">Hem</span></a>
+    <a href="#/katalog" data-vy="katalog"><svg aria-hidden="true"><use href="#ik-rutnat"></use></svg><span class="sidomeny__text">Katalogen</span></a>
+    <a href="#/forum" data-vy="forum"><svg aria-hidden="true"><use href="#ik-forum"></use></svg><span class="sidomeny__text">Forum</span><span class="demo-prik" title="Skiss"></span></a>
+    <a href="#/traffar" data-vy="traffar"><svg aria-hidden="true"><use href="#ik-kalender"></use></svg><span class="sidomeny__text">Träffar</span><span class="demo-prik" title="Skiss"></span></a>
+    <a href="#/lista" data-vy="lista"><svg aria-hidden="true"><use href="#ik-bokmarke"></use></svg><span class="sidomeny__text">Min lista</span><span class="nav__antal" id="lista-antal" hidden></span></a>
+  </nav>
+  <div class="sidomeny__fot">
+    <a href="prototyp/index.html"><svg aria-hidden="true"><use href="#ik-extern"></use></svg><span class="sidomeny__text">Framtidsskissen</span></a>
+  </div>
+</aside>
+
+<div class="huvudyta">
+
+  <div class="topprad">
+    <button class="topprad__meny" id="oppna-meny" type="button" aria-label="Öppna menyn">
+      <svg aria-hidden="true"><use href="#ik-sidomeny"></use></svg>
+    </button>
+    <div class="sok__falt sok__falt--topp">
+      <svg class="sok__ikon" aria-hidden="true"><use href="#ik-sok"></use></svg>
       <input id="sokfalt" type="search" autocomplete="off" spellcheck="false"
-             placeholder="Sök — ”lektioner om bias”, ”riktlinjer gdpr” …"
-             aria-label="Sök i katalogen">
+             placeholder="Sök i katalogen …" aria-label="Sök i katalogen">
       <button id="rensa-sok" class="sok__rensa" type="button" hidden aria-label="Rensa sökningen">×</button>
       <button class="sok__kbd" id="oppna-palett" type="button" title="Öppna snabbsök"><kbd>Ctrl</kbd><kbd>K</kbd></button>
     </div>
-    <button id="sok-hopp" class="sok__hopp" type="button" hidden></button>
   </div>
-</header>
 
-<main>
-  <section class="ingangar ram avsnitt-reveal" aria-labelledby="r-ingangar">
-    <p class="ogonbryn" id="r-ingangar">Börja där du står</p>
-    <div class="ingangar__nat" id="ingangar"></div>
-  </section>
+  <main class="vyer">
 
-  <section class="resultat ram" id="resultat" aria-label="Katalogen">
-    <div class="resultat__huvud avsnitt-reveal">
-      <p class="ogonbryn">Katalogen</p>
-      <h2>Bläddra, filtrera eller sök</h2>
-    </div>
+    <section class="vy" data-vy="hem" aria-label="Hem">
+      <div class="ram">
+        <div class="hero__inre">
+          <p class="hero__pill" id="hero-pill">Granskad katalog · uppdaterad löpande</p>
+          <h1 class="hero__rubrik">Det bästa om AI i skolan.<br><em>Samlat, granskat, sökbart.</em></h1>
+          <p class="hero__ingress">
+            Guider, lektioner, verktyg och riktlinjer från myndigheter, kommuner och
+            lärare — utvalda för hand, beskrivna på svenska och alltid länkade till källan.
+          </p>
+          <button class="storsok" id="storsok" type="button">
+            <svg class="sok__ikon" aria-hidden="true"><use href="#ik-sok"></use></svg>
+            <span>Sök — ”lektioner om bias”, ”riktlinjer gdpr” …</span>
+            <span class="storsok__kbd"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+          </button>
+        </div>
 
-    <div class="filter avsnitt-reveal">
-      <div class="filter__grupp" data-grupp="typ">
-        <span class="filter__etikett">Jag letar efter</span>
-        <div class="chips" id="chips-typ" role="group" aria-label="Filtrera på resurstyp"></div>
-      </div>
-      <div class="filter__grupp" data-grupp="teman">
-        <span class="filter__etikett">Tema</span>
-        <div class="chips" id="chips-teman" role="group" aria-label="Filtrera på tema"></div>
-      </div>
-      <div class="filter__rad">
-        <details class="meny" data-grupp="malgrupp">
-          <summary>Målgrupp<span class="meny__antal" hidden></span></summary>
-          <div class="meny__lista"></div>
-        </details>
-        <details class="meny" data-grupp="stadium">
-          <summary>Stadium<span class="meny__antal" hidden></span></summary>
-          <div class="meny__lista"></div>
-        </details>
-        <details class="meny" data-grupp="kostnad">
-          <summary>Kostnad<span class="meny__antal" hidden></span></summary>
-          <div class="meny__lista"></div>
-        </details>
-        <button id="rensa-allt" class="filter__rensa" type="button" hidden>Rensa alla filter</button>
-      </div>
-    </div>
+        <div class="ingangar avsnitt-reveal">
+          <p class="ogonbryn">Börja där du står</p>
+          <div class="ingangar__nat" id="ingangar"></div>
+        </div>
 
-    <p class="resultat__antal" id="antal" role="status" aria-live="polite"></p>
-    <div class="kortnat" id="kortnat"></div>
-    <div class="tomt" id="tomt" hidden>
-      <p class="tomt__stjarna" aria-hidden="true">✳</p>
-      <p class="tomt__rubrik">Inget här — än.</p>
-      <p>Ingen resurs matchar sökningen. Prova ett bredare ord, eller
-         <button class="tomt__knapp" id="tomt-rensa" type="button">rensa allt</button>.</p>
-    </div>
-  </section>
-
-  <section class="mer" id="mer" aria-labelledby="r-mer">
-    <div class="ram">
-      <div class="resultat__huvud avsnitt-reveal">
-        <p class="ogonbryn" id="r-mer">På gång</p>
-        <h2>Mer än en katalog</h2>
-        <p class="mer__intro">AI-nätverket växer till en plats att tänka tillsammans på.
-        Så här är det tänkt — klicka runt i skissen och tyck till.</p>
-      </div>
-      <div class="mer__nat">
-        <article class="mer__kort avsnitt-reveal">
-          <div class="mer__topp">
-            <span class="ik" aria-hidden="true"><svg><use href="#ik-forum"></use></svg></span>
-            <span class="demo-tagg">Skiss · exempelinnehåll</span>
+        <div class="mer avsnitt-reveal">
+          <p class="ogonbryn">På gång</p>
+          <h2>Mer än en katalog</h2>
+          <p class="mer__intro">AI-nätverket växer till en plats att tänka tillsammans på.
+          Titta in i forum- och träffskisserna och tyck till.</p>
+          <div class="mer__nat">
+            <a class="mer__kort" href="#/forum">
+              <span class="ik" aria-hidden="true"><svg><use href="#ik-forum"></use></svg></span>
+              <h3>Forum — tänk tillsammans</h3>
+              <p>Ställ frågan du sitter med, dela det som funkade, hitta kollegor.</p>
+              <span class="mer__lank">Öppna forumskissen →</span>
+            </a>
+            <a class="mer__kort" href="#/traffar">
+              <span class="ik" aria-hidden="true"><svg><use href="#ik-kalender"></use></svg></span>
+              <h3>Träffar — ses och lär</h3>
+              <p>Nätverksträffar, workshoppar och fikasamtal — digitalt och IRL.</p>
+              <span class="mer__lank">Öppna träffskissen →</span>
+            </a>
           </div>
-          <h3>Forum — tänk tillsammans</h3>
-          <p>Ställ frågan du sitter med, dela det som funkade, hitta kollegor med samma ämne och stadium.</p>
-          <div class="mer__demo" aria-hidden="true">
-            <div class="demo-rad"><span class="demo-prick" style="--k:var(--k-kommun)"></span><span class="demo-text">Hur gör ni med AI på nationella prov?</span><span class="demo-meta">14 svar</span></div>
-            <div class="demo-rad"><span class="demo-prick" style="--k:var(--k-privatperson)"></span><span class="demo-text">Bästa prompten för läsförståelse åk 5?</span><span class="demo-meta">9 svar</span></div>
-            <div class="demo-rad"><span class="demo-prick" style="--k:var(--k-larosate)"></span><span class="demo-text">Boktips: AI-litteracitet i praktiken</span><span class="demo-meta">3 svar</span></div>
-          </div>
-          <a class="mer__lank" href="prototyp/index.html">Utforska forumskissen <svg aria-hidden="true"><use href="#ik-extern"></use></svg></a>
-        </article>
-        <article class="mer__kort avsnitt-reveal">
-          <div class="mer__topp">
-            <span class="ik" aria-hidden="true"><svg><use href="#ik-kalender"></use></svg></span>
-            <span class="demo-tagg">Skiss · exempelinnehåll</span>
-          </div>
-          <h3>Träffar — ses och lär</h3>
-          <p>Nätverksträffar, workshoppar och fikasamtal — skapa en träff eller anmäl dig till nästa.</p>
-          <div class="mer__demo" aria-hidden="true">
-            <div class="demo-traff">
-              <span class="demo-datum"><b>12</b>dec</span>
-              <span class="demo-text">Nätverksträff: AI-verktyg i praktiken<br><span class="demo-meta">Digitalt · 15.30–17.00</span></span>
-              <span class="demo-knapp">Anmäl</span>
+        </div>
+
+        <footer class="fot" id="om">
+          <div class="fot__spalter">
+            <div>
+              <p class="fot__marke"><span aria-hidden="true">✳</span> AI-nätverket</p>
+              <p class="fot__text">
+                Byggt av lärare, för lärare. Varje resurs är hämtad, läst och handgranskad
+                innan den togs in — och vi länkar alltid vidare till upphovspersonernas egna
+                sidor. Trafiken och äran är deras.
+              </p>
             </div>
-            <div class="demo-traff">
-              <span class="demo-datum"><b>15</b>jan</span>
-              <span class="demo-text">Workshop: bygg er AI-policy<br><span class="demo-meta">Jönköping · heldag</span></span>
-              <span class="demo-knapp">Anmäl</span>
-            </div>
+            <ul class="fot__principer">
+              <li><b>Granskat, inte skrapat.</b><span>Människor väljer vad som får plats.</span></li>
+              <li><b>Länkat, inte kopierat.</b><span>Innehållet bor hos sina skapare.</span></li>
+              <li><b>Levande, inte lämnat.</b><span>Länkar kontrolleras regelbundet.</span></li>
+            </ul>
           </div>
-          <a class="mer__lank" href="prototyp/index.html">Utforska träffskissen <svg aria-hidden="true"><use href="#ik-extern"></use></svg></a>
-        </article>
+          <p class="fot__meta" id="fot-meta"></p>
+        </footer>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
 
-<footer class="fot" id="om">
-  <div class="ram fot__inre">
-    <div class="fot__spalter">
-      <div>
-        <p class="fot__marke"><span aria-hidden="true">✳</span> AI-nätverket</p>
-        <p class="fot__text">
-          Byggt av lärare, för lärare. AI-nätverket samlar det som redan finns och gör
-          det hittbart — varje resurs är hämtad, läst och handgranskad innan den togs in,
-          och vi länkar alltid vidare till upphovspersonernas egna sidor.
-        </p>
-        <p class="fot__text fot__text--tyst">Saknar du något som borde finnas här?
-        Tipsfunktion är på väg — katalogen växer under ordnade former.</p>
+    <section class="vy" data-vy="katalog" aria-label="Katalogen">
+      <div class="ram">
+        <div class="vy__huvud">
+          <p class="ogonbryn">Katalogen</p>
+          <h2>Bläddra, filtrera eller sök</h2>
+        </div>
+
+        <div class="filter">
+          <div class="filter__grupp" data-grupp="typ">
+            <span class="filter__etikett">Jag letar efter</span>
+            <div class="chips" id="chips-typ" role="group" aria-label="Filtrera på resurstyp"></div>
+          </div>
+          <div class="filter__grupp" data-grupp="teman">
+            <span class="filter__etikett">Tema</span>
+            <div class="chips" id="chips-teman" role="group" aria-label="Filtrera på tema"></div>
+          </div>
+          <div class="filter__rad">
+            <details class="meny" data-grupp="malgrupp">
+              <summary>Målgrupp<span class="meny__antal" hidden></span></summary>
+              <div class="meny__lista"></div>
+            </details>
+            <details class="meny" data-grupp="stadium">
+              <summary>Stadium<span class="meny__antal" hidden></span></summary>
+              <div class="meny__lista"></div>
+            </details>
+            <details class="meny" data-grupp="kostnad">
+              <summary>Kostnad<span class="meny__antal" hidden></span></summary>
+              <div class="meny__lista"></div>
+            </details>
+            <button id="rensa-allt" class="filter__rensa" type="button" hidden>Rensa alla filter</button>
+          </div>
+        </div>
+
+        <p class="resultat__antal" id="antal" role="status" aria-live="polite"></p>
+        <div class="kortnat" id="kortnat"></div>
+        <div class="tomt" id="tomt" hidden>
+          <p class="tomt__stjarna" aria-hidden="true">✳</p>
+          <p class="tomt__rubrik">Inget här — än.</p>
+          <p>Ingen resurs matchar sökningen. Prova ett bredare ord, eller
+             <button class="tomt__knapp" id="tomt-rensa" type="button">rensa allt</button>.</p>
+        </div>
       </div>
-      <ul class="fot__principer">
-        <li><b>Granskat, inte skrapat.</b><span>Människor väljer vad som får plats.</span></li>
-        <li><b>Länkat, inte kopierat.</b><span>Innehållet bor hos sina skapare.</span></li>
-        <li><b>Levande, inte lämnat.</b><span>Länkar kontrolleras regelbundet — det som dör åker ut.</span></li>
-      </ul>
-    </div>
-    <p class="fot__meta" id="fot-meta"></p>
-  </div>
-</footer>
+    </section>
+
+    <section class="vy" data-vy="forum" aria-label="Forum">
+      <div class="ram ram--smal">
+        <div class="vy__huvud">
+          <p class="ogonbryn">Forum · <span class="demo-ord">Skiss</span></p>
+          <h2>Tänk tillsammans</h2>
+          <p class="mer__intro">Så här är forumet tänkt. Allt nedan är exempelinnehåll —
+          säg vad som saknas innan vi bygger på riktigt.</p>
+        </div>
+        <div class="skiss-komponera" aria-disabled="true">
+          <span>Ställ en fråga eller dela något som funkade …</span>
+          <span class="skiss-komponera__knapp">Kommer snart</span>
+        </div>
+        <div class="tradar">
+          <div class="trad"><span class="demo-prick" style="--k:var(--k-kommun)"></span><div class="trad__text"><b>Hur gör ni med AI på nationella prov?</b><span>Högstadiet · Bedömning · för 2 tim sedan</span></div><span class="demo-meta">14 svar</span></div>
+          <div class="trad"><span class="demo-prick" style="--k:var(--k-privatperson)"></span><div class="trad__text"><b>Bästa prompten för läsförståelse i åk 5?</b><span>Mellanstadiet · Språkutveckling · igår</span></div><span class="demo-meta">9 svar</span></div>
+          <div class="trad"><span class="demo-prick" style="--k:var(--k-larosate)"></span><div class="trad__text"><b>Boktips: AI-litteracitet i praktiken</b><span>Alla stadier · Fördjupning · i måndags</span></div><span class="demo-meta">3 svar</span></div>
+          <div class="trad"><span class="demo-prick" style="--k:var(--k-myndighet)"></span><div class="trad__text"><b>Vem har testat Skolverkets nya webbkurs?</b><span>Kompetensutveckling · förra veckan</span></div><span class="demo-meta">21 svar</span></div>
+          <div class="trad"><span class="demo-prick" style="--k:var(--k-organisation)"></span><div class="trad__text"><b>AI-policy för vårdnadshavare — hur kommunicerar ni?</b><span>Skolledare · Juridik & GDPR · förra veckan</span></div><span class="demo-meta">7 svar</span></div>
+        </div>
+        <a class="mer__lank" href="prototyp/index.html">Hela forumskissen finns i framtidsskissen <svg aria-hidden="true"><use href="#ik-extern"></use></svg></a>
+      </div>
+    </section>
+
+    <section class="vy" data-vy="traffar" aria-label="Träffar">
+      <div class="ram ram--smal">
+        <div class="vy__huvud">
+          <p class="ogonbryn">Träffar · <span class="demo-ord">Skiss</span></p>
+          <h2>Ses och lär</h2>
+          <p class="mer__intro">Nätverksträffar, workshoppar och fikasamtal — skapa en träff
+          eller anmäl dig till nästa. Exempelinnehåll nedan.</p>
+        </div>
+        <div class="traffar">
+          <div class="traff"><span class="demo-datum"><b>12</b>dec</span><div class="trad__text"><b>Nätverksträff: AI-verktyg i praktiken</b><span>Digitalt · 15.30–17.00 · 23 anmälda</span></div><span class="demo-knapp">Anmäl</span></div>
+          <div class="traff"><span class="demo-datum"><b>15</b>jan</span><div class="trad__text"><b>Workshop: bygg er AI-policy</b><span>Jönköping · heldag · 8 platser kvar</span></div><span class="demo-knapp">Anmäl</span></div>
+          <div class="traff"><span class="demo-datum"><b>29</b>jan</span><div class="trad__text"><b>Fikasamtal: AI i förskolan</b><span>Digitalt · 19.00–20.00 · öppet för alla</span></div><span class="demo-knapp">Anmäl</span></div>
+        </div>
+        <div class="skiss-komponera" aria-disabled="true">
+          <span>Skapa en egen träff …</span>
+          <span class="skiss-komponera__knapp">Kommer snart</span>
+        </div>
+        <a class="mer__lank" href="prototyp/index.html">Hela träffskissen finns i framtidsskissen <svg aria-hidden="true"><use href="#ik-extern"></use></svg></a>
+      </div>
+    </section>
+
+    <section class="vy" data-vy="lista" aria-label="Min lista">
+      <div class="ram ram--smal">
+        <div class="vy__huvud">
+          <p class="ogonbryn">Min lista</p>
+          <h2 id="lista-rubrik"></h2>
+          <p class="mer__intro">Sparas i din webbläsare — perfekt för att samla material till en
+          lektion, ett arbetslag eller en studiedag.</p>
+        </div>
+        <div class="lista__rader" id="lista-rader"></div>
+        <div class="qv__rad">
+          <button class="knapp knapp--primar" id="lista-kopiera" type="button">Kopiera alla länkar</button>
+          <button class="knapp" id="lista-rensa" type="button">Töm listan</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>
 
 <dialog class="dialog qv" id="qv" aria-label="Resursdetaljer">
   <button class="dialog__stang" type="button" data-stang aria-label="Stäng">×</button>
@@ -237,26 +310,11 @@
 
 <dialog class="dialog palett" id="palett" aria-label="Snabbsök">
   <div class="palett__falt">
-    <svg class="sok__ikon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <svg class="sok__ikon" aria-hidden="true"><use href="#ik-sok"></use></svg>
     <input id="palett-input" type="text" autocomplete="off" spellcheck="false" placeholder="Snabbsök i katalogen …" aria-label="Snabbsök">
     <kbd>Esc</kbd>
   </div>
   <div class="palett__resultat" id="palett-resultat" role="listbox" aria-label="Sökträffar"></div>
-</dialog>
-
-<dialog class="dialog lista" id="lista" aria-label="Min lista">
-  <button class="dialog__stang" type="button" data-stang aria-label="Stäng">×</button>
-  <div class="lista__kropp">
-    <p class="ogonbryn">Min lista</p>
-    <h3 class="lista__rubrik" id="lista-rubrik"></h3>
-    <p class="lista__intro">Sparas i din webbläsare — perfekt för att samla material till en
-    lektion, ett arbetslag eller en studiedag.</p>
-    <div class="lista__rader" id="lista-rader"></div>
-    <div class="qv__rad">
-      <button class="knapp knapp--primar" id="lista-kopiera" type="button">Kopiera alla länkar</button>
-      <button class="knapp" id="lista-rensa" type="button">Töm listan</button>
-    </div>
-  </div>
 </dialog>
 
 <script src="data.js"></script>
