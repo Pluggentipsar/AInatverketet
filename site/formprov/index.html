@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formprov — tre nya designriktningar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital@1&family=Gabarito:wght@700;800&family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --bg:#f6f4ef; --ink:#23211c; --dis:#6e695e; --kant:#ddd8cc }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg); color:var(--ink); font-family:"Figtree",system-ui,sans-serif; font-size:17px; line-height:1.6}
+.yta{max-width:960px; margin:0 auto; padding:40px 20px 70px}
+h1{font-size:clamp(28px,4.5vw,40px); font-weight:700; letter-spacing:-.015em; max-width:22ch}
+.ingress{margin-top:14px; color:var(--dis); max-width:62ch}
+.ingress a{color:inherit}
+.prov{margin-top:40px; display:grid; gap:22px}
+.kort{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:center; text-decoration:none; color:inherit; border:1.5px solid var(--kant); border-radius:16px; background:#fff; padding:26px 26px; transition:border-color .15s ease, transform .15s ease}
+.kort:hover{border-color:var(--ink); transform:translateY(-2px)}
+.kort .bokstav{font-size:14px; font-weight:700; color:var(--dis)}
+.kort h2{margin-top:6px; font-size:30px; line-height:1.15}
+.kort p{margin-top:8px; color:var(--dis); font-size:16px; max-width:56ch}
+.kort .palett{display:flex; gap:7px; margin-top:14px}
+.kort .palett i{width:26px; height:26px; border-radius:50%; border:1px solid rgba(0,0,0,.12)}
+.kort .pil{font-size:24px; color:var(--dis)}
+.kort:hover .pil{color:var(--ink)}
+.kort--a h2{font-family:"Newsreader",Georgia,serif; font-style:italic; font-weight:400}
+.kort--b h2{font-family:"Gabarito",sans-serif; font-weight:800}
+.kort--c{background:#151a28; color:#e9e5da; border-color:#151a28}
+.kort--c h2{font-family:"Young Serif",Georgia,serif; font-weight:400}
+.kort--c p,.kort--c .bokstav,.kort--c .pil{color:#9aa0b0}
+.kort--c:hover{border-color:#f2a65a}
+.kort--c:hover .pil{color:#f2a65a}
+.nuvarande{margin-top:34px; padding-top:26px; border-top:1.5px solid var(--kant); color:var(--dis); font-size:16px}
+.nuvarande a{color:var(--ink); font-weight:600}
+@media(max-width:560px){ .kort{grid-template-columns:minmax(0,1fr)} .kort .pil{display:none} }
+:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="yta">
+  <h1>Tre nya designriktningar att känna på</h1>
+  <p class="ingress">Samma innehåll, tre helt olika formspråk. Alla är mockuper av startsidan — knapparna går ingenstans, det är känslan som utvärderas. Jämför gärna med <a href="../">nuvarande design</a> och rösta sedan i Utvärderingsrummet.</p>
+
+  <div class="prov">
+    <a class="kort kort--a" href="tidskriften.html">
+      <span>
+        <span class="bokstav">Formprov A</span>
+        <h2>Tidskriften</h2>
+        <p>Redaktionell och lugn — en pedagogisk facktidskrift på papper. Serif, marginalanteckningar, överstrykningspennans gula markering. Signalerar: granskat, pålitligt, läsvärt.</p>
+        <span class="palett"><i style="background:#fcfbf7"></i><i style="background:#201d18"></i><i style="background:#b5321f"></i><i style="background:#f9e27d"></i></span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+    <a class="kort kort--b" href="anslagstavlan.html">
+      <span>
+        <span class="bokstav">Formprov B</span>
+        <h2>Anslagstavlan</h2>
+        <p>Lekfull och taktil — lärarrummets anslagstavla med uppnålade lappar i klara färger, tavelgrönt och handskrivna kommentarer. Signalerar: gemenskap, energi, dela-med-dig.</p>
+        <span class="palett"><i style="background:#f1eee6"></i><i style="background:#1d5c47"></i><i style="background:#ffd84d"></i><i style="background:#ffb9c7"></i></span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+    <a class="kort kort--c" href="kvallskursen.html">
+      <span>
+        <span class="bokstav">Formprov C</span>
+        <h2>Kvällskursen</h2>
+        <p>Mörk och koncentrerad — läslampan tänd efter skoldagen. Blåsvart botten, varmt bärnstenssken, resurserna som en upplyst bokhylla. Signalerar: fördjupning, lugn, egen tid.</p>
+        <span class="palett"><i style="background:#111624"></i><i style="background:#202940"></i><i style="background:#f2a65a"></i><i style="background:#e9e5da"></i></span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+  </div>
+
+  <p class="nuvarande">Riktning 0 är <a href="../">nuvarande design</a>: ljus webbapp med sidomeny, gradientväv och Fraunces. Den är också ett av alternativen — inget är bestämt.</p>
+</div>
+</body>
+</html>

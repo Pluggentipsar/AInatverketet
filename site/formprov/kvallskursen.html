@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formprov C · Kvällskursen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --natt:#111624; --skymning:#1a2133; --panel:#202940;
+  --text:#e9e5da; --dis:#9aa0b0; --lampa:#f2a65a; --lampa-ljus:#ffd9a8;
+  --kant:rgba(242,166,90,.16); --kant2:rgba(233,229,218,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip}
+body{
+  background:var(--natt); color:var(--text);
+  font-family:"Figtree",system-ui,sans-serif; font-size:16.5px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+.serif{font-family:"Young Serif",Georgia,serif; font-weight:400}
+a{color:inherit}
+
+.provrand{background:#0b0f1a; color:var(--dis); padding:9px 20px; display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:13.5px}
+.provrand a{color:var(--lampa); text-decoration:none}
+.provrand a:hover{text-decoration:underline}
+
+.rum{max-width:1080px; margin:0 auto; padding:0 20px}
+
+header.topp{display:flex; justify-content:space-between; align-items:center; gap:14px; padding:24px 0; flex-wrap:wrap}
+.logga{display:flex; align-items:center; gap:11px; font-weight:600; font-size:19px; letter-spacing:.01em}
+.logga .sken{width:30px; height:30px; border-radius:50%; background:radial-gradient(circle at 38% 32%, var(--lampa-ljus), var(--lampa) 58%, #a9671f); box-shadow:0 0 18px rgba(242,166,90,.55)}
+nav.meny{display:flex; gap:4px; flex-wrap:wrap}
+nav.meny a{text-decoration:none; color:var(--dis); font-size:15px; font-weight:500; padding:8px 14px; border-radius:9px}
+nav.meny a:hover{color:var(--text); background:var(--skymning)}
+nav.meny a[aria-current]{color:var(--lampa-ljus); background:var(--skymning)}
+
+.hero{position:relative; padding:76px 0 64px; text-align:left}
+.hero::before{content:""; position:absolute; inset:-120px -40% 0; background:radial-gradient(ellipse 60% 55% at 28% 18%, rgba(242,166,90,.17), transparent 65%); pointer-events:none}
+.hero h1{position:relative; font-size:clamp(34px,5.4vw,58px); line-height:1.12; max-width:21ch; letter-spacing:.002em}
+.hero h1 .ton{color:var(--lampa-ljus)}
+.hero .under{position:relative; margin-top:20px; font-size:18px; color:var(--dis); max-width:52ch}
+.sok{position:relative; margin-top:32px; display:flex; max-width:540px; background:var(--skymning); border:1px solid var(--kant2); border-radius:14px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.sok:focus-within{border-color:var(--kant); box-shadow:0 0 0 3px rgba(242,166,90,.14), 0 12px 40px rgba(0,0,0,.35)}
+.sok input{flex:1; min-width:0; border:0; outline:0; padding:15px 18px; font:inherit; font-size:16px; background:transparent; color:var(--text)}
+.sok input::placeholder{color:#6e7486}
+.sok button{border:0; background:var(--lampa); color:#2a1a07; font:inherit; font-weight:700; padding:0 24px; cursor:pointer}
+.sok button:hover{background:var(--lampa-ljus)}
+
+.rubrikrad{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:40px 0 22px; flex-wrap:wrap}
+.rubrikrad h2{font-size:26px; font-family:"Young Serif",serif; font-weight:400}
+.rubrikrad a{font-size:14.5px; color:var(--lampa); text-decoration:none; font-weight:600}
+.rubrikrad a:hover{color:var(--lampa-ljus)}
+
+.hylla{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:18px}
+.bok{background:linear-gradient(170deg, var(--panel), var(--skymning) 70%); border:1px solid var(--kant2); border-radius:16px; padding:22px 20px; transition:border-color .2s ease, transform .2s ease}
+.bok:hover{border-color:var(--kant); transform:translateY(-3px)}
+.bok .typ{font-size:13px; color:var(--lampa); font-weight:600}
+.bok .typ .pris{color:var(--dis); font-weight:500}
+.bok h3{margin-top:10px; font-family:"Young Serif",serif; font-weight:400; font-size:20px; line-height:1.3}
+.bok h3 a{text-decoration:none}
+.bok h3 a:hover{color:var(--lampa-ljus)}
+.bok p{margin-top:9px; font-size:15px; color:var(--dis)}
+.bok .kalla{margin-top:14px; font-size:13.5px; color:#7b8194}
+
+.tva{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:18px}
+.panelkort{background:var(--skymning); border:1px solid var(--kant2); border-radius:16px; padding:24px}
+.panelkort .kat{display:inline-block; font-size:13px; color:var(--lampa); font-weight:600; background:rgba(242,166,90,.1); border:1px solid var(--kant); border-radius:999px; padding:3px 12px}
+.panelkort h3{margin-top:13px; font-family:"Young Serif",serif; font-weight:400; font-size:21px; line-height:1.3}
+.citat{margin-top:14px; padding:14px 16px; background:rgba(17,22,36,.6); border-left:3px solid var(--lampa); border-radius:0 10px 10px 0; font-size:15px; color:var(--text); font-style:italic}
+.sign{margin-top:10px; font-size:14px; color:var(--dis)}
+.lank{display:inline-block; margin-top:16px; color:var(--lampa); text-decoration:none; font-weight:600; font-size:15px}
+.lank:hover{color:var(--lampa-ljus)}
+.dagrad{font-size:13.5px; color:var(--lampa); font-weight:600; letter-spacing:.02em}
+.platsrad{margin-top:16px; display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--dis)}
+.platsrad .stapel{flex:1; height:6px; border-radius:999px; background:rgba(233,229,218,.12); overflow:hidden}
+.platsrad .stapel i{display:block; height:100%; width:38%; background:linear-gradient(90deg, var(--lampa), var(--lampa-ljus)); box-shadow:0 0 10px rgba(242,166,90,.6)}
+.knapp{display:inline-block; margin-top:16px; background:var(--lampa); color:#2a1a07; text-decoration:none; font-weight:700; font-size:15px; padding:11px 22px; border-radius:11px}
+.knapp:hover{background:var(--lampa-ljus)}
+
+footer.fot{margin:56px 0 60px; padding-top:22px; border-top:1px solid var(--kant2); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; font-size:14.5px; color:var(--dis)}
+
+@media(max-width:820px){ .tva{grid-template-columns:minmax(0,1fr)} }
+@media(prefers-reduced-motion:reduce){ .bok{transition:none} }
+:focus-visible{outline:2px solid var(--lampa); outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="provrand">
+  <span>Formprov C — <strong>Kvällskursen</strong>: mörk, lugn, läslampa tänd.</span>
+  <a href="./">← Alla formprov</a>
+</div>
+
+<div class="rum">
+  <header class="topp">
+    <div class="logga"><span class="sken"></span> AI-nätverket</div>
+    <nav class="meny">
+      <a href="#" aria-current="page">Hem</a>
+      <a href="#">Katalogen</a>
+      <a href="#">Lektionsbanken</a>
+      <a href="#">Forumet</a>
+      <a href="#">Träffar</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1 class="serif">När skoldagen är slut börjar <span class="ton">det nyfikna läsandet.</span></h1>
+    <p class="under">Det bästa om AI i skolan — samlat, granskat och sökbart. 62 resurser, var och en läst och beskriven av en kollega innan den fick plats på hyllan.</p>
+    <form class="sok" role="search">
+      <input type="search" placeholder="Sök: ”lektioner om bias”, ”podd”, ”Skolverket” …" aria-label="Sök i katalogen">
+      <button type="button">Sök</button>
+    </form>
+  </section>
+
+  <div class="rubrikrad">
+    <h2>Ur katalogen</h2>
+    <a href="#">Hela hyllan — 62 resurser</a>
+  </div>
+  <div class="hylla">
+    <article class="bok">
+      <div class="typ">Lektionsmaterial · <span class="pris">Gratis</span></div>
+      <h3><a href="#">Digitala lektioner – Lektioner i AI</a></h3>
+      <p>Färdiga lektioner om AI för grundskolan, fria att använda direkt i klassrummet.</p>
+      <div class="kalla">Internetstiftelsen</div>
+    </article>
+    <article class="bok">
+      <div class="typ">Kurs · <span class="pris">Gratis</span></div>
+      <h3><a href="#">Elements of AI</a></h3>
+      <p>Den klassiska introduktionskursen till AI — på svenska, i egen takt, med intyg.</p>
+      <div class="kalla">Helsingfors universitet &amp; MinnaLearn</div>
+    </article>
+    <article class="bok">
+      <div class="typ">Verktyg · <span class="pris">Freemium</span></div>
+      <h3><a href="#">Curipod</a></h3>
+      <p>Skapa interaktiva lektioner med AI-stöd — omröstningar, ordmoln och ritövningar.</p>
+      <div class="kalla">Curipod AS</div>
+    </article>
+    <article class="bok">
+      <div class="typ">Podd · <span class="pris">Gratis</span></div>
+      <h3><a href="#">AI-snack</a></h3>
+      <p>Samtal om AI i svensk skola — nya avsnitt med lärare, forskare och skolledare.</p>
+      <div class="kalla">Fristående</div>
+    </article>
+  </div>
+
+  <div class="rubrikrad">
+    <h2>I samtalsrummet</h2>
+  </div>
+  <div class="tva">
+    <article class="panelkort">
+      <span class="kat">Forumet · Ämnen &amp; undervisning</span>
+      <h3>Hur pratar ni källkritik när eleverna använder ChatGPT?</h3>
+      <div class="citat">”Jag låter eleverna felsöka AI:ns svar i par — plötsligt är källkritiken ett detektivarbete i stället för ett förhör.”</div>
+      <div class="sign">Sara L, gymnasielärare i Jönköping · 12 svar · senast i går</div>
+      <a class="lank" href="#">Läs tråden och svara</a>
+    </article>
+    <article class="panelkort">
+      <div class="dagrad">Onsdag 10 december · 15.30–16.15 · Digitalt</div>
+      <h3>AI-fika: betyg och bedömning</h3>
+      <p style="margin-top:9px; font-size:15px; color:var(--dis)">Öppet samtal över en kopp kaffe — ta med ett exempel ur din egen rättningshög.</p>
+      <div class="platsrad"><span>3 anmälda</span><span class="stapel"><i></i></span><span>8 platser</span></div>
+      <a class="knapp" href="#">Anmäl dig</a>
+    </article>
+  </div>
+
+  <footer class="fot">
+    <span>AI-nätverket — byggt av lärare, för lärare.</span>
+    <span>Formprov C · Kvällskursen</span>
+  </footer>
+</div>
+
+</body>
+</html>

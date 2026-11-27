@@ -13,6 +13,7 @@ createServer(async (req, res) => {
     const url = new URL(req.url, "http://localhost");
     let sokvag = normalize(decodeURIComponent(url.pathname)).replace(/^([/\\])+/, "");
     if (sokvag === "" || sokvag === ".") sokvag = "index.html";
+    if (/[/\\]$/.test(sokvag)) sokvag += "index.html";
     const fil = join(rotSite, sokvag);
     if (!fil.startsWith(rotSite)) { res.writeHead(403).end(); return; }
     const data = await readFile(fil);

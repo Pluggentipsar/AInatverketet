@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formprov B · Anslagstavlan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vagg:#f1eee6; --blak:#22231f; --tavla:#1d5c47; --krita:#f6f3ea;
+  --gul:#ffd84d; --rosa:#ffb9c7; --bla:#bcd7ff; --mint:#c9ecd3;
+  --skugg:#22231f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--vagg); color:var(--blak);
+  font-family:"Gabarito",system-ui,sans-serif; font-size:17px; line-height:1.55;
+  background-image:radial-gradient(#dcd7ca 1px, transparent 1.4px);
+  background-size:26px 26px;
+}
+a{color:inherit}
+.hand{font-family:"Caveat",cursive}
+
+.provrand{background:var(--blak); color:var(--krita); padding:9px 20px; display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:14px}
+.provrand a{color:var(--gul); text-decoration:none}
+.provrand a:hover{text-decoration:underline}
+
+.yta{max-width:1100px; margin:0 auto; padding:0 20px}
+
+header.topp{display:flex; justify-content:space-between; align-items:center; gap:14px; padding:22px 0; flex-wrap:wrap}
+.logga{display:flex; align-items:center; gap:10px; font-weight:800; font-size:22px; letter-spacing:-.01em}
+.logga .nal{width:34px; height:34px; border-radius:50%; background:var(--gul); border:2px solid var(--blak); display:grid; place-items:center; font-size:17px; box-shadow:2px 2px 0 var(--skugg)}
+nav.meny{display:flex; gap:6px; flex-wrap:wrap}
+nav.meny a{text-decoration:none; font-weight:600; font-size:15px; padding:8px 15px; border:2px solid transparent; border-radius:999px}
+nav.meny a:hover{border-color:var(--blak); background:#fff}
+nav.meny a[aria-current]{background:var(--blak); color:var(--krita)}
+
+.hero{position:relative; margin:26px 0 10px; background:var(--tavla); border:2.5px solid var(--blak); border-radius:18px; box-shadow:6px 6px 0 var(--skugg); color:var(--krita); padding:clamp(28px,5vw,56px); overflow:hidden}
+.hero h1{font-size:clamp(32px,5.6vw,56px); font-weight:800; line-height:1.06; letter-spacing:-.02em; max-width:17ch}
+.hero .under{margin-top:14px; font-size:19px; color:#d6e7dd; max-width:46ch}
+.hero .krittext{position:absolute; right:clamp(12px,4vw,48px); top:22px; transform:rotate(4deg); font-size:clamp(20px,3vw,30px); color:var(--gul)}
+.sok{margin-top:26px; display:flex; max-width:520px; background:var(--krita); border:2.5px solid var(--blak); border-radius:999px; box-shadow:4px 4px 0 rgba(0,0,0,.35); overflow:hidden}
+.sok input{flex:1; min-width:0; border:0; outline:0; padding:13px 20px; font:inherit; font-size:16px; background:transparent; color:var(--blak)}
+.sok button{border:0; background:var(--gul); font:inherit; font-weight:700; padding:0 22px; cursor:pointer; border-left:2.5px solid var(--blak)}
+.sok button:hover{background:#ffe27a}
+
+.rubrikrad{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:44px 0 20px; flex-wrap:wrap}
+.rubrikrad h2{font-size:27px; font-weight:800; letter-spacing:-.01em}
+.rubrikrad a{font-size:15px; font-weight:700; text-decoration:none; border-bottom:2px solid var(--gul)}
+.rubrikrad a:hover{background:var(--gul)}
+
+.lappar{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:22px}
+.lapp{position:relative; border:2.5px solid var(--blak); border-radius:14px; padding:20px 18px; box-shadow:5px 5px 0 var(--skugg); background:#fff; transition:transform .15s ease}
+.lapp:hover{transform:translate(-2px,-3px) rotate(0deg) !important}
+.lapp--gul{background:var(--gul); transform:rotate(-1.2deg)}
+.lapp--rosa{background:var(--rosa); transform:rotate(.9deg)}
+.lapp--bla{background:var(--bla); transform:rotate(-.6deg)}
+.lapp--mint{background:var(--mint); transform:rotate(1.1deg)}
+.lapp::before{content:""; position:absolute; top:-12px; left:50%; width:12px; height:12px; margin-left:-6px; border-radius:50%; background:var(--blak); box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.lapp .slag{display:inline-block; font-size:12.5px; font-weight:700; background:var(--blak); color:var(--krita); border-radius:999px; padding:3px 10px}
+.lapp h3{margin-top:12px; font-size:20px; font-weight:800; line-height:1.2}
+.lapp p{margin-top:8px; font-size:15.5px}
+.lapp .fotrad{margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:14px; font-weight:600}
+.lapp .fotrad .hand{font-size:18px}
+
+.tva{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:26px; margin-top:8px}
+.kortyta{border:2.5px solid var(--blak); border-radius:16px; background:#fff; box-shadow:6px 6px 0 var(--skugg); padding:24px}
+.tradkat{display:inline-block; font-size:12.5px; font-weight:700; background:var(--bla); border:2px solid var(--blak); border-radius:999px; padding:2px 10px}
+.kortyta h3{font-size:22px; font-weight:800; margin-top:12px; line-height:1.2}
+.pratbubbla{margin-top:14px; background:var(--vagg); border:2px solid var(--blak); border-radius:14px; border-bottom-left-radius:2px; padding:14px 16px; font-size:15.5px}
+.sign{margin-top:10px; font-size:14px; font-weight:600; color:#5c5a52}
+.knapp{display:inline-block; margin-top:16px; background:var(--blak); color:var(--krita); text-decoration:none; font-weight:700; font-size:15px; padding:11px 20px; border-radius:999px; border:2.5px solid var(--blak); box-shadow:3px 3px 0 rgba(34,35,31,.35)}
+.knapp:hover{background:var(--tavla)}
+.knapp--gul{background:var(--gul); color:var(--blak)}
+.knapp--gul:hover{background:#ffe27a}
+.dagficka{font-weight:800; font-size:15px; color:var(--tavla)}
+.platsrad{margin-top:14px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600}
+.platsrad .stapel{flex:1; height:12px; border:2px solid var(--blak); border-radius:999px; overflow:hidden; background:#fff}
+.platsrad .stapel i{display:block; height:100%; width:38%; background:var(--tavla)}
+
+footer.fot{margin:52px 0 56px; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; font-size:15px; color:#5c5a52; font-weight:600}
+
+@media(max-width:820px){ .tva{grid-template-columns:minmax(0,1fr)} }
+@media(prefers-reduced-motion:reduce){ .lapp{transition:none} }
+:focus-visible{outline:3px solid var(--tavla); outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="provrand">
+  <span>Formprov B — <strong>Anslagstavlan</strong>: lekfull, taktil, lärarrumskänsla.</span>
+  <a href="./">← Alla formprov</a>
+</div>
+
+<div class="yta">
+  <header class="topp">
+    <div class="logga"><span class="nal">✳</span> AI-nätverket</div>
+    <nav class="meny">
+      <a href="#" aria-current="page">Hem</a>
+      <a href="#">Katalogen</a>
+      <a href="#">Lektionsbanken</a>
+      <a href="#">Forumet</a>
+      <a href="#">Träffar</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="krittext hand">62 resurser — alla lästa av en kollega!</div>
+    <h1>Det bästa om AI i skolan, uppnålat på en tavla.</h1>
+    <p class="under">Samlat, granskat och sökbart — av lärare, för lärare. Ta det du behöver, nåla upp det du hittat.</p>
+    <form class="sok" role="search">
+      <input type="search" placeholder="Sök: ”lektioner om bias”, ”podd”, ”Skolverket” …" aria-label="Sök i katalogen">
+      <button type="button">Sök</button>
+    </form>
+  </section>
+
+  <div class="rubrikrad">
+    <h2>Färska lappar ur katalogen</h2>
+    <a href="#">Hela katalogen — 62 st</a>
+  </div>
+  <div class="lappar">
+    <article class="lapp lapp--gul">
+      <span class="slag">Lektionsmaterial · Gratis</span>
+      <h3>Digitala lektioner – Lektioner i AI</h3>
+      <p>Färdiga AI-lektioner för grundskolan, redo att köras i morgon bitti.</p>
+      <div class="fotrad"><span>Internetstiftelsen</span><span class="hand">kör direkt!</span></div>
+    </article>
+    <article class="lapp lapp--bla">
+      <span class="slag">Kurs · Gratis</span>
+      <h3>Elements of AI</h3>
+      <p>Introkursen till AI på svenska — i egen takt, med intyg på köpet.</p>
+      <div class="fotrad"><span>Helsingfors universitet</span><span class="hand">klassikern</span></div>
+    </article>
+    <article class="lapp lapp--rosa">
+      <span class="slag">Verktyg · Freemium</span>
+      <h3>Curipod</h3>
+      <p>Bygg interaktiva lektioner med AI-stöd — omröstningar, ordmoln, ritövningar.</p>
+      <div class="fotrad"><span>Curipod AS</span><span class="hand">eleverna älskar</span></div>
+    </article>
+    <article class="lapp lapp--mint">
+      <span class="slag">Podd · Gratis</span>
+      <h3>AI-snack</h3>
+      <p>Samtal om AI i svensk skola, med lärare, forskare och skolledare.</p>
+      <div class="fotrad"><span>Fristående</span><span class="hand">till pendlingen</span></div>
+    </article>
+  </div>
+
+  <div class="rubrikrad">
+    <h2>På tavlan just nu</h2>
+  </div>
+  <div class="tva">
+    <article class="kortyta">
+      <span class="tradkat">Forumet · Ämnen &amp; undervisning</span>
+      <h3>Hur pratar ni källkritik när eleverna använder ChatGPT?</h3>
+      <div class="pratbubbla">”Jag låter eleverna felsöka AI:ns svar i par — plötsligt är källkritiken ett detektivarbete i stället för ett förhör.”</div>
+      <div class="sign">Sara L, gymnasielärare i Jönköping · 12 svar · senast i går</div>
+      <a class="knapp" href="#">Läs tråden &amp; svara</a>
+    </article>
+    <article class="kortyta">
+      <div class="dagficka">Onsdag 10 december · 15.30 · Digitalt</div>
+      <h3>AI-fika: betyg och bedömning</h3>
+      <p style="margin-top:8px; font-size:15.5px">Öppet samtal över en kopp kaffe — ta med ett exempel ur din egen rättningshög.</p>
+      <div class="platsrad"><span>3 anmälda</span><span class="stapel"><i></i></span><span>8 platser</span></div>
+      <a class="knapp knapp--gul" href="#">Anmäl dig</a>
+    </article>
+  </div>
+
+  <footer class="fot">
+    <span>AI-nätverket — byggt av lärare, för lärare ✳</span>
+    <span>Formprov B · Anslagstavlan</span>
+  </footer>
+</div>
+
+</body>
+</html>
