@@ -1,0 +1,253 @@
+{
+  "uppdaterad": "2026-11-27",
+  "resurser": {
+    "adekvat-digital-kompetens": {
+      "bild": null,
+      "favicon": "https://pluggentipsar.github.io/favicon.ico"
+    },
+    "ai-for-skolhuvudman-scenarioverktyg": {
+      "bild": "https://aiforskolhuvudman.se/og-image.png",
+      "favicon": "https://aiforskolhuvudman.se/favicon.svg"
+    },
+    "ai-for-skolledare": {
+      "bild": null,
+      "favicon": "https://ai-skolledare-iota.vercel.app/favicon.ico?favicon.0b3bf435.ico"
+    },
+    "ai-skolan-lossman": {
+      "bild": "https://storage.googleapis.com/gpt-engineer-file-uploads/O8eeGRvqDuZq5KJXKZJCYGh2eId2/social-images/social-1777880685433-Sk%C3%A4rmavbild_2026-05-04_kl._09.44.32.webp",
+      "favicon": "https://aiskolan.ai/apple-touch-icon.png?v=3"
+    },
+    "ai-snack": {
+      "bild": null,
+      "favicon": "https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png"
+    },
+    "allgot": {
+      "bild": "https://www.allgot.se/opengraph-image.png?c15125f75b0206e8",
+      "favicon": "https://www.allgot.se/apple-icon.png?59b7d657398594a4"
+    },
+    "astrid-education": {
+      "bild": null,
+      "favicon": "https://framerusercontent.com/images/6OZK8kl8Qo5k7JrTvQ1mar4j8bo.svg"
+    },
+    "curipod": {
+      "bild": "https://curipod.com/og_preview.png",
+      "favicon": "https://curipod.com/static/logo.ico"
+    },
+    "digitala-lektioner-ai": {
+      "bild": "https://digitalalektioner.se/app/uploads/2024/01/fikar-med-en-robot.jpg",
+      "favicon": "https://static.internetstiftelsen.se/favicons/apple-touch-icon.png"
+    },
+    "digitala-lektioner-podden": {
+      "bild": "https://digitalalektioner.se/app/uploads/2022/02/digitalalektioner-delning.png",
+      "favicon": "https://static.internetstiftelsen.se/favicons/apple-touch-icon.png"
+    },
+    "edaider": {
+      "bild": "https://www.edaider.com/api/og?title=EdAider%20-%20AI-assistent%20f%C3%B6r%20skolan",
+      "favicon": "https://www.edaider.com/img/favicons/apple-touch-icon.png"
+    },
+    "eduai": {
+      "bild": "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/lovp_5q7rzht7xa9ktbvzrrm96vgp7z/e10bc536021a03086f061814530662b6_1791905257787.png",
+      "favicon": "https://eduai.se/favicon.png"
+    },
+    "elements-of-ai-svenska": {
+      "bild": "https://www.elementsofai.se/actions/assets/generate-transform?transformId=1",
+      "favicon": "https://www.elementsofai.se/apple-touch-icon.png"
+    },
+    "enstroms-tankar": {
+      "bild": "https://substackcdn.com/image/fetch/$s_!O6se!,w_400,h_400,c_fill,f_auto,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff9860e39-b385-4428-b9a9-9c7802f68d91_256x256.png",
+      "favicon": "https://substackcdn.com/image/fetch/$s_!NPEL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F45e371a3-2fe4-46c6-aa6a-5643d0e93909%2Fapple-touch-icon-57x57.png"
+    },
+    "falkai": {
+      "bild": null,
+      "favicon": "https://falkai.org/favicon-180.png"
+    },
+    "goteborg-ubf-ai-i-skolan": {
+      "bild": "https://sites.google.com/sitesv-images-rt/APXyLQdv5ex71et15y02HsuXIe6FJ6sHcLDQOPEhALF5kTA1EBpssUwI7UFK04KL8fVLhn79dlpi2aX_AVsF_NgsGBf7uNjSweJyvGPFUvlSlenGT3FLB1hixlL9R37UOVswRxZA9kRWmnJpeVahlRDHmoJc4xmUb3Q8=w16383",
+      "favicon": "https://sites.google.com/sitesv-images-rt/APXyLQf4SFFAKsMahbsLiH9ag14ePecPwkZ5saqEl3TJbFrTzGEUpsPk-gK3isRA45nwtoNgN-8zTd-e1N106q1QNvhDz1JPO3uKq3vLJXnoZGI4oC5oc3LsElpMGcinqmnvTzZ6gFLv1gYvYWXO16xEUvYzzZWhG4lVLzXjt891W2UsGq5DVttFKPmmEVU4gpMs1xdveX_dFa6zqqiB"
+    },
+    "graspable-ai": {
+      "bild": "https://substackcdn.com/image/fetch/$s_!lxre!,w_400,h_400,c_fill,f_auto,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffcad95a8-9037-40fb-a5b6-6fe5d4642a08_1024x1024.png",
+      "favicon": "https://substackcdn.com/image/fetch/$s_!NpO6!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc3182f66-2bcb-43fb-a39d-af3f9b5ca023%2Fapple-touch-icon-57x57.png"
+    },
+    "gu-ai-som-verktyg-i-undervisning": {
+      "bild": "https://www.gu.se/sites/default/files/kop_assets/c66bf5bfe8fa020f6b1bbec2fb4861c243ea99b1.jpg",
+      "favicon": "https://www.gu.se/profiles/contrib/gu_profile/themes/custom/gu_base_theme/images/favicons/apple-touch-icon.png"
+    },
+    "imy-vagledning-gdpr-och-ai": {
+      "bild": null,
+      "favicon": null
+    },
+    "joelsai": {
+      "bild": null,
+      "favicon": "https://joelsai.com/favicon.ico"
+    },
+    "kodboken-koll-pa-ai": {
+      "bild": null,
+      "favicon": "https://images.squarespace-cdn.com/content/v1/6628b405ad57ad03749dda2b/3a9d12c0-d1e6-4b69-8ce1-05d7df0e7b56/favicon.ico?format=100w"
+    },
+    "kth-ai-kurser-vidareutbildning": {
+      "bild": "https://www.kth.se/polopoly_fs/1.1358847.1793018470!/image/KTH%20AI-kurser%20kurser%20inom%20AI%20artificiell%20intelligens%20artificial%20intelligence.webp",
+      "favicon": "https://www.kth.se/polopoly_fs/1.1273722.1692876353!/image/apple-touch-icon-KTH-logo-180x180.png"
+    },
+    "lajka-ai-i-skolan": {
+      "bild": "https://lajka.prinsparetsstiftelse.se/wp-content/uploads/2025/04/bild-1.jpg",
+      "favicon": "https://lajka.prinsparetsstiftelse.se/favicon.ico"
+    },
+    "lernico": {
+      "bild": "https://www.lernico.ai/opengraph-image?4e65a5a8a2937133",
+      "favicon": "https://www.lernico.ai/apple-icon.png?apple-icon.00o_59xjrfti0.png"
+    },
+    "lexplore": {
+      "bild": null,
+      "favicon": "https://lexplore.com/favicon.ico"
+    },
+    "liu-aist-labbet": {
+      "bild": "https://liu.se/dfsmedia/dd35e243dfb7406993c1815aaf88a675/108892-50118",
+      "favicon": "https://liu.se/favicon.ico"
+    },
+    "malin-frykman": {
+      "bild": null,
+      "favicon": "https://assets.squarespace.com/universal/default-favicon.ico"
+    },
+    "mediacenter-vasterbotten-ai-i-skolan": {
+      "bild": "https://www.regionvasterbotten.se/VLL/Bilder/d919e7b1-be81-4fc6-a99d-f448b3328b96~__H.jpg",
+      "favicon": "https://www.regionvasterbotten.se/Admin/Design/Bilder/apple-touch-icon.png"
+    },
+    "mediemyndigheten-bilders-makt": {
+      "bild": "https://mediemyndigheten.se/globalassets/barn-och-unga-2/for-vuxna/bilders-makt--ai-och-visuell-paverkan/bilders-makt.webp",
+      "favicon": "https://mediemyndigheten.se/resources/images/favicons/apple-touch-icon.png"
+    },
+    "mickekring": {
+      "bild": "https://objects.dc-sto1.glesys.net/aged-recipe/2025/06/micke_center.jpg",
+      "favicon": "https://mickekring.se/static/favicon.svg"
+    },
+    "miun-ai-och-etik": {
+      "bild": "https://www.miun.se/cdn-cgi/image/width=960,height=540,fit=cover,format=avif,quality=75/globalassets/migratedresources/--www.miun.se---bilder-for-miun.se/ai-mustasch-cakka.png",
+      "favicon": "https://www.miun.se/globalassets/pwa/apple-icon-57x57.png"
+    },
+    "parnes-blogg": {
+      "bild": null,
+      "favicon": "https://www.parnes.com/favicon.ico"
+    },
+    "patricia-diaz-blogg": {
+      "bild": "https://s0.wp.com/i/blank.jpg",
+      "favicon": "https://www.patriciadiaz.se/favicon.ico"
+    },
+    "pedagog-eskilstuna-tema-ai": {
+      "bild": "https://pedagog.eskilstuna.se/images/18.465e485b193dedc97c2cf14f/1736516503296/landningssida%20AI.webp",
+      "favicon": "https://pedagog.eskilstuna.se/images/18.76cf65f419044bc33871ab2e/1719229791388/favicon.ico"
+    },
+    "pedagog-jonkoping-ai": {
+      "bild": null,
+      "favicon": "https://pedagog.jonkoping.se/favicon.ico"
+    },
+    "pedagog-jonkoping-ai-i-klassrummet": {
+      "bild": null,
+      "favicon": "https://pedagog.jonkoping.se/favicon.ico"
+    },
+    "pedagog-jonkoping-blogg-ai-i-skolan": {
+      "bild": null,
+      "favicon": "https://pedagog.jonkoping.se/favicon.ico"
+    },
+    "pedagog-jonkoping-kom-igang-med-ai": {
+      "bild": null,
+      "favicon": "https://pedagog.jonkoping.se/favicon.ico"
+    },
+    "pedagog-jonkoping-lara-om-ai": {
+      "bild": null,
+      "favicon": "https://pedagog.jonkoping.se/favicon.ico"
+    },
+    "pedagog-jonkoping-podd-fran-a-till-ai": {
+      "bild": null,
+      "favicon": "https://pedagog.jonkoping.se/favicon.ico"
+    },
+    "pedagog-malmo-ai-forskning": {
+      "bild": "https://pedagog.malmo.se/app/uploads/2025/01/ai-i-klassrummet-2.png",
+      "favicon": "https://pedagog.malmo.se/app/themes/pedagog-malmo-v4/dist/images/favicons/apple-touch-icon.png?id=bf4ff6b4a28aad1b1831a97d9a868310"
+    },
+    "pedagog-malmo-ai-tagg": {
+      "bild": null,
+      "favicon": "https://pedagog.malmo.se/app/themes/pedagog-malmo-v4/dist/images/favicons/apple-touch-icon.png?id=bf4ff6b4a28aad1b1831a97d9a868310"
+    },
+    "pedagog-norrkoping-vagledning-generativ-ai": {
+      "bild": "https://norrkoping.se/images/18.75f68e3a19c933b58d42d78/1773226093564/AI%20litteracitet.png",
+      "favicon": "https://norrkoping.se/favicon.ico"
+    },
+    "pedagog-orebro-ai-kompensatoriska": {
+      "bild": "https://pedagog.orebro.se/images/18.b36cf7b19b2bf1256d729b/1769173599687/Joel%20Rangsjo%CC%88.png",
+      "favicon": "https://pedagog.orebro.se/favicon.ico"
+    },
+    "pedagog-orebro-ai-tema": {
+      "bild": "https://pedagog.orebro.se/images/18.4038def919c935851b52c7d/1773138138325/Tunn%20linje.png",
+      "favicon": "https://extra.orebro.se/favicon.ico"
+    },
+    "pedagog-stockholm-ai-anvandning-larare": {
+      "bild": "https://pedagog.stockholm/media/f5fbv1df/ai-vaegledning.jpg",
+      "favicon": "https://pedagog.stockholm/favicon.ico"
+    },
+    "pedagog-stockholm-ai-i-skolan": {
+      "bild": "https://pedagog.stockholm/media/ts5nz2ah/omslagsbild-komprimerad.jpg",
+      "favicon": "https://pedagog.stockholm/favicon.ico"
+    },
+    "pedagogsajten-helsingborg-ai": {
+      "bild": "https://media.helsingborg.se/uploads/networks/4/sites/137/2023/02/74a9432-221026-studioe-webb.jpg",
+      "favicon": "https://media.helsingborg.se/uploads/networks/4/sites/137/2023/02/familjen.ico"
+    },
+    "skolinspektionen-granskning-fusk-gymnasiet": {
+      "bild": "https://www.skolinspektionen.se/globalassets/08-bilder/settings/skolinspektionen_rgb.svg",
+      "favicon": "https://www.skolinspektionen.se/assets/img/icons/favicons/si.png"
+    },
+    "skolspanarna": {
+      "bild": null,
+      "favicon": "https://usercontent.one/wp/www.skolspanarna.se/wp-content/uploads/2024/03/cropped-Skolspanarna-logo-BW-180x180.png"
+    },
+    "skolverket-lagesbild-ai-2026": {
+      "bild": "https://www.skolverket.se/images/18.31c292d516e7445866a9c/1574163361667/ogimage.png",
+      "favicon": "https://www.skolverket.se/apple-touch-icon.png"
+    },
+    "skolverket-lagesbild-ai-grundskolan": {
+      "bild": "https://www.skolverket.se/images/18.31c292d516e7445866a9c/1574163361667/ogimage.png",
+      "favicon": "https://www.skolverket.se/apple-touch-icon.png"
+    },
+    "skolverket-lagesbild-ai-gymnasieskolan": {
+      "bild": "https://www.skolverket.se/images/18.31c292d516e7445866a9c/1574163361667/ogimage.png",
+      "favicon": "https://www.skolverket.se/apple-touch-icon.png"
+    },
+    "skolverket-rad-om-ai": {
+      "bild": "https://www.skolverket.se/images/18.31c292d516e7445866a9c/1574163361667/ogimage.png",
+      "favicon": "https://www.skolverket.se/apple-touch-icon.png"
+    },
+    "skolverket-webbkurs-larverktyg": {
+      "bild": "https://www.skolverket.se/images/18.31c292d516e7445866a9c/1574163361667/ogimage.png",
+      "favicon": "https://www.skolverket.se/apple-touch-icon.png"
+    },
+    "skr-ai-for-skolhuvudman": {
+      "bild": "https://skr.se/images/18.173bd41519990fe0bc85d5d5/1759219869718/Open-graph.webp",
+      "favicon": "https://skr.se/favicon.ico"
+    },
+    "spsm-specialpedagogiskt-perspektiv-pa-ai": {
+      "bild": "https://www.spsm.se/laromedel/valja-anvanda-och-utvardera-larverktyg/larverktyg-pa-huvudmannaniva/ett-specialpedagogiskt-perspektiv-pa-ai/imagevault/publishedmedia/wj1crufirl4ip9c9vp2h/SPSM_Logotyp.webp",
+      "favicon": "https://www.spsm.se/static/assets/favicons/apple-touch-icon.png"
+    },
+    "studera-ai": {
+      "bild": "https://studera.ai/img/og/studera-share.png",
+      "favicon": "https://www.studera.ai/img/AI-fav.png?v=2"
+    },
+    "sveriges-larare-lararledd-digitalisering": {
+      "bild": "https://www.sverigeslarare.se/globalassets/system/images/1615830240412103630.jpg?&amp;format=webp&amp;width=1200&amp;height=630&amp;rxy=0.37,0.33",
+      "favicon": "https://www.sverigeslarare.se/dist/sveriges-larare/images/favicons/apple-touch-icon-76x76.png"
+    },
+    "teachable-machine": {
+      "bild": "https://teachablemachine.withgoogle.com/assets/img/Hero_image_16x9.jpg",
+      "favicon": "https://teachablemachine.withgoogle.com/assets/img/favicon.png"
+    },
+    "trelleborg-ai-forandrar-larandet": {
+      "bild": "https://www.trelleborg.se/app/uploads/2025/12/michelle.jpg",
+      "favicon": "https://www.trelleborg.se/app/uploads/2026/06/cropped-vapen-512x512-2-180x180.png"
+    },
+    "ur-fran-ai-till-o": {
+      "bild": "https://some-assets.ur.se/some/urplay/238920/hd.jpg",
+      "favicon": "https://urplay.se/touch-icons/touch-icon-192x192.png"
+    }
+  }
+}

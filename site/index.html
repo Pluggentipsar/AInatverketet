@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI-nätverket — AI och pedagogik i svensk skola</title>
-  <meta name="description" content="Det bästa som redan finns om AI i skolan — samlat, granskat och sökbart. Guider, lektioner, verktyg, riktlinjer och forskning från myndigheter, kommuner och lärare.">
+  <meta name="description" content="Det bästa som redan finns om AI i skolan — granskat, beskrivet och sökbart. Guider, lektioner, verktyg, riktlinjer och forskning från myndigheter, kommuner och lärare.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0,0..1;1,9..144,300..900,0,0..1&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -12,6 +12,39 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='90'%3E✳%3C/text%3E%3C/svg%3E">
 </head>
 <body>
+
+<svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ik-kompass" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M15.2 8.8 13 13 8.8 15.2 11 11 Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="ik-tavla" viewBox="0 0 24 24">
+      <rect x="3.6" y="4.2" width="16.8" height="11" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M7.2 8h7.6M7.2 11.2h4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M9 20l3-4.8L15 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ik-verktyg" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+        <circle cx="9.2" cy="7" r="2" fill="var(--kort, #fff)"/>
+        <circle cx="15" cy="12" r="2" fill="var(--kort, #fff)"/>
+        <circle cx="7.4" cy="17" r="2" fill="var(--kort, #fff)"/>
+      </g>
+    </symbol>
+    <symbol id="ik-paragraf" viewBox="0 0 24 24">
+      <text x="12" y="17.5" text-anchor="middle" font-size="19" font-family="Georgia, 'Times New Roman', serif" fill="currentColor">§</text>
+    </symbol>
+    <symbol id="ik-flagga" viewBox="0 0 24 24">
+      <path d="M6.2 21V3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M6.2 4.6h10.9l-2.6 3.3 2.6 3.3H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ik-bok" viewBox="0 0 24 24">
+      <path d="M12 6.4C10.1 5 7.1 4.7 4.6 5.3v13.1c2.5-.6 5.5-.3 7.4 1.1 1.9-1.4 4.9-1.7 7.4-1.1V5.3C16.9 4.7 13.9 5 12 6.4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M12 6.6v12.6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+  </defs>
+</svg>
 
 <aside class="prototyp-lank"><span>Hur kan AI-nätverket växa?</span> <a href="prototyp/index.html">Utforska den klickbara framtidsskissen →</a></aside>
 
@@ -25,13 +58,21 @@
     <p class="topp__overrad">Ett nav för AI och pedagogik i svensk skola</p>
     <h1 class="topp__rubrik">AI-nätverket<span class="topp__punkt">.</span></h1>
     <p class="topp__ingress">
-      Det bästa som redan finns om AI i skolan — samlat, granskat och sökbart.
-      <span id="ingress-stat"></span>
+      Det bästa som redan finns om AI i skolan — från Skolverkets vägledningar till
+      lärarbloggarna — granskat, beskrivet och sökbart på ett ställe. Börja i det du
+      behöver, inte i ännu en ändlös flik.
     </p>
+    <p class="topp__stat" id="topp-stat"></p>
   </div>
 </header>
 
 <main>
+  <section class="ingangar ram" aria-labelledby="r-ingangar">
+    <h2 id="r-ingangar"><span class="snirkel">Börja där du står</span></h2>
+    <p class="sektionsintro">Sex vägar in i katalogen — eller sök fritt här nedanför.</p>
+    <div class="ingangar__nat" id="ingangar"></div>
+  </section>
+
   <section class="sok ram" aria-label="Sök i katalogen">
     <div class="sok__falt">
       <svg class="sok__ikon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -68,7 +109,7 @@
     </div>
   </section>
 
-  <section class="resultat ram" aria-label="Sökresultat">
+  <section class="resultat ram" id="resultat" aria-label="Sökresultat">
     <p class="resultat__antal" id="antal" role="status" aria-live="polite"></p>
     <div class="kortnat" id="kortnat"></div>
     <div class="tomt" id="tomt" hidden>
@@ -82,12 +123,23 @@
 
 <footer class="fot">
   <div class="ram fot__inre">
-    <p class="fot__rubrik">Byggt av lärare, för lärare<span class="topp__punkt">.</span></p>
-    <p class="fot__text">
-      Varje resurs i katalogen är hämtad, läst och handgranskad innan den togs in — kurateringen är
-      hela poängen. Vi länkar alltid till upphovspersonernas egna sidor och återpublicerar ingenting.
-    </p>
-    <p class="fot__text">Saknar du något som borde finnas här? Tipsfunktion är på väg.</p>
+    <div class="fot__spalter">
+      <div>
+        <p class="fot__rubrik">Byggt av lärare, för lärare<span class="topp__punkt">.</span></p>
+        <p class="fot__text">
+          AI-nätverket samlar det som redan finns och gör det hittbart. Varje resurs är
+          hämtad, läst och handgranskad innan den togs in — och vi länkar alltid vidare
+          till upphovspersonernas egna sidor. Trafiken och äran är deras.
+        </p>
+        <p class="fot__text">Saknar du något som borde finnas här? Tipsfunktion är på väg —
+        katalogen växer under ordnade former.</p>
+      </div>
+      <ul class="fot__principer">
+        <li><b>Granskat, inte skrapat.</b> Människor väljer vad som får plats.</li>
+        <li><b>Länkat, inte kopierat.</b> Innehållet bor hos sina skapare.</li>
+        <li><b>Levande, inte lämnat.</b> Länkar kontrolleras regelbundet — det som dör åker ut.</li>
+      </ul>
+    </div>
     <p class="fot__meta" id="fot-meta"></p>
   </div>
 </footer>

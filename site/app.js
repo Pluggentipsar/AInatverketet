@@ -1,4 +1,4 @@
-/* AI-nätverket — sök, filter och rendering. Ingen byggkedja, inga beroenden. */
+/* AI-nätverket — sök, filter, behovsingångar och rendering. Inga beroenden. */
 (() => {
   "use strict";
 
@@ -10,12 +10,38 @@
   const sokfalt = el("sokfalt");
 
   const esc = (s) =>
-    s.replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[t]));
+    String(s ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[t]));
 
   const etikett = (grupp, slug) => taxonomi[grupp]?.[slug] ?? slug;
 
   const doman = (url) => {
     try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return ""; }
+  };
+
+  /* ---------- Formprov (A Falupapper · B Grafit · C Grönska) ---------- */
+
+  const sattForm = (form) => {
+    if (form === "a") delete document.documentElement.dataset.form;
+    else document.documentElement.dataset.form = form;
+    for (const knapp of document.querySelectorAll(".formprov button")) {
+      knapp.setAttribute("aria-pressed", String(knapp.dataset.form === form));
+    }
+    try { localStorage.setItem("ainat-form", form); } catch {}
+  };
+
+  const byggFormprov = () => {
+    const rad = document.createElement("div");
+    rad.className = "formprov";
+    rad.innerHTML = '<span>Formprov</span>' +
+      ["a", "b", "c"].map((f) => `<button type="button" data-form="${f}" aria-pressed="false" title="Formprov ${f.toUpperCase()}">${f.toUpperCase()}</button>`).join("");
+    rad.addEventListener("click", (e) => {
+      const knapp = e.target.closest("button");
+      if (knapp) sattForm(knapp.dataset.form);
+    });
+    document.body.appendChild(rad);
+    let sparad = "a";
+    try { sparad = localStorage.getItem("ainat-form") || "a"; } catch {}
+    sattForm(["a", "b", "c"].includes(sparad) ? sparad : "a");
   };
 
   /* ---------- Fuzzy-sök ---------- */
@@ -40,8 +66,7 @@
     return fel + (a.length - i) + (b.length - j) <= 1;
   };
 
-  // Ordstamsmatchning för svenska sammansättningar: "lektioner" träffar "lektionsmaterial"
-  // om orden delar en tillräckligt lång början.
+  // Ordstamsmatchning för svenska sammansättningar: "lektioner" träffar "lektionsmaterial".
   const delarStam = (ord, token) => {
     let i = 0;
     const max = Math.min(ord.length, token.length);
@@ -128,6 +153,41 @@
     return lista.map(({ r }) => r);
   };
 
+  /* ---------- Behovsingångar ---------- */
+
+  const INGANGAR = [
+    { ik: "kompass", titel: "Kom igång själv", text: "Guider och kurser som ger dig grunderna — i din egen takt.", filter: { typ: ["guide", "kurs"] } },
+    { ik: "tavla", titel: "Till klassrummet", text: "Färdiga lektioner och material om AI, redo till måndag.", filter: { typ: ["lektionsmaterial", "video"] } },
+    { ik: "verktyg", titel: "Verktyg att prova", text: "AI-tjänster byggda för skolan, med kostnaden ärligt utmärkt.", filter: { typ: ["verktyg"] } },
+    { ik: "paragraf", titel: "Riktlinjer & juridik", text: "GDPR, policyer och vägledningar att luta sig mot.", filter: { teman: ["juridik-gdpr"] } },
+    { ik: "flagga", titel: "Leda & besluta", text: "För rektor och huvudman: strategi, styrning, införande.", filter: { malgrupp: ["skolledare", "huvudman"] } },
+    { ik: "bok", titel: "Följa & fördjupa", text: "Poddar, nyhetsbrev, bloggar och forskning som håller dig à jour.", filter: { typ: ["podd", "nyhetsbrev", "blogg", "forskning"] } },
+  ];
+
+  const raknaIngang = (filter) =>
+    resurser.filter((r) => Object.entries(filter).every(([g, varden]) =>
+      g === "kostnad" ? varden.includes(r.kostnad) : r[g].some((v) => varden.includes(v))
+    )).length;
+
+  const byggIngangar = () => {
+    el("ingangar").innerHTML = INGANGAR.map((ing, i) => `
+<button class="ingang" type="button" data-i="${i}">
+  <svg aria-hidden="true"><use href="#ik-${ing.ik}"></use></svg>
+  <span style="min-width:0"><b>${esc(ing.titel)}</b><span>${esc(ing.text)} <span class="antal">${raknaIngang(ing.filter)} st</span></span></span>
+</button>`).join("");
+    el("ingangar").addEventListener("click", (e) => {
+      const knapp = e.target.closest(".ingang");
+      if (!knapp) return;
+      const ing = INGANGAR[Number(knapp.dataset.i)];
+      state.q = "";
+      for (const g of GRUPPER) state[g].clear();
+      for (const [g, varden] of Object.entries(ing.filter)) state[g] = new Set(varden);
+      synkaKontroller();
+      rita();
+      el("resultat").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
   /* ---------- Rendering ---------- */
 
   const kortHtml = (r, i) => {
@@ -135,16 +195,30 @@
     const teman = r.teman.slice(0, 3).map((t) => `<span class="tagg">${esc(etikett("teman", t))}</span>`).join("");
     const fler = r.teman.length > 3 ? `<span class="tagg">+${r.teman.length - 3}</span>` : "";
     const stampel = r.kostnad !== "gratis" ? `<span class="kort__stampel">${esc(etikett("kostnad", r.kostnad))}</span>` : "";
+    const kVar = `--k: var(--k-${esc(r.kalla)})`;
+    const initial = (r.titel || "?").trim().charAt(0).toUpperCase();
+    const bild = r.bild
+      ? `<img src="${esc(r.bild)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"
+           onerror="this.parentElement.classList.add('kort__media--miss')">`
+      : "";
+    const favicon = r.favicon
+      ? `<img src="${esc(r.favicon)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">`
+      : "";
     return `
 <a class="kort" style="--i:${Math.min(i, 11)}" href="${esc(r.url)}" target="_blank" rel="noopener">
-  <span class="kort__topp">
-    <span class="kalla" style="--k: var(--k-${esc(r.kalla)})">${esc(r.kalla_namn)}</span>
-    ${stampel}
-    <span class="kort__typ">${esc(typEtikett)}</span>
+  <span class="kort__media${r.bild ? "" : " kort__media--miss"}" style="${kVar}" aria-hidden="true">
+    ${bild}<span class="kort__platta"><b>${esc(initial)}</b></span>
   </span>
-  <h3>${esc(r.titel)}</h3>
-  <p class="kort__beskrivning">${esc(r.beskrivning)}</p>
-  <span class="kort__fot">${teman}${fler}<span class="kort__doman">${esc(doman(r.url))}</span></span>
+  <span class="kort__kropp">
+    <span class="kort__topp">
+      <span class="kalla" style="${kVar}">${esc(r.kalla_namn)}</span>
+      ${stampel}
+      <span class="kort__typ">${esc(typEtikett)}</span>
+    </span>
+    <h3>${esc(r.titel)}</h3>
+    <p class="kort__beskrivning">${esc(r.beskrivning)}</p>
+    <span class="kort__fot">${teman}${fler}<span class="kort__doman">${favicon}${esc(doman(r.url))}</span></span>
+  </span>
 </a>`;
   };
 
@@ -227,6 +301,8 @@
   byggChips("typ", el("chips-typ"));
   byggChips("teman", el("chips-teman"));
   for (const meny of document.querySelectorAll(".meny")) byggMeny(meny);
+  byggIngangar();
+  byggFormprov();
 
   let timer;
   sokfalt.addEventListener("input", () => {
@@ -244,7 +320,8 @@
   });
 
   const datum = new Date(katalog.uppdaterad + "T12:00:00").toLocaleDateString("sv-SE", { day: "numeric", month: "long", year: "numeric" });
-  el("ingress-stat").innerHTML = `Just nu <strong>${resurser.length} handplockade resurser</strong> från myndigheter, kommuner, lärosäten och lärare.`;
+  const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
+  el("topp-stat").innerHTML = `<em>${resurser.length}</em> handplockade resurser · <em>${kallor}</em> källor · alla länkar kontrollerade`;
   el("fot-meta").textContent = `${resurser.length} resurser · Senast uppdaterad ${datum}`;
 
   lasUrl();

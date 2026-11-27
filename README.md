@@ -9,8 +9,8 @@ på sikt en plats att dela och tänka tillsammans.
 - [x] **Steg 1 — Taxonomi & urvalskriterier**: se [docs/taxonomi.md](docs/taxonomi.md)
 - [x] **Steg 2 — Fröet**: handkuraterad startkatalog i [data/katalog.json](data/katalog.json)
 - [x] **Steg 3 — Frontend med fuzzy-sök**: statisk sajt i [site/](site/), ingen byggkedja, inga beroenden
-- [ ] Steg 4 — AI-sammanfattningar och taggning per resurs
-- [ ] Steg 5 — Inlämningsformulär + schemalagt jobb med modereringskö och dödlänkskoll
+- [x] **Steg 4 — Sammanfattningar & presentation**: beskrivningar skrivna vid granskning; delningsbilder hämtas per resurs (se [docs/automatik.md](docs/automatik.md))
+- [ ] Steg 5 — Inlämningsformulär + schemalagt jobb med modereringskö (dödlänkskollen finns redan)
 - [ ] Steg 6 — Community/forum
 
 ## Struktur
@@ -35,16 +35,21 @@ node scripts/serve.mjs
 Öppna sedan http://localhost:4173. Efter ändringar i `data/katalog.json`:
 kör `node scripts/bygg-site-data.mjs` för att uppdatera sajtens data.
 
-## Länkkoll
+## Underhåll av katalogen
 
 ```
 node scripts/kontrollera-lankar.mjs
+node scripts/hamta-metadata.mjs
+node scripts/bygg-site-data.mjs
 ```
 
-Hämtar varje resurs-URL, uppdaterar `senast_kontrollerad` och sätter status
-(`aktiv`/`granskas`/`dod-lank`). Omdirigeringar rapporteras men URL:er ändras
-aldrig automatiskt. Resurser med status `dod-lank` ligger kvar i katalogen för
-granskning men filtreras bort när sajtens data byggs. `--dry-run` skriver inget.
+Länkkollen uppdaterar `senast_kontrollerad` och status (`dod-lank` göms från
+sajten men ligger kvar för granskning); metadata-skriptet hämtar delningsbilder
+och favicons till `data/metadata.json`. Hela flödet beskrivs i
+[docs/automatik.md](docs/automatik.md).
+
+Sajten har tre **formprov** (A Falupapper · B Grafit · C Grönska) som växlas med
+väljaren nere till vänster — underlag för nätverksträffens designdiskussion.
 
 ## Klickbar framtidsskiss
 
