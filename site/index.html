@@ -96,6 +96,7 @@
   <nav class="sidomeny__nav" aria-label="Huvudmeny">
     <a href="#/hem" data-vy="hem"><svg aria-hidden="true"><use href="#ik-hem"></use></svg><span class="sidomeny__text">Hem</span></a>
     <a href="#/katalog" data-vy="katalog"><svg aria-hidden="true"><use href="#ik-rutnat"></use></svg><span class="sidomeny__text">Katalogen</span></a>
+    <a href="#/lektioner" data-vy="lektioner"><svg aria-hidden="true"><use href="#ik-tavla"></use></svg><span class="sidomeny__text">Lektionsbanken</span><span class="demo-prik" title="Skiss"></span></a>
     <a href="#/forum" data-vy="forum"><svg aria-hidden="true"><use href="#ik-forum"></use></svg><span class="sidomeny__text">Forum</span><span class="demo-prik" title="Skiss"></span></a>
     <a href="#/traffar" data-vy="traffar"><svg aria-hidden="true"><use href="#ik-kalender"></use></svg><span class="sidomeny__text">Träffar</span><span class="demo-prik" title="Skiss"></span></a>
     <a href="#/lista" data-vy="lista"><svg aria-hidden="true"><use href="#ik-bokmarke"></use></svg><span class="sidomeny__text">Min lista</span><span class="nav__antal" id="lista-antal" hidden></span></a>
@@ -149,17 +150,23 @@
           <p class="mer__intro">AI-nätverket växer till en plats att tänka tillsammans på.
           Titta in i forum- och träffskisserna och tyck till.</p>
           <div class="mer__nat">
+            <a class="mer__kort" href="#/lektioner">
+              <span class="ik" aria-hidden="true"><svg><use href="#ik-tavla"></use></svg></span>
+              <h3>Lektionsbanken</h3>
+              <p>Kollegors upplägg om och med AI — med syfte, steg och reflektion.</p>
+              <span class="mer__lank">Öppna lektionsbanken →</span>
+            </a>
             <a class="mer__kort" href="#/forum">
               <span class="ik" aria-hidden="true"><svg><use href="#ik-forum"></use></svg></span>
-              <h3>Forum — tänk tillsammans</h3>
+              <h3>Forum</h3>
               <p>Ställ frågan du sitter med, dela det som funkade, hitta kollegor.</p>
-              <span class="mer__lank">Öppna forumskissen →</span>
+              <span class="mer__lank">Öppna forumet →</span>
             </a>
             <a class="mer__kort" href="#/traffar">
               <span class="ik" aria-hidden="true"><svg><use href="#ik-kalender"></use></svg></span>
-              <h3>Träffar — ses och lär</h3>
-              <p>Nätverksträffar, workshoppar och fikasamtal — digitalt och IRL.</p>
-              <span class="mer__lank">Öppna träffskissen →</span>
+              <h3>Träffar</h3>
+              <p>Fikasamtal, verkstäder och nätverksträffar — digitalt och IRL.</p>
+              <span class="mer__lank">Öppna träffarna →</span>
             </a>
           </div>
         </div>
@@ -229,26 +236,39 @@
       </div>
     </section>
 
+    <section class="vy" data-vy="lektioner" aria-label="Lektionsbanken">
+      <div class="ram">
+        <div class="vy__huvud">
+          <p class="ogonbryn">Lektionsbanken · <span class="demo-ord">Skiss</span></p>
+          <h2>Undervisning om och med AI</h2>
+          <p class="mer__intro">Beprövade upplägg från kollegor — med syfte, material, steg
+          och lärarens egen reflektion. Klicka på en lektion för hela upplägget.</p>
+        </div>
+        <p class="demo-banner">Lektionerna nedan är exempel, och det du delar sparas bara i
+        din webbläsare — men flödena är på riktigt. Tyck till i Utvärderingsrummet.</p>
+        <div class="verktygsrad">
+          <div class="chips" id="lek-filter" role="group" aria-label="Filtrera lektioner"></div>
+          <button class="knapp knapp--primar" id="lek-dela" type="button">+ Dela en lektion</button>
+        </div>
+        <div class="lek-nat" id="lek-nat"></div>
+      </div>
+    </section>
+
     <section class="vy" data-vy="forum" aria-label="Forum">
       <div class="ram ram--smal">
         <div class="vy__huvud">
           <p class="ogonbryn">Forum · <span class="demo-ord">Skiss</span></p>
           <h2>Tänk tillsammans</h2>
-          <p class="mer__intro">Så här är forumet tänkt. Allt nedan är exempelinnehåll —
-          säg vad som saknas innan vi bygger på riktigt.</p>
+          <p class="mer__intro">Ställ frågan du sitter med, dela det som funkade,
+          hitta kollegor med samma utmaning.</p>
         </div>
-        <div class="skiss-komponera" aria-disabled="true">
-          <span>Ställ en fråga eller dela något som funkade …</span>
-          <span class="skiss-komponera__knapp">Kommer snart</span>
+        <p class="demo-banner">Trådarna är exempel, och det du skriver sparas bara i din
+        webbläsare — men flödena är på riktigt. Tyck till i Utvärderingsrummet.</p>
+        <div class="verktygsrad">
+          <div class="chips" id="forum-kategorier" role="group" aria-label="Filtrera på kategori"></div>
+          <button class="knapp knapp--primar" id="trad-ny" type="button">+ Starta en tråd</button>
         </div>
-        <div class="tradar">
-          <div class="trad"><span class="demo-prick" style="--k:var(--k-kommun)"></span><div class="trad__text"><b>Hur gör ni med AI på nationella prov?</b><span>Högstadiet · Bedömning · för 2 tim sedan</span></div><span class="demo-meta">14 svar</span></div>
-          <div class="trad"><span class="demo-prick" style="--k:var(--k-privatperson)"></span><div class="trad__text"><b>Bästa prompten för läsförståelse i åk 5?</b><span>Mellanstadiet · Språkutveckling · igår</span></div><span class="demo-meta">9 svar</span></div>
-          <div class="trad"><span class="demo-prick" style="--k:var(--k-larosate)"></span><div class="trad__text"><b>Boktips: AI-litteracitet i praktiken</b><span>Alla stadier · Fördjupning · i måndags</span></div><span class="demo-meta">3 svar</span></div>
-          <div class="trad"><span class="demo-prick" style="--k:var(--k-myndighet)"></span><div class="trad__text"><b>Vem har testat Skolverkets nya webbkurs?</b><span>Kompetensutveckling · förra veckan</span></div><span class="demo-meta">21 svar</span></div>
-          <div class="trad"><span class="demo-prick" style="--k:var(--k-organisation)"></span><div class="trad__text"><b>AI-policy för vårdnadshavare — hur kommunicerar ni?</b><span>Skolledare · Juridik & GDPR · förra veckan</span></div><span class="demo-meta">7 svar</span></div>
-        </div>
-        <a class="mer__lank" href="prototyp/index.html">Hela forumskissen finns i framtidsskissen <svg aria-hidden="true"><use href="#ik-extern"></use></svg></a>
+        <div class="tradar" id="tradar-lista"></div>
       </div>
     </section>
 
@@ -257,19 +277,16 @@
         <div class="vy__huvud">
           <p class="ogonbryn">Träffar · <span class="demo-ord">Skiss</span></p>
           <h2>Ses och lär</h2>
-          <p class="mer__intro">Nätverksträffar, workshoppar och fikasamtal — skapa en träff
-          eller anmäl dig till nästa. Exempelinnehåll nedan.</p>
+          <p class="mer__intro">Digitala fikasamtal, verkstäder och nätverksträffar —
+          anmäl dig, eller skapa en egen.</p>
         </div>
-        <div class="traffar">
-          <div class="traff"><span class="demo-datum"><b>12</b>dec</span><div class="trad__text"><b>Nätverksträff: AI-verktyg i praktiken</b><span>Digitalt · 15.30–17.00 · 23 anmälda</span></div><span class="demo-knapp">Anmäl</span></div>
-          <div class="traff"><span class="demo-datum"><b>15</b>jan</span><div class="trad__text"><b>Workshop: bygg er AI-policy</b><span>Jönköping · heldag · 8 platser kvar</span></div><span class="demo-knapp">Anmäl</span></div>
-          <div class="traff"><span class="demo-datum"><b>29</b>jan</span><div class="trad__text"><b>Fikasamtal: AI i förskolan</b><span>Digitalt · 19.00–20.00 · öppet för alla</span></div><span class="demo-knapp">Anmäl</span></div>
+        <p class="demo-banner">Träffarna är exempel, och anmälningar sparas bara i din
+        webbläsare — men flödena är på riktigt. Tyck till i Utvärderingsrummet.</p>
+        <div class="verktygsrad">
+          <span class="verktygsrad__text" id="traff-antal"></span>
+          <button class="knapp knapp--primar" id="traff-ny" type="button">+ Skapa en träff</button>
         </div>
-        <div class="skiss-komponera" aria-disabled="true">
-          <span>Skapa en egen träff …</span>
-          <span class="skiss-komponera__knapp">Kommer snart</span>
-        </div>
-        <a class="mer__lank" href="prototyp/index.html">Hela träffskissen finns i framtidsskissen <svg aria-hidden="true"><use href="#ik-extern"></use></svg></a>
+        <div class="traffar" id="traffar-lista"></div>
       </div>
     </section>
 
@@ -319,7 +336,13 @@
   <div class="palett__resultat" id="palett-resultat" role="listbox" aria-label="Sökträffar"></div>
 </dialog>
 
+<dialog class="dialog detalj" id="detalj" aria-label="Detaljer">
+  <button class="dialog__stang" type="button" data-stang aria-label="Stäng">×</button>
+  <div class="detalj__kropp" id="detalj-kropp"></div>
+</dialog>
+
 <script src="data.js"></script>
+<script src="prototyp/demo.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

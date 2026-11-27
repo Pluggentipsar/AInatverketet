@@ -28,8 +28,8 @@
 
   /* ---------- Router & sidomeny ---------- */
 
-  const VYER = ["hem", "katalog", "forum", "traffar", "lista"];
-  const VY_TITLAR = { hem: "AI-nätverket — AI och pedagogik i svensk skola", katalog: "Katalogen — AI-nätverket", forum: "Forum — AI-nätverket", traffar: "Träffar — AI-nätverket", lista: "Min lista — AI-nätverket" };
+  const VYER = ["hem", "katalog", "lektioner", "forum", "traffar", "lista"];
+  const VY_TITLAR = { hem: "AI-nätverket — AI och pedagogik i svensk skola", katalog: "Katalogen — AI-nätverket", lektioner: "Lektionsbanken — AI-nätverket", forum: "Forum — AI-nätverket", traffar: "Träffar — AI-nätverket", lista: "Min lista — AI-nätverket" };
   let aktivVy = "hem";
 
   const visaVy = (vy, direkt = false) => {
@@ -43,6 +43,9 @@
       }
       document.title = VY_TITLAR[vy];
       if (vy === "lista") ritaLista();
+      if (vy === "lektioner") renderaLektioner();
+      if (vy === "forum") renderaForum();
+      if (vy === "traffar") renderaTraffar();
       skal.classList.remove("menyOppen");
       el("bakplatta").hidden = true;
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -547,6 +550,263 @@
       kort.style.removeProperty("--ry");
     }
   });
+
+  /* ---------- Gemenskapen: lektionsbank, forum, träffar (demo + lokalt eget) ---------- */
+
+  const DEMO = window.AINAT_DEMO || { lessons: [], topics: [], meetings: [] };
+  const lasLok = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
+  const skrivLok = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+  let egnaLektioner = lasLok("ainat-lektioner", []);
+  let egnaTradar = lasLok("ainat-tradar", []);
+  let egnaSvar = lasLok("ainat-svar", {});
+  let anmald = new Set(lasLok("ainat-anmald", []));
+  let egnaTraffar = lasLok("ainat-traffar", []);
+
+  const MODE = { om: "Om AI", med: "Med AI" };
+  const PASTELL = {
+    sage: ["#e3edd9", "#3a6b4e"], peach: ["#fbe3d4", "#a4503f"], lavender: ["#e4e1f7", "#54589e"],
+    sand: ["#f0e5c9", "#8a6c28"], rose: ["#f8dde2", "#a04a5c"], du: ["var(--accent-tint)", "var(--accent)"],
+  };
+  const avatar = (initialer, farg) => {
+    const [bg, fg] = PASTELL[farg] || PASTELL.du;
+    return `<span class="avatarini" style="--abg:${bg};--afg:${fg}">${esc(initialer)}</span>`;
+  };
+  const detalj = el("detalj");
+  const oppnaDetalj = (html) => { el("detalj-kropp").innerHTML = html; detalj.showModal(); };
+
+  /* --- Lektionsbanken --- */
+
+  const lekFilter = { lage: "alla" };
+  const allaLektioner = () => [...egnaLektioner, ...DEMO.lessons];
+
+  const renderaLektioner = () => {
+    el("lek-filter").innerHTML = [["alla", "Alla"], ["om", "Om AI"], ["med", "Med AI"]]
+      .map(([v, namn]) => `<button class="chip" type="button" data-lekfilter="${v}" aria-pressed="${lekFilter.lage === v}">${namn}</button>`).join("");
+    const lista = allaLektioner().filter((l) => lekFilter.lage === "alla" || l.mode === lekFilter.lage);
+    el("lek-nat").innerHTML = lista.map((l) => `
+<article class="lek" data-lek="${esc(l.id)}" tabindex="0" role="button" aria-label="Öppna lektionen ${esc(l.title)}">
+  <div class="lek__topp">
+    <span class="mode-badge mode-badge--${esc(l.mode)}">${MODE[l.mode] || ""}</span>
+    ${l.egen ? '<span class="egen-badge">Din · sparad lokalt</span>' : ""}
+    <span class="lek__tid">${esc(String(l.minutes))} min</span>
+  </div>
+  <h3>${esc(l.title)}</h3>
+  <p class="lek__intro">${esc(l.intro)}</p>
+  <div class="lek__meta">${esc(l.subject)} · ${esc(l.stage)}</div>
+  <div class="lek__fot">
+    ${avatar(l.initials, l.color)}<span class="lek__forfattare">${esc(l.author)}${l.city ? ", " + esc(l.city) : ""}</span>
+    ${(l.tags || []).slice(0, 2).map((t) => `<span class="tagg">${esc(t)}</span>`).join("")}
+  </div>
+</article>`).join("") || `<p class="lista__tom">Inga lektioner matchar filtret.</p>`;
+  };
+
+  const oppnaLektion = (id) => {
+    const l = allaLektioner().find((x) => x.id === id);
+    if (!l) return;
+    oppnaDetalj(`
+<p class="qv__topp"><span class="mode-badge mode-badge--${esc(l.mode)}">${MODE[l.mode] || ""}</span>
+  <span class="kort__typ">${esc(l.subject)} · ${esc(l.stage)} · ${esc(String(l.minutes))} min</span></p>
+<h3 class="qv__titel">${esc(l.title)}</h3>
+<p class="detalj__rad">${avatar(l.initials, l.color)}<span>${esc(l.author)}${l.city ? ", " + esc(l.city) : ""}</span></p>
+<p class="qv__beskrivning">${esc(l.intro)}</p>
+${l.aim ? `<h4>Syfte</h4><p>${esc(l.aim)}</p>` : ""}
+${l.materials ? `<h4>Material & förberedelser</h4><p>${esc(l.materials)}</p>` : ""}
+${l.steps?.length ? `<h4>Lektionens steg</h4><ol class="detalj__steg">${l.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>` : ""}
+${l.reflection ? `<div class="reflektion"><b>Lärarens reflektion</b><p>${esc(l.reflection)}</p></div>` : ""}
+<div class="qv__taggar">${(l.tags || []).map((t) => `<span class="tagg">${esc(t)}</span>`).join("")}</div>
+${l.egen ? "" : `<p class="demo-not">Exempellektion i skissen — inte en verifierad lektionsrapport.</p>`}`);
+  };
+
+  const oppnaLektionsForm = () => oppnaDetalj(`
+<h3 class="qv__titel">Dela en lektion</h3>
+<p class="qv__beskrivning">Sparas bara i din webbläsare i den här skissen — men så här är flödet tänkt.</p>
+<form class="falt" data-form="lektion">
+  <label>Titel <input name="title" required maxlength="90" placeholder="T.ex. Kan du hitta AI:ns mattefel?"></label>
+  <div class="falt__rad">
+    <label>Ämne <input name="subject" required maxlength="40" placeholder="Matematik"></label>
+    <label>Stadium <select name="stage"><option>F–3</option><option>Åk 4–6</option><option selected>Åk 7–9</option><option>Gymnasiet</option><option>Vux</option></select></label>
+  </div>
+  <div class="falt__rad">
+    <label>Handlar om <select name="mode"><option value="om">Om AI</option><option value="med">Med AI</option></select></label>
+    <label>Tid (min) <input name="minutes" type="number" min="5" max="480" value="60"></label>
+  </div>
+  <label>Kort beskrivning <textarea name="intro" required rows="3" maxlength="400" placeholder="Vad gör eleverna, och varför?"></textarea></label>
+  <button class="knapp knapp--primar" type="submit">Spara lektionen</button>
+</form>`);
+
+  /* --- Forum --- */
+
+  const forumFilter = { kategori: "alla" };
+  const allaTradar = () => [...egnaTradar, ...DEMO.topics];
+  const antalSvar = (t) => (t.replies?.length || 0) + (egnaSvar[t.id]?.length || 0);
+
+  const renderaForum = () => {
+    const kategorier = ["alla", ...new Set(allaTradar().map((t) => t.category).filter(Boolean))];
+    el("forum-kategorier").innerHTML = kategorier
+      .map((k) => `<button class="chip" type="button" data-forumfilter="${esc(k)}" aria-pressed="${forumFilter.kategori === k}">${k === "alla" ? "Alla" : esc(k)}</button>`).join("");
+    const lista = allaTradar().filter((t) => forumFilter.kategori === "alla" || t.category === forumFilter.kategori);
+    el("tradar-lista").innerHTML = lista.map((t) => `
+<button class="trad trad--klickbar" type="button" data-trad="${esc(t.id)}">
+  ${avatar(t.initials, t.color)}
+  <span class="trad__text"><b>${esc(t.title)}</b><span>${esc(t.category || "")} · ${esc(t.author)}${t.egen ? " · sparad lokalt" : ""} · ${esc(t.time || "")}</span></span>
+  <span class="demo-meta">${antalSvar(t)} svar</span>
+</button>`).join("") || `<p class="lista__tom">Inga trådar i den kategorin än.</p>`;
+  };
+
+  const oppnaTrad = (id) => {
+    const t = allaTradar().find((x) => x.id === id);
+    if (!t) return;
+    const svar = [
+      ...(t.replies || []).map((s) => ({ ...s, egen: false })),
+      ...(egnaSvar[id] || []).map((s) => ({ author: "Du", initials: "Du", color: "du", text: s.text, egen: true })),
+    ];
+    oppnaDetalj(`
+<p class="qv__topp"><span class="kort__stampel">${esc(t.category || "Tråd")}</span><span class="kort__typ">${esc(t.time || "")}</span></p>
+<h3 class="qv__titel">${esc(t.title)}</h3>
+<p class="detalj__rad">${avatar(t.initials, t.color)}<span>${esc(t.author)}${t.city ? ", " + esc(t.city) : ""}</span></p>
+<p class="qv__beskrivning">${esc(t.body || "")}</p>
+<h4>${svar.length ? svar.length + " svar" : "Inga svar än — bli först!"}</h4>
+<div class="svarslista">${svar.map((s) => `
+  <div class="svar${s.egen ? " svar--egen" : ""}">${avatar(s.initials, s.color)}
+    <div><b>${esc(s.author)}</b><p>${esc(s.text)}</p></div>
+  </div>`).join("")}</div>
+<form class="falt falt--rad" data-form="svar" data-trad-id="${esc(id)}">
+  <input name="text" required maxlength="1000" placeholder="Skriv ett svar …">
+  <button class="knapp knapp--primar" type="submit">Svara</button>
+</form>
+<p class="demo-not">Svar sparas bara i din webbläsare i den här skissen.</p>`);
+  };
+
+  const oppnaTradForm = () => oppnaDetalj(`
+<h3 class="qv__titel">Starta en tråd</h3>
+<p class="qv__beskrivning">Sparas bara i din webbläsare i den här skissen.</p>
+<form class="falt" data-form="trad">
+  <label>Rubrik <input name="title" required maxlength="120" placeholder="Vad vill du fråga eller dela?"></label>
+  <label>Kategori <select name="category"><option>Kom igång</option><option>Ämnen & undervisning</option><option>Bedömning & lärande</option><option>Skolutveckling</option><option>Om nätverket</option></select></label>
+  <label>Text <textarea name="body" required rows="4" maxlength="2000" placeholder="Beskriv din fråga eller erfarenhet …"></textarea></label>
+  <button class="knapp knapp--primar" type="submit">Publicera tråden</button>
+</form>`);
+
+  /* --- Träffar --- */
+
+  const MANADER = ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+  const datumBricka = (iso) => {
+    const d = new Date(iso + "T12:00:00");
+    return isNaN(d) ? ["?", ""] : [String(d.getDate()), MANADER[d.getMonth()]];
+  };
+  const allaTraffar = () => [...egnaTraffar, ...DEMO.meetings]
+    .slice()
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  const traffPlatser = (m) => (m.participants || 0) + (anmald.has(m.id) ? 1 : 0);
+
+  const renderaTraffar = () => {
+    const lista = allaTraffar();
+    el("traff-antal").textContent = `${lista.length} planerade träffar`;
+    el("traffar-lista").innerHTML = lista.map((m) => {
+      const [dag, man] = datumBricka(m.date);
+      const platser = traffPlatser(m);
+      const fullt = m.capacity && platser >= m.capacity && !anmald.has(m.id);
+      return `
+<div class="traff traff--klickbar" data-traff="${esc(m.id)}" tabindex="0" role="button" aria-label="Öppna träffen ${esc(m.title)}">
+  <span class="demo-datum"><b>${esc(dag)}</b>${esc(man)}</span>
+  <span class="trad__text"><b>${esc(m.title)}</b>
+    <span>${esc(m.format || "Digitalt")} · ${esc(m.start || "")}–${esc(m.end || "")} · värd ${esc(m.host || "?")}${m.egen ? " · sparad lokalt" : ""}</span>
+    ${m.capacity ? `<span class="platser"><span class="platser__bar" style="width:${Math.min(100, Math.round(100 * platser / m.capacity))}%"></span></span><span class="platser__text">${platser} av ${m.capacity} platser</span>` : ""}
+  </span>
+  <button class="demo-knapp demo-knapp--aktiv" type="button" data-anmal="${esc(m.id)}" ${fullt ? "disabled" : ""}>${anmald.has(m.id) ? "Avanmäl" : fullt ? "Fullt" : "Anmäl"}</button>
+</div>`;
+    }).join("");
+  };
+
+  const oppnaTraff = (id) => {
+    const m = allaTraffar().find((x) => x.id === id);
+    if (!m) return;
+    const [dag, man] = datumBricka(m.date);
+    oppnaDetalj(`
+<p class="qv__topp"><span class="kort__stampel">${esc(m.category || m.format || "Träff")}</span><span class="kort__typ">${esc(m.format || "")}</span></p>
+<h3 class="qv__titel">${esc(m.title)}</h3>
+<p class="detalj__rad"><span class="demo-datum"><b>${esc(dag)}</b>${esc(man)}</span><span>${esc(m.start || "")}–${esc(m.end || "")} · värd ${esc(m.host || "?")}</span></p>
+<p class="qv__beskrivning">${esc(m.description || "")}</p>
+${m.agenda?.length ? `<h4>Upplägg</h4><ol class="detalj__steg">${m.agenda.map((p) => `<li>${esc(p)}</li>`).join("")}</ol>` : ""}
+<div class="qv__rad">
+  <button class="knapp knapp--primar" type="button" data-anmal="${esc(m.id)}">${anmald.has(m.id) ? "Avanmäl dig" : "Anmäl dig"}</button>
+</div>
+<p class="demo-not">Anmälan sparas bara i din webbläsare i den här skissen.</p>`);
+  };
+
+  const oppnaTraffForm = () => oppnaDetalj(`
+<h3 class="qv__titel">Skapa en träff</h3>
+<p class="qv__beskrivning">Sparas bara i din webbläsare i den här skissen.</p>
+<form class="falt" data-form="traff">
+  <label>Titel <input name="title" required maxlength="90" placeholder="T.ex. Fikasamtal om AI i SO"></label>
+  <div class="falt__rad">
+    <label>Datum <input name="date" type="date" required></label>
+    <label>Start <input name="start" type="time" value="15:30" required></label>
+    <label>Slut <input name="end" type="time" value="16:30" required></label>
+  </div>
+  <label>Form <select name="format"><option>Digitalt samtal</option><option>Digital verkstad</option><option>På plats</option></select></label>
+  <label>Beskrivning <textarea name="description" rows="3" maxlength="600" placeholder="Vad ska ni prata om?"></textarea></label>
+  <button class="knapp knapp--primar" type="submit">Skapa träffen</button>
+</form>`);
+
+  /* --- Händelser för gemenskapen --- */
+
+  document.addEventListener("click", (e) => {
+    const lekChip = e.target.closest("[data-lekfilter]");
+    if (lekChip) { lekFilter.lage = lekChip.dataset.lekfilter; renderaLektioner(); return; }
+    const forumChip = e.target.closest("[data-forumfilter]");
+    if (forumChip) { forumFilter.kategori = forumChip.dataset.forumfilter; renderaForum(); return; }
+    const anmalKnapp = e.target.closest("[data-anmal]");
+    if (anmalKnapp) {
+      const id = anmalKnapp.dataset.anmal;
+      anmald.has(id) ? anmald.delete(id) : anmald.add(id);
+      skrivLok("ainat-anmald", [...anmald]);
+      renderaTraffar();
+      if (detalj.open) oppnaTraff(id);
+      return;
+    }
+    const lek = e.target.closest("[data-lek]");
+    if (lek) { oppnaLektion(lek.dataset.lek); return; }
+    const trad = e.target.closest("[data-trad]");
+    if (trad) { oppnaTrad(trad.dataset.trad); return; }
+    const traff = e.target.closest("[data-traff]");
+    if (traff && !e.target.closest("button")) { oppnaTraff(traff.dataset.traff); return; }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.target.matches?.("[data-lek],[data-traff]")) e.target.click();
+  });
+
+  document.addEventListener("submit", (e) => {
+    const form = e.target.closest("form[data-form]");
+    if (!form) return;
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    const slag = form.dataset.form;
+    if (slag === "lektion") {
+      egnaLektioner.unshift({ id: "egen-" + Date.now(), egen: true, title: data.title, subject: data.subject, stage: data.stage, mode: data.mode, minutes: Number(data.minutes) || 60, intro: data.intro, author: "Du", initials: "Du", color: "du", tags: [] });
+      skrivLok("ainat-lektioner", egnaLektioner);
+      detalj.close(); renderaLektioner();
+    } else if (slag === "trad") {
+      egnaTradar.unshift({ id: "egen-" + Date.now(), egen: true, title: data.title, category: data.category, body: data.body, author: "Du", initials: "Du", color: "du", time: "Nyss", replies: [] });
+      skrivLok("ainat-tradar", egnaTradar);
+      detalj.close(); renderaForum();
+    } else if (slag === "svar") {
+      const id = form.dataset.tradId;
+      (egnaSvar[id] = egnaSvar[id] || []).push({ text: data.text, nar: Date.now() });
+      skrivLok("ainat-svar", egnaSvar);
+      renderaForum(); oppnaTrad(id);
+    } else if (slag === "traff") {
+      egnaTraffar.unshift({ id: "egen-" + Date.now(), egen: true, title: data.title, date: data.date, start: data.start, end: data.end, format: data.format, description: data.description, host: "Du", participants: 0, capacity: 10 });
+      skrivLok("ainat-traffar", egnaTraffar);
+      detalj.close(); renderaTraffar();
+    }
+  });
+
+  el("lek-dela").addEventListener("click", oppnaLektionsForm);
+  el("trad-ny").addEventListener("click", oppnaTradForm);
+  el("traff-ny").addEventListener("click", oppnaTraffForm);
 
   /* ---------- Init ---------- */
 
