@@ -18,45 +18,6 @@
     try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return ""; }
   };
 
-  /* ---------- Formprov (A Falupapper · B Grafit · C Grönska) ---------- */
-
-  const sattForm = (form) => {
-    if (form === "a") delete document.documentElement.dataset.form;
-    else document.documentElement.dataset.form = form;
-    for (const knapp of document.querySelectorAll(".formprov button")) {
-      knapp.setAttribute("aria-pressed", String(knapp.dataset.form === form));
-    }
-    try { localStorage.setItem("ainat-form", form); } catch {}
-  };
-
-  const byggFormprov = () => {
-    const rad = document.createElement("div");
-    rad.className = "formprov";
-    rad.innerHTML = '<span>Formprov</span>' +
-      ["a", "b", "c"].map((f) => `<button type="button" data-form="${f}" aria-pressed="false" title="Formprov ${f.toUpperCase()}">${f.toUpperCase()}</button>`).join("");
-    rad.addEventListener("click", (e) => {
-      const knapp = e.target.closest("button");
-      if (knapp) sattForm(knapp.dataset.form);
-    });
-    document.body.appendChild(rad);
-    let sparad = "a";
-    try { sparad = localStorage.getItem("ainat-form") || "a"; } catch {}
-    sattForm(["a", "b", "c"].includes(sparad) ? sparad : "a");
-  };
-
-  /* ---------- Ticker ---------- */
-
-  const byggTicker = () => {
-    const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
-    const stycken = [
-      `${resurser.length} handplockade resurser`, `${kallor} källor`, "Granskat, inte skrapat",
-      "Länkat, inte kopierat", "Levande, inte lämnat", "Av lärare, för lärare",
-    ];
-    const halva = stycken.concat(stycken, stycken)
-      .map((s) => `<span>${esc(s)}</span><span class="ticker__stjarna">✳</span>`).join("");
-    el("ticker-spar").innerHTML = `<span class="ticker__halva">${halva}</span><span class="ticker__halva">${halva}</span>`;
-  };
-
   /* ---------- Fuzzy-sök ---------- */
 
   const vika = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -184,9 +145,10 @@
 
   const byggIngangar = () => {
     el("ingangar").innerHTML = INGANGAR.map((ing, i) => `
-<button class="ingang" type="button" data-i="${i}">
-  <svg aria-hidden="true"><use href="#ik-${ing.ik}"></use></svg>
-  <span style="min-width:0"><b>${esc(ing.titel)}</b><span>${esc(ing.text)} <span class="antal">${raknaIngang(ing.filter)} st</span></span></span>
+<button class="ingang" type="button" data-i="${i}" title="${esc(ing.text)}">
+  <span class="ik" aria-hidden="true"><svg><use href="#ik-${ing.ik}"></use></svg></span>
+  <b>${esc(ing.titel)}</b>
+  <small>${raknaIngang(ing.filter)} resurser</small>
 </button>`).join("");
     el("ingangar").addEventListener("click", (e) => {
       const knapp = e.target.closest(".ingang");
@@ -321,8 +283,6 @@
   byggChips("teman", el("chips-teman"));
   for (const meny of document.querySelectorAll(".meny")) byggMeny(meny);
   byggIngangar();
-  byggFormprov();
-  byggTicker();
 
   let timer;
   sokfalt.addEventListener("input", () => {
@@ -344,7 +304,9 @@
   });
 
   const datum = new Date(katalog.uppdaterad + "T12:00:00").toLocaleDateString("sv-SE", { day: "numeric", month: "long", year: "numeric" });
-  el("fot-meta").textContent = `${resurser.length} resurser · Senast uppdaterad ${datum}`;
+  const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
+  el("hero-pill").innerHTML = `<em>${resurser.length}</em> granskade resurser från <em>${kallor}</em> källor`;
+  el("fot-meta").textContent = `${resurser.length} resurser · Senast uppdaterad ${datum} · Alla länkar kontrollerade`;
 
   lasUrl();
   synkaKontroller();
