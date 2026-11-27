@@ -1,6 +1,6 @@
-/* AI-nätverket — svensk folkbildning möter modern redaktionell design.
-   Tre formprov (väljs längst ner till vänster): A Falupapper · B Grafit · C Grönska.
-   Varje formprov definierar samma tokens; komponenterna läser bara tokens. */
+/* AI-nätverket — folkbildningsaffisch möter modern redaktionell design.
+   Tre formprov (väljaren nere till vänster): A Falupapper · B Grafit · C Grönska.
+   Varje formprov sätter samma tokens; komponenterna läser bara tokens. */
 
 :root {
   --papper: #f7f1e5;
@@ -11,6 +11,8 @@
   --linje: rgba(41, 34, 25, 0.55);
   --linje-svag: rgba(41, 34, 25, 0.16);
   --skugga: rgba(41, 34, 25, 0.92);
+  --band-bg: #9e2f20;
+  --band-text: #fff6ea;
   --radie: 3px;
   --kortskugga: 4px 4px 0 var(--skugga);
   --kortskugga-hov: 7px 7px 0 var(--falu);
@@ -40,6 +42,8 @@
   --linje: rgba(29, 32, 36, 0.5);
   --linje-svag: rgba(29, 32, 36, 0.14);
   --skugga: rgba(29, 32, 36, 0.1);
+  --band-bg: #2244cc;
+  --band-text: #eef2ff;
   --radie: 14px;
   --kortskugga: 0 1px 2px var(--skugga);
   --kortskugga-hov: 0 10px 28px rgba(29, 32, 36, 0.16);
@@ -59,6 +63,8 @@
   --linje: rgba(35, 48, 31, 0.5);
   --linje-svag: rgba(35, 48, 31, 0.15);
   --skugga: rgba(35, 48, 31, 0.14);
+  --band-bg: #22633f;
+  --band-text: #f2f7ec;
   --radie: 12px;
   --kortskugga: 0 2px 10px var(--skugga);
   --kortskugga-hov: 0 12px 30px rgba(35, 48, 31, 0.2);
@@ -77,6 +83,8 @@
     --linje: rgba(237, 228, 211, 0.6);
     --linje-svag: rgba(237, 228, 211, 0.16);
     --skugga: rgba(0, 0, 0, 0.9);
+    --band-bg: #6e2013;
+    --band-text: #f3e2d4;
 
     --k-myndighet: #7aaad8;
     --k-kommun: #7dbb97;
@@ -90,13 +98,13 @@
   :root[data-form="b"] {
     --papper: #16181b; --kort: #1f2226; --black: #e8eaed; --dampad: #9aa2ab;
     --falu: #8fa6ff; --linje: rgba(232, 234, 237, 0.5); --linje-svag: rgba(232, 234, 237, 0.14);
-    --skugga: rgba(0, 0, 0, 0.5);
+    --skugga: rgba(0, 0, 0, 0.5); --band-bg: #202c74; --band-text: #e6ebff;
     --kortskugga-hov: 0 10px 28px rgba(0, 0, 0, 0.55); --sokskugga-hov: 0 10px 28px rgba(0, 0, 0, 0.55);
   }
   :root[data-form="c"] {
     --papper: #151a16; --kort: #1d241e; --black: #e9e6d8; --dampad: #a4ab95;
     --falu: #86c79e; --linje: rgba(233, 230, 216, 0.5); --linje-svag: rgba(233, 230, 216, 0.15);
-    --skugga: rgba(0, 0, 0, 0.5);
+    --skugga: rgba(0, 0, 0, 0.5); --band-bg: #1c4a31; --band-text: #e8f3e2;
     --kortskugga-hov: 0 12px 30px rgba(0, 0, 0, 0.55); --sokskugga-hov: 0 12px 30px rgba(0, 0, 0, 0.55);
   }
 }
@@ -133,24 +141,53 @@ body::after {
 
 .ram { max-width: 1120px; margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2.5rem); }
 
-.prototyp-lank { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 0.8rem; padding: 0.7rem 1rem; background: var(--falu); color: var(--papper); font-size: 0.8rem; }
+.prototyp-lank { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 0.8rem; padding: 0.7rem 1rem; background: var(--band-bg); color: var(--band-text); font-size: 0.8rem; }
 .prototyp-lank a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
-@media (prefers-color-scheme: dark) { .prototyp-lank { color: #16130e; } }
 
-/* ---------- Masthuvud ---------- */
+/* ---------- Masthuvud: skrivhäftet ---------- */
 
-.topp { border-bottom: 2px solid var(--black); overflow: hidden; }
+.topp {
+  position: relative;
+  overflow: hidden;
+  /* Skrivhäftets linjer */
+  background-image: repeating-linear-gradient(to bottom, transparent 0 37px, var(--linje-svag) 37px 38px);
+}
+:root[data-form="b"] .topp { background-image: none; }
 
-.topp__inre { position: relative; padding-block: clamp(2.6rem, 7vw, 4.6rem) clamp(1.8rem, 5vw, 2.8rem); }
+/* Marginallinjen i rött, som i ett skrivhäfte */
+.topp::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: clamp(16px, 4vw, 54px);
+  width: 2px;
+  background: var(--falu);
+  opacity: 0.3;
+}
+:root[data-form="b"] .topp::before { display: none; }
+
+.topp__inre { position: relative; padding-block: clamp(2.8rem, 8vw, 5.4rem) clamp(2.4rem, 6vw, 3.6rem); }
 
 .topp__stjarna {
   position: absolute;
-  top: clamp(-60px, -6vw, -20px);
+  top: clamp(-50px, -4vw, -14px);
   right: clamp(-70px, -5vw, -20px);
-  width: clamp(160px, 24vw, 320px);
-  color: var(--falu);
-  opacity: 0.12;
+  width: clamp(170px, 26vw, 360px);
+  height: clamp(170px, 26vw, 360px);
+  fill: var(--falu);
+  opacity: 0.14;
   animation: snurr 90s linear infinite;
+}
+.topp__stjarna--liten {
+  top: auto;
+  bottom: -30px;
+  right: clamp(180px, 30vw, 420px);
+  width: 90px;
+  height: 90px;
+  opacity: 0.1;
+  animation-duration: 140s;
+  animation-direction: reverse;
 }
 
 @keyframes snurr { to { transform: rotate(360deg); } }
@@ -161,94 +198,62 @@ body::after {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--falu);
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
+  animation: upp 0.5s 0.05s cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 
 .topp__rubrik {
   font-family: var(--display);
-  font-weight: 640;
+  font-weight: 660;
   font-variation-settings: var(--display-vf);
-  font-size: clamp(2.8rem, 9vw, 6.2rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 11vw, 7.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
   max-width: 14ch;
   overflow-wrap: anywhere;
+  animation: upp 0.55s 0.12s cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 
 .topp__punkt { color: var(--falu); }
 
-.topp__ingress {
-  margin-top: 1.3rem;
-  font-size: clamp(1.02rem, 1.6vw, 1.18rem);
-  max-width: 58ch;
-  color: var(--dampad);
-}
-
-.topp__stat {
+.topp__tag {
   margin-top: 1.1rem;
   font-family: var(--display);
-  font-style: italic;
-  font-size: 0.95rem;
+  font-variation-settings: var(--display-vf);
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-weight: 500;
+  animation: upp 0.55s 0.2s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.topp__tag em { font-style: italic; color: var(--falu); }
+:root[data-form="b"] .topp__tag { font-weight: 700; }
+
+.topp__ingress {
+  margin-top: 0.8rem;
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  max-width: 54ch;
   color: var(--dampad);
-}
-:root[data-form="b"] .topp__stat { font-style: normal; font-weight: 600; font-size: 0.85rem; }
-.topp__stat em { font-style: normal; font-weight: 700; color: var(--falu); }
-
-/* ---------- Sektionsrubriker ---------- */
-
-h2 { font-family: var(--display); font-variation-settings: var(--display-vf); font-weight: 600; font-size: clamp(1.5rem, 3vw, 1.9rem); letter-spacing: -0.01em; }
-.snirkel { text-decoration-line: underline; text-decoration-style: wavy; text-decoration-color: var(--falu); text-decoration-thickness: 2px; text-underline-offset: 7px; }
-.sektionsintro { color: var(--dampad); font-size: 0.95rem; margin-top: 0.5rem; }
-
-/* ---------- Behovsingångar ---------- */
-
-.ingangar { padding-block: clamp(1.8rem, 4vw, 2.6rem) 0.4rem; }
-
-.ingangar__nat {
-  margin-top: 1.2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 0.9rem;
+  animation: upp 0.55s 0.28s cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 
-.ingang {
-  font: inherit;
-  text-align: left;
-  display: flex;
-  gap: 0.8rem;
-  align-items: flex-start;
-  background: var(--kort);
-  color: var(--black);
-  border: 1.5px solid var(--black);
-  border-radius: var(--radie);
-  box-shadow: var(--kortskugga);
-  padding: 0.9rem 1rem;
-  cursor: pointer;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
-  min-width: 0;
+@keyframes upp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
 }
-:root[data-form="b"] .ingang, :root[data-form="c"] .ingang { border-color: var(--linje-svag); }
-.ingang:hover { transform: translate(-2px, -2px); box-shadow: var(--kortskugga-hov); }
-:root[data-form="b"] .ingang:hover, :root[data-form="c"] .ingang:hover { transform: translateY(-3px); }
 
-.ingang svg { width: 30px; height: 30px; flex: none; color: var(--falu); margin-top: 0.15rem; }
-.ingang b { display: block; font-family: var(--display); font-variation-settings: var(--display-vf); font-size: 1.08rem; font-weight: 620; margin-bottom: 0.15rem; }
-.ingang span { font-size: 0.84rem; color: var(--dampad); display: block; }
-.ingang .antal { display: inline; font-size: 0.78rem; font-weight: 700; color: var(--falu); }
-
-/* ---------- Sök ---------- */
-
-.sok { padding-block: clamp(1.6rem, 4vw, 2.4rem) 0.6rem; }
+/* ---------- Sök (i heron) ---------- */
 
 .sok__falt {
   position: relative;
   display: flex;
   align-items: center;
+  max-width: 640px;
+  margin-top: 1.8rem;
   background: var(--kort);
   border: 2px solid var(--black);
   border-radius: var(--radie);
   box-shadow: var(--sokskugga);
   transition: box-shadow 0.18s ease, transform 0.18s ease;
+  animation: upp 0.55s 0.36s cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 :root[data-form="b"] .sok__falt, :root[data-form="c"] .sok__falt { border-color: var(--linje); }
 
@@ -261,11 +266,11 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
   flex: 1;
   min-width: 0;
   font: inherit;
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: clamp(1rem, 2vw, 1.12rem);
   color: var(--black);
   background: none;
   border: 0;
-  padding: 1.02rem 0.8rem;
+  padding: 1.05rem 0.8rem;
 }
 
 #sokfalt::placeholder { color: var(--dampad); opacity: 0.75; }
@@ -283,9 +288,112 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
 }
 .sok__rensa:hover { color: var(--falu); }
 
+.sok__hopp {
+  margin-top: 0.7rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--falu);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- Ticker ---------- */
+
+.ticker {
+  background: var(--black);
+  color: var(--papper);
+  overflow: hidden;
+  user-select: none;
+}
+
+.ticker__spar {
+  display: inline-flex;
+  gap: 2.4rem;
+  padding: 0.55rem 0;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  animation: ticker 36s linear infinite;
+  will-change: transform;
+}
+
+.ticker__halva { display: inline-flex; gap: 2.4rem; }
+.ticker__stjarna { color: var(--falu); }
+@media (prefers-color-scheme: dark) { .ticker__stjarna { color: var(--band-bg); } }
+
+@keyframes ticker { to { transform: translateX(calc(-50% - 1.2rem)); } }
+
+/* ---------- Sektionsrubriker ---------- */
+
+h2 {
+  font-family: var(--display);
+  font-variation-settings: var(--display-vf);
+  font-weight: 620;
+  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+  letter-spacing: -0.015em;
+}
+.snirkel { text-decoration-line: underline; text-decoration-style: wavy; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.sektionsintro { font-size: 0.95rem; margin-top: 0.7rem; }
+
+/* ---------- Bandet med behovsingångar ---------- */
+
+.band { background: var(--band-bg); color: var(--band-text); }
+
+.band__inre { padding-block: clamp(2.2rem, 5vw, 3.4rem); }
+
+.band h2 { color: var(--band-text); }
+.band .snirkel { text-decoration-color: var(--band-text); }
+.band .sektionsintro { color: var(--band-text); opacity: 0.8; }
+
+.ingangar__nat {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.ingang {
+  font: inherit;
+  text-align: left;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  background: var(--kort);
+  color: var(--black);
+  border: 1.5px solid var(--black);
+  border-radius: var(--radie);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+  padding: 1.1rem 1.15rem;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  min-width: 0;
+}
+:root[data-form="b"] .ingang, :root[data-form="c"] .ingang { border-color: transparent; box-shadow: var(--kortskugga); }
+.ingang:hover { transform: translate(-2px, -3px) rotate(-0.8deg); box-shadow: 8px 9px 0 rgba(0, 0, 0, 0.35); }
+:root[data-form="b"] .ingang:hover, :root[data-form="c"] .ingang:hover { transform: translateY(-3px); box-shadow: var(--kortskugga-hov); }
+
+.ingang svg { width: 34px; height: 34px; flex: none; color: var(--falu); margin-top: 0.15rem; }
+.ingang b {
+  display: block;
+  font-family: var(--display);
+  font-variation-settings: var(--display-vf);
+  font-size: 1.22rem;
+  font-weight: 640;
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.01em;
+}
+.ingang span { font-size: 0.86rem; color: var(--dampad); display: block; }
+.ingang .antal { display: inline; font-size: 0.78rem; font-weight: 800; color: var(--falu); }
+
 /* ---------- Filter ---------- */
 
-.filter { margin-top: 1.6rem; display: grid; gap: 0.95rem; }
+.filter { display: grid; gap: 0.95rem; margin-bottom: 1.6rem; }
 
 .filter__grupp { display: grid; grid-template-columns: 7.2rem minmax(0, 1fr); gap: 0.6rem; align-items: baseline; }
 
@@ -395,7 +503,7 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
 
 /* ---------- Resultat ---------- */
 
-.resultat { padding-block: 1.7rem 4rem; }
+.resultat { padding-block: clamp(2rem, 5vw, 3rem) 4rem; }
 
 .resultat__antal {
   font-family: var(--display);
@@ -439,13 +547,34 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
 .kort:hover { transform: translate(-3px, -3px); box-shadow: var(--kortskugga-hov); }
 :root[data-form="b"] .kort:hover, :root[data-form="c"] .kort:hover { transform: translateY(-4px); }
 
+/* Duoton: bilderna enhetliggörs i källans färg och väcks i färg vid hover */
 .kort__media {
   position: relative;
   aspect-ratio: 16 / 8.5;
   background: color-mix(in oklab, var(--k, var(--dampad)) 12%, var(--kort));
   border-bottom: 1.5px solid var(--linje-svag);
 }
-.kort__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kort__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05) brightness(1.04);
+  transition: filter 0.3s ease;
+}
+.kort__media:not(.kort__media--miss)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--k, var(--dampad));
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.kort:hover .kort__media img { filter: none; }
+.kort:hover .kort__media:not(.kort__media--miss)::after { opacity: 0; }
+
 .kort__media--miss img { display: none; }
 
 .kort__platta {
@@ -519,10 +648,10 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
 .kort h3 {
   font-family: var(--display);
   font-variation-settings: var(--display-vf);
-  font-weight: 580;
-  font-size: 1.3rem;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
+  font-weight: 590;
+  font-size: 1.32rem;
+  line-height: 1.16;
+  letter-spacing: -0.012em;
 }
 :root[data-form="b"] .kort h3 { font-weight: 750; font-size: 1.16rem; }
 
@@ -587,25 +716,38 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
 
 /* ---------- Fot ---------- */
 
-.fot { background: var(--black); color: var(--papper); margin-top: 2rem; }
+.fot { position: relative; overflow: hidden; background: var(--black); color: var(--papper); }
 @media (prefers-color-scheme: dark) { .fot { background: #11100c; border-top: 1px solid var(--linje-svag); color: var(--black); } }
 
-.fot__inre { padding-block: 3rem 2.6rem; }
+.fot__stjarna {
+  position: absolute;
+  right: -90px;
+  bottom: -110px;
+  width: 340px;
+  height: 340px;
+  fill: var(--falu);
+  opacity: 0.18;
+  animation: snurr 120s linear infinite;
+}
+
+.fot__inre { position: relative; padding-block: clamp(2.6rem, 6vw, 4rem) 2.6rem; }
 
 .fot__spalter { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2rem; }
 
 .fot__rubrik {
   font-family: var(--display);
-  font-weight: 600;
+  font-weight: 620;
   font-variation-settings: var(--display-vf);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  margin-bottom: 0.9rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  margin-bottom: 1rem;
 }
 
 .fot__text { max-width: 62ch; font-size: 0.95rem; opacity: 0.85; margin-bottom: 0.55rem; }
 
-.fot__principer { list-style: none; display: grid; gap: 0.7rem; align-content: start; font-size: 0.9rem; opacity: 0.9; }
-.fot__principer b { font-family: var(--display); font-variation-settings: var(--display-vf); font-weight: 620; display: block; font-size: 1rem; }
+.fot__principer { list-style: none; display: grid; gap: 0.7rem; align-content: start; font-size: 0.9rem; opacity: 0.92; }
+.fot__principer b { font-family: var(--display); font-variation-settings: var(--display-vf); font-weight: 620; display: block; font-size: 1.05rem; }
 
 .fot__meta {
   margin-top: 1.8rem;
@@ -656,10 +798,12 @@ h2 { font-family: var(--display); font-variation-settings: var(--display-vf); fo
   .kortnat { grid-template-columns: minmax(0, 1fr); }
   .kort__typ { display: none; }
   .fot__spalter { grid-template-columns: minmax(0, 1fr); }
+  .topp__stjarna--liten { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .topp__stjarna, .tomt__stjarna { animation: none; }
-  .kort { animation: none; }
+  .topp__stjarna, .tomt__stjarna, .fot__stjarna { animation: none; }
+  .kort, .topp__overrad, .topp__rubrik, .topp__tag, .topp__ingress, .sok__falt { animation: none; }
+  .ticker__spar { animation: none; }
   .sok__falt, .kort, .chip, .ingang { transition: none; }
 }

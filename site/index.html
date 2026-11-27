@@ -15,6 +15,9 @@
 
 <svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <symbol id="ik-stjarna" viewBox="0 0 100 100">
+      <path d="M50 4 L54 42 L92 31 L60 50 L92 69 L54 58 L50 96 L46 58 L8 69 L40 50 L8 31 L46 42 Z"/>
+    </symbol>
     <symbol id="ik-kompass" viewBox="0 0 24 24">
       <circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <path d="M15.2 8.8 13 13 8.8 15.2 11 11 Z" fill="currentColor"/>
@@ -50,38 +53,37 @@
 
 <header class="topp">
   <div class="ram topp__inre">
-    <svg class="topp__stjarna" viewBox="0 0 100 100" aria-hidden="true">
-      <g transform="translate(50 50)">
-        <path d="M0-46 L4-8 L42-19 L10 0 L42 19 L4 8 L0 46 L-4 8 L-42 19 L-10 0 L-42-19 L-4-8 Z" fill="currentColor"/>
-      </g>
-    </svg>
+    <svg class="topp__stjarna" aria-hidden="true"><use href="#ik-stjarna"></use></svg>
+    <svg class="topp__stjarna topp__stjarna--liten" aria-hidden="true"><use href="#ik-stjarna"></use></svg>
     <p class="topp__overrad">Ett nav för AI och pedagogik i svensk skola</p>
     <h1 class="topp__rubrik">AI-nätverket<span class="topp__punkt">.</span></h1>
+    <p class="topp__tag">Där Sveriges lärare <em>hittar, delar och tänker</em> tillsammans.</p>
     <p class="topp__ingress">
       Det bästa som redan finns om AI i skolan — från Skolverkets vägledningar till
-      lärarbloggarna — granskat, beskrivet och sökbart på ett ställe. Börja i det du
-      behöver, inte i ännu en ändlös flik.
+      lärarbloggarna — granskat, beskrivet och sökbart på ett ställe.
     </p>
-    <p class="topp__stat" id="topp-stat"></p>
-  </div>
-</header>
-
-<main>
-  <section class="ingangar ram" aria-labelledby="r-ingangar">
-    <h2 id="r-ingangar"><span class="snirkel">Börja där du står</span></h2>
-    <p class="sektionsintro">Sex vägar in i katalogen — eller sök fritt här nedanför.</p>
-    <div class="ingangar__nat" id="ingangar"></div>
-  </section>
-
-  <section class="sok ram" aria-label="Sök i katalogen">
     <div class="sok__falt">
       <svg class="sok__ikon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
       <input id="sokfalt" type="search" autocomplete="off" spellcheck="false"
-             placeholder="Sök — till exempel ”lektioner om bias” eller ”riktlinjer gdpr”"
+             placeholder="Sök — ”lektioner om bias”, ”riktlinjer gdpr”, ”prompta” …"
              aria-label="Sök i katalogen">
       <button id="rensa-sok" class="sok__rensa" type="button" hidden aria-label="Rensa sökningen">×</button>
     </div>
+    <button id="sok-hopp" class="sok__hopp" type="button" hidden></button>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker__spar" id="ticker-spar"></div></div>
+</header>
 
+<main>
+  <section class="band" aria-labelledby="r-ingangar">
+    <div class="ram band__inre">
+      <h2 id="r-ingangar"><span class="snirkel">Börja där du står</span></h2>
+      <p class="sektionsintro">Sex vägar in i katalogen — eller sök fritt här ovanför.</p>
+      <div class="ingangar__nat" id="ingangar"></div>
+    </div>
+  </section>
+
+  <section class="resultat ram" id="resultat" aria-label="Katalogen">
     <div class="filter">
       <div class="filter__grupp" data-grupp="typ">
         <span class="filter__etikett">Jag letar efter</span>
@@ -107,9 +109,7 @@
         <button id="rensa-allt" class="filter__rensa" type="button" hidden>Rensa alla filter</button>
       </div>
     </div>
-  </section>
 
-  <section class="resultat ram" id="resultat" aria-label="Sökresultat">
     <p class="resultat__antal" id="antal" role="status" aria-live="polite"></p>
     <div class="kortnat" id="kortnat"></div>
     <div class="tomt" id="tomt" hidden>
@@ -122,10 +122,11 @@
 </main>
 
 <footer class="fot">
+  <svg class="fot__stjarna" aria-hidden="true"><use href="#ik-stjarna"></use></svg>
   <div class="ram fot__inre">
     <div class="fot__spalter">
       <div>
-        <p class="fot__rubrik">Byggt av lärare, för lärare<span class="topp__punkt">.</span></p>
+        <p class="fot__rubrik">Byggt av lärare,<br>för lärare<span class="topp__punkt">.</span></p>
         <p class="fot__text">
           AI-nätverket samlar det som redan finns och gör det hittbart. Varje resurs är
           hämtad, läst och handgranskad innan den togs in — och vi länkar alltid vidare

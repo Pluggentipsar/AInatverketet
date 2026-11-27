@@ -44,6 +44,19 @@
     sattForm(["a", "b", "c"].includes(sparad) ? sparad : "a");
   };
 
+  /* ---------- Ticker ---------- */
+
+  const byggTicker = () => {
+    const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
+    const stycken = [
+      `${resurser.length} handplockade resurser`, `${kallor} källor`, "Granskat, inte skrapat",
+      "Länkat, inte kopierat", "Levande, inte lämnat", "Av lärare, för lärare",
+    ];
+    const halva = stycken.concat(stycken, stycken)
+      .map((s) => `<span>${esc(s)}</span><span class="ticker__stjarna">✳</span>`).join("");
+    el("ticker-spar").innerHTML = `<span class="ticker__halva">${halva}</span><span class="ticker__halva">${halva}</span>`;
+  };
+
   /* ---------- Fuzzy-sök ---------- */
 
   const vika = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -238,6 +251,12 @@
     el("rensa-sok").hidden = !state.q;
     el("rensa-allt").hidden = !aktivaFilter();
 
+    const hopp = el("sok-hopp");
+    hopp.hidden = !state.q.trim();
+    hopp.textContent = lista.length
+      ? `Visa ${lista.length} ${lista.length === 1 ? "träff" : "träffar"} ↓`
+      : "Inga träffar — prova ett annat ord";
+
     for (const meny of document.querySelectorAll(".meny")) {
       const g = meny.dataset.grupp;
       const badge = meny.querySelector(".meny__antal");
@@ -303,13 +322,18 @@
   for (const meny of document.querySelectorAll(".meny")) byggMeny(meny);
   byggIngangar();
   byggFormprov();
+  byggTicker();
 
   let timer;
   sokfalt.addEventListener("input", () => {
     clearTimeout(timer);
     timer = setTimeout(() => { state.q = sokfalt.value; rita(); }, 70);
   });
-  sokfalt.addEventListener("keydown", (e) => { if (e.key === "Escape") { state.q = ""; sokfalt.value = ""; rita(); } });
+  sokfalt.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { state.q = ""; sokfalt.value = ""; rita(); }
+    if (e.key === "Enter") { state.q = sokfalt.value; rita(); el("resultat").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  });
+  el("sok-hopp").addEventListener("click", () => el("resultat").scrollIntoView({ behavior: "smooth", block: "start" }));
 
   el("rensa-sok").addEventListener("click", () => { state.q = ""; sokfalt.value = ""; sokfalt.focus(); rita(); });
   el("rensa-allt").addEventListener("click", rensaAllt);
@@ -320,8 +344,6 @@
   });
 
   const datum = new Date(katalog.uppdaterad + "T12:00:00").toLocaleDateString("sv-SE", { day: "numeric", month: "long", year: "numeric" });
-  const kallor = new Set(resurser.map((r) => r.kalla_namn)).size;
-  el("topp-stat").innerHTML = `<em>${resurser.length}</em> handplockade resurser · <em>${kallor}</em> källor · alla länkar kontrollerade`;
   el("fot-meta").textContent = `${resurser.length} resurser · Senast uppdaterad ${datum}`;
 
   lasUrl();
