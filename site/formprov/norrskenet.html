@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formprov E · Norrskenet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --natt:#070C19;
+  --natt2:#0D1428;
+  --ljus:#ECEFF9;
+  --dis:#8E97AF;
+  --gron:#6FE7B2;
+  --is:#7CC6EF;
+  --viol:#A99BFF;
+  --gul:#F2B264;
+  --glas:rgba(13,20,40,.55);
+  --glaskant:rgba(236,239,249,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--natt); color:var(--ljus);
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:16.5px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+a{color:inherit}
+::selection{background:var(--gron); color:var(--natt)}
+.serif{font-family:"Instrument Serif",Georgia,serif; font-weight:400}
+
+.provrand{background:#030610; color:var(--ljus); padding:8px 20px; display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:13.5px; position:relative; z-index:60; border-bottom:1px solid var(--glaskant)}
+.provrand a{color:var(--gron); text-decoration:none}
+.provrand a:hover{text-decoration:underline}
+
+/* ---------- natthimlen ---------- */
+.scen{position:relative; height:calc(100svh - 38px); min-height:560px; overflow:hidden}
+#natt{position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:pan-y}
+.scen::after{content:""; position:absolute; inset:auto 0 0 0; height:120px; background:linear-gradient(transparent, var(--natt)); pointer-events:none}
+
+.overlagg{position:absolute; inset:0; pointer-events:none; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(16px,2.5vw,32px)}
+.overlagg > *{pointer-events:auto}
+
+.topp{display:flex; justify-content:space-between; align-items:center; gap:14px}
+.marke{display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:600; font-size:17px; letter-spacing:.01em}
+.marke .stjarna{color:var(--gron); font-size:20px; line-height:1}
+.topp nav{display:flex; gap:3px; flex-wrap:wrap; background:var(--glas); border:1px solid var(--glaskant); border-radius:999px; padding:4px; backdrop-filter:blur(10px)}
+.topp nav a{text-decoration:none; font-size:14.5px; font-weight:500; color:var(--dis); padding:6px 14px; border-radius:999px}
+.topp nav a:hover{color:var(--ljus)}
+.topp nav a.aktiv{background:rgba(236,239,249,.12); color:var(--ljus)}
+
+.nedre{display:flex; justify-content:space-between; align-items:flex-end; gap:24px}
+.nedre__text{max-width:560px}
+h1.rubrik{
+  font-family:"Instrument Serif",Georgia,serif; font-weight:400;
+  font-size:clamp(34px,4.6vw,62px); line-height:1.06; letter-spacing:-.01em;
+  text-wrap:balance; text-shadow:0 2px 30px rgba(7,12,25,.8);
+}
+h1.rubrik em{font-style:italic; color:var(--gron)}
+.underrad{margin-top:14px; color:var(--dis); font-size:15.5px; max-width:46ch; text-shadow:0 1px 14px rgba(7,12,25,.9)}
+.sok{
+  margin-top:20px; display:flex; align-items:center; gap:10px;
+  background:var(--glas); border:1px solid var(--glaskant); border-radius:999px;
+  padding:5px 5px 5px 18px; width:min(480px,100%);
+  backdrop-filter:blur(12px);
+}
+.sok svg{flex:none; width:17px; height:17px; stroke:var(--dis)}
+.sok input{flex:1; min-width:0; border:0; outline:0; background:none; color:var(--ljus); font:inherit; font-size:16px; padding:9px 0}
+.sok input::placeholder{color:var(--dis)}
+.sok .antal{flex:none; font-size:13.5px; color:var(--natt); background:var(--gron); border-radius:999px; padding:8px 14px; font-weight:600; white-space:nowrap}
+.ledtext{margin-top:12px; font-size:13.5px; color:var(--dis)}
+.ledtext kbd{font:inherit; border:1px solid var(--glaskant); border-radius:5px; padding:0 5px; margin:0 1px}
+
+.legend{display:grid; gap:9px; background:var(--glas); border:1px solid var(--glaskant); border-radius:16px; padding:16px 18px; backdrop-filter:blur(12px); font-size:14px; color:var(--dis)}
+.legend b{color:var(--ljus); font-weight:600}
+.legend span{display:flex; align-items:center; gap:9px}
+.legend i{width:9px; height:9px; border-radius:50%; flex:none; box-shadow:0 0 10px currentColor}
+.legend .c-gron{color:var(--gron); background:var(--gron)}
+.legend .c-is{color:var(--is); background:var(--is)}
+.legend .c-viol{color:var(--viol); background:var(--viol)}
+.legend .c-gul{color:var(--gul); background:var(--gul)}
+
+/* ---------- resurspanel ---------- */
+.panel{
+  position:absolute; right:clamp(16px,2.5vw,32px); bottom:clamp(16px,2.5vw,32px);
+  width:min(400px, calc(100% - 32px)); z-index:40;
+  background:rgba(9,14,29,.94); border:1px solid var(--glaskant); border-radius:20px;
+  padding:22px 22px 20px; backdrop-filter:blur(16px);
+  opacity:0; transform:translateY(14px); pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.panel.syns{opacity:1; transform:none; pointer-events:auto}
+.panel .typrad{display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--dis)}
+.panel .typrad i{width:8px; height:8px; border-radius:50%; box-shadow:0 0 8px currentColor}
+.panel h2{font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:26px; line-height:1.15; margin-top:8px}
+.panel p.besk{margin-top:10px; font-size:14.5px; line-height:1.55; color:#C3C9DC}
+.panel .chips{display:flex; gap:6px; flex-wrap:wrap; margin-top:14px}
+.panel .chips span{font-size:12.5px; color:var(--dis); border:1px solid var(--glaskant); border-radius:999px; padding:3px 10px}
+.panel .rad{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:18px}
+.panel .kalla{font-size:13.5px; color:var(--dis)}
+.panel a.oppna{font-size:14.5px; font-weight:600; text-decoration:none; color:var(--natt); background:var(--gron); border-radius:999px; padding:9px 18px}
+.panel a.oppna:hover{filter:brightness(1.1)}
+.panel .stang{position:absolute; top:10px; right:12px; border:0; background:none; color:var(--dis); font-size:22px; cursor:pointer; line-height:1; padding:6px}
+.panel .stang:hover{color:var(--ljus)}
+
+/* ---------- under himlen ---------- */
+.ram{max-width:1080px; margin:0 auto; padding:0 clamp(18px,3.5vw,44px)}
+.lasning{padding:clamp(60px,10vh,110px) 0 clamp(40px,6vh,70px)}
+.lasning h2{font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:clamp(30px,3.8vw,48px); line-height:1.12; max-width:24ch; text-wrap:balance}
+.lasning h2 em{font-style:italic; color:var(--gron)}
+.lasning .spalter{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(24px,4vw,56px); margin-top:30px; color:#C3C9DC; font-size:16px}
+.lasning .spalter p + p{margin-top:14px}
+.lasning .spalter b{color:var(--ljus); font-weight:600}
+
+.urval{padding:20px 0 clamp(60px,9vh,100px)}
+.urval__topp{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; border-bottom:1px solid var(--glaskant); padding-bottom:14px}
+.urval__topp h2{font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:26px}
+.urval__topp a{font-size:14.5px; color:var(--gron); text-decoration:none}
+.urval__topp a:hover{text-decoration:underline}
+.urval .lista{display:grid}
+.urval .post{display:grid; grid-template-columns:11px minmax(0,1fr) auto; gap:14px; align-items:baseline; padding:16px 2px; border-bottom:1px solid rgba(236,239,249,.08); text-decoration:none}
+.urval .post i{width:8px; height:8px; border-radius:50%; align-self:center; box-shadow:0 0 9px currentColor}
+.urval .post h3{font-size:17.5px; font-weight:600; line-height:1.3}
+.urval .post h3 small{display:block; font-weight:400; color:var(--dis); font-size:14.5px; margin-top:3px}
+.urval .post .kalla{color:var(--dis); font-size:14px; white-space:nowrap}
+.urval .post:hover h3{color:var(--gron)}
+
+.fot{border-top:1px solid var(--glaskant); padding:clamp(34px,6vh,60px) 0 80px; color:var(--dis); font-size:15px}
+.fot .ram{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap}
+.fot nav{display:flex; gap:18px; flex-wrap:wrap}
+.fot a{color:var(--ljus); text-decoration:none}
+.fot a:hover{color:var(--gron)}
+
+@media(max-width:900px){
+  .nedre{flex-direction:column; align-items:stretch}
+  .legend{grid-auto-flow:column; grid-template-rows:repeat(2,auto); justify-content:start; column-gap:22px; padding:12px 16px}
+  .lasning .spalter{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:620px){
+  .topp nav{display:none}
+  .scen{min-height:520px}
+  .legend{display:none}
+  .urval .post .kalla{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .panel{transition:none}
+}
+:focus-visible{outline:2.5px solid var(--gron); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="provrand">
+  <span>Formprov E — <strong>Norrskenet</strong>: katalogen som levande stjärnhimmel. Rör vid natten — varje stjärna är en riktig resurs.</span>
+  <a href="./">← Alla formprov</a>
+</div>
+
+<section class="scen" aria-label="Katalogen som stjärnhimmel">
+  <canvas id="natt"></canvas>
+
+  <div class="overlagg">
+    <header class="topp">
+      <a class="marke" href="#"><span class="stjarna" aria-hidden="true">✳</span>AI-nätverket</a>
+      <nav aria-label="Huvudmeny">
+        <a href="#" class="aktiv" aria-current="page">Hem</a>
+        <a href="#">Katalogen</a>
+        <a href="#">Lektionsbanken</a>
+        <a href="#">Forum</a>
+        <a href="#">Träffar</a>
+      </nav>
+    </header>
+
+    <div class="nedre">
+      <div class="nedre__text">
+        <h1 class="rubrik">Varje stjärna är en granskad resurs. <em>Hela himlen är nätverket.</em></h1>
+        <p class="underrad">62 guider, verktyg, riktlinjer och studier om AI i skolan — utvalda för hand, sammanlänkade av sina teman.</p>
+        <form class="sok" role="search" onsubmit="return false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" stroke-width="2"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="sokfalt" type="search" autocomplete="off" spellcheck="false" placeholder="Sök — ”bedömning”, ”gdpr”, ”prompting” …" aria-label="Sök i katalogen">
+          <output class="antal" id="antal" for="sokfalt">62 av 62</output>
+        </form>
+        <p class="ledtext" id="ledtext">Dra med pekaren över himlen. Klicka på en stjärna för att läsa mer.</p>
+      </div>
+
+      <div class="legend" aria-label="Färgernas betydelse">
+        <b>Så lyser himlen</b>
+        <span><i class="c-gron"></i>Guider &amp; lektioner</span>
+        <span><i class="c-is"></i>Verktyg</span>
+        <span><i class="c-viol"></i>Riktlinjer &amp; forskning</span>
+        <span><i class="c-gul"></i>Röster &amp; nätverk</span>
+      </div>
+    </div>
+  </div>
+
+  <aside class="panel" id="panel" aria-live="polite">
+    <button class="stang" id="stang" type="button" aria-label="Stäng">×</button>
+    <div class="typrad"><i id="p-prick"></i><span id="p-typ"></span></div>
+    <h2 id="p-titel"></h2>
+    <p class="besk" id="p-besk"></p>
+    <div class="chips" id="p-chips"></div>
+    <div class="rad">
+      <span class="kalla" id="p-kalla"></span>
+      <a class="oppna" href="#" id="p-oppna">Öppna resursen</a>
+    </div>
+  </aside>
+</section>
+
+<section class="lasning ram" aria-label="Om nätverket">
+  <h2>Ingen algoritm har valt åt dig. <em>Varje punkt på himlen är ditlagd av en lärare.</em></h2>
+  <div class="spalter">
+    <p><b>Linjerna är släktskap.</b> Två resurser hänger ihop när de delar teman — en guide om källkritik pekar mot lektionsmaterialet som övar samma sak. Så hittar du vidare utan att söka om.</p>
+    <p><b>Ljuset är status.</b> Länkarna kontrolleras maskinellt varje vecka och varje post prövas mot samma urvalskriterier. Det som slocknar plockas ner från himlen. Hellre 62 stjärnor som lyser än tusen som har falnat.</p>
+  </div>
+</section>
+
+<section class="urval ram" aria-label="Ur katalogen">
+  <div class="urval__topp">
+    <h2>Närmast just nu</h2>
+    <a href="#">Hela katalogen som lista</a>
+  </div>
+  <div class="lista" id="lista"></div>
+</section>
+
+<footer class="fot">
+  <div class="ram">
+    <span>AI-nätverket — AI och pedagogik i svensk skola. Byggt av lärare, för lärare.</span>
+    <nav aria-label="Sidfot">
+      <a href="#">Om nätverket</a>
+      <a href="#">Urvalskriterier</a>
+      <a href="#">Föreslå en resurs</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduceras = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var duk = document.getElementById("natt");
+  var ctx = duk.getContext("2d");
+  var scen = duk.parentElement;
+
+  var alla = (window.AINAT && AINAT.katalog && AINAT.katalog.resurser) || [];
+  var tax = (window.AINAT && AINAT.taxonomi) || {};
+  function namn(vok, nyckel){ return (tax[vok] && tax[vok][nyckel]) || nyckel || ""; }
+
+  /* ---- färggrupper ---- */
+  var FARG = {gron:"#6FE7B2", is:"#7CC6EF", viol:"#A99BFF", gul:"#F2B264"};
+  function grupp(r){
+    var t = (r.typ && r.typ[0]) || "";
+    if (t==="verktyg") return "is";
+    if (t==="riktlinjer" || t==="forskning") return "viol";
+    if (t==="natverk" || t==="podd" || t==="blogg" || t==="video" || t==="nyhetsbrev") return "gul";
+    return "gron"; // guide, kurs, lektionsmaterial, samling …
+  }
+  var GRUPPNAMN = {gron:"Guider & lektioner", is:"Verktyg", viol:"Riktlinjer & forskning", gul:"Röster & nätverk"};
+
+  /* ---- scenstorlek ---- */
+  var W=0, H=0, DPR=1;
+  function storlek(){
+    DPR = Math.min(devicePixelRatio||1, 2);
+    W = scen.clientWidth; H = scen.clientHeight;
+    duk.width = W*DPR; duk.height = H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  /* ---- noder ---- */
+  var noder = [];
+  function slump(fro){ // deterministisk pseudoslump så himlen är samma varje besök
+    var x = Math.sin(fro*127.1 + 311.7)*43758.5453;
+    return x - Math.floor(x);
+  }
+  function bygg(){
+    noder = [];
+    var center = {
+      gron:{x:.30,y:.38}, is:{x:.68,y:.30}, viol:{x:.78,y:.62}, gul:{x:.46,y:.66}
+    };
+    var raknare = {gron:0,is:0,viol:0,gul:0};
+    alla.forEach(function(r,i){
+      var g = grupp(r);
+      var n = raknare[g]++;
+      var vinkel = n*2.39996 + slump(i)*0.9;          // gyllene vinkeln
+      var radie = (0.055 + 0.028*Math.sqrt(n)) * Math.min(W,H) * (0.9+0.35*slump(i+7));
+      var cx = center[g].x*W, cy = center[g].y*H;
+      noder.push({
+        r:r, g:g,
+        hemX: cx + Math.cos(vinkel)*radie*1.35,
+        hemY: cy + Math.sin(vinkel)*radie*0.85,
+        x:0, y:0,
+        storlek: 2.2 + 2.6*slump(i+13),
+        fas: slump(i+29)*Math.PI*2,
+        fart: 0.00022 + 0.0003*slump(i+41),
+        bana: 5 + 11*slump(i+53),
+        lyser: true
+      });
+    });
+    noder.forEach(function(n){ n.x=n.hemX; n.y=n.hemY; });
+
+    /* kanter: delade teman */
+    var kanter = [];
+    function delade(a,b){
+      var ta=a.r.teman||[], tb=b.r.teman||[], c=0;
+      for (var i=0;i<ta.length;i++) if (tb.indexOf(ta[i])>-1) c++;
+      return c;
+    }
+    for (var i=0;i<noder.length;i++){
+      var kandidater = [];
+      for (var j=0;j<noder.length;j++){
+        if (i===j) continue;
+        var d = delade(noder[i],noder[j]);
+        if (d>=2) kandidater.push({j:j, d:d, avst:Math.hypot(noder[i].hemX-noder[j].hemX, noder[i].hemY-noder[j].hemY)});
+      }
+      kandidater.sort(function(a,b){ return (b.d-a.d) || (a.avst-b.avst); });
+      kandidater.slice(0,2).forEach(function(k){
+        var a=Math.min(i,k.j), b=Math.max(i,k.j);
+        if (!kanter.some(function(e){ return e.a===a && e.b===b; })) kanter.push({a:a,b:b});
+      });
+    }
+    byggdaKanter = kanter;
+  }
+  var byggdaKanter = [];
+
+  /* ---- bakgrundsstjärnor ---- */
+  var smastjarnor = [];
+  function byggStjarnor(){
+    smastjarnor = [];
+    for (var i=0;i<130;i++){
+      smastjarnor.push({x:slump(i+200)*W, y:slump(i+300)*H, s:0.4+slump(i+400)*1.1, fas:slump(i+500)*Math.PI*2});
+    }
+  }
+
+  /* ---- interaktion ---- */
+  var mus = {x:-9999,y:-9999};
+  var narmast = null;
+  var vald = null;
+  var filterText = "";
+
+  duk.addEventListener("pointermove", function(e){
+    var b = duk.getBoundingClientRect();
+    mus.x = e.clientX-b.left; mus.y = e.clientY-b.top;
+  }, {passive:true});
+  duk.addEventListener("pointerleave", function(){ mus.x=-9999; mus.y=-9999; });
+
+  duk.addEventListener("click", function(e){
+    var b = duk.getBoundingClientRect();
+    var x = e.clientX-b.left, y = e.clientY-b.top;
+    var traff = hitta(x,y,30);
+    if (traff){ valj(traff); } else { stangPanel(); }
+  });
+  duk.addEventListener("keydown", function(e){
+    if (e.key==="Escape") stangPanel();
+  });
+
+  function hitta(x,y,radie){
+    var basta=null, bd=radie;
+    noder.forEach(function(n){
+      if (!n.lyser) return;
+      var d = Math.hypot(n.x-x, n.y-y);
+      if (d<bd){ bd=d; basta=n; }
+    });
+    return basta;
+  }
+
+  /* ---- panel ---- */
+  var panel = document.getElementById("panel");
+  function valj(n){
+    vald = n;
+    document.getElementById("p-prick").style.color = FARG[n.g];
+    document.getElementById("p-prick").style.background = FARG[n.g];
+    document.getElementById("p-typ").textContent = (n.r.typ||[]).map(function(t){return namn("typ",t);}).join(", ");
+    document.getElementById("p-titel").textContent = n.r.titel;
+    var besk = n.r.beskrivning || "";
+    if (besk.length>220) besk = besk.slice(0,217).replace(/\s+\S*$/,"")+" …";
+    document.getElementById("p-besk").textContent = besk;
+    var chips = document.getElementById("p-chips");
+    chips.innerHTML = "";
+    (n.r.teman||[]).slice(0,4).forEach(function(t){
+      var s=document.createElement("span"); s.textContent=namn("teman",t); chips.appendChild(s);
+    });
+    document.getElementById("p-kalla").textContent = (n.r.kalla_namn||namn("kalla",n.r.kalla)) + " · " + namn("kostnad",n.r.kostnad).toLowerCase();
+    panel.classList.add("syns");
+  }
+  function stangPanel(){ vald=null; panel.classList.remove("syns"); }
+  document.getElementById("stang").addEventListener("click", stangPanel);
+
+  /* ---- sök ---- */
+  var sokfalt = document.getElementById("sokfalt");
+  var antalUt = document.getElementById("antal");
+  sokfalt.addEventListener("input", function(){
+    filterText = sokfalt.value.trim().toLowerCase();
+    var antal = 0;
+    noder.forEach(function(n){
+      if (!filterText){ n.lyser=true; antal++; return; }
+      var hö = n.r.titel+" "+(n.r.beskrivning||"")+" "+(n.r.teman||[]).map(function(t){return namn("teman",t);}).join(" ")+" "+(n.r.typ||[]).map(function(t){return namn("typ",t);}).join(" ");
+      n.lyser = hö.toLowerCase().indexOf(filterText)>-1;
+      if (n.lyser) antal++;
+    });
+    antalUt.textContent = antal+" av "+noder.length;
+    rita(performance.now()); // uppdatera direkt även utan animation
+  });
+
+  /* ---- rendering ---- */
+  function rita(t){
+    ctx.clearRect(0,0,W,H);
+
+    /* himmelsgradient */
+    var him = ctx.createLinearGradient(0,0,0,H);
+    him.addColorStop(0,"#070C19");
+    him.addColorStop(.6,"#0B1226");
+    him.addColorStop(1,"#0D1428");
+    ctx.fillStyle = him;
+    ctx.fillRect(0,0,W,H);
+
+    /* norrsken — två mjuka band */
+    ctx.globalCompositeOperation = "screen";
+    band(t*0.00004, H*0.22, "#2FBF8F", .16);
+    band(t*0.00003+2.1, H*0.34, "#6B5BD6", .10);
+    ctx.globalCompositeOperation = "source-over";
+
+    /* småstjärnor */
+    ctx.fillStyle = "#E8ECF8";
+    smastjarnor.forEach(function(s){
+      var tv = reduceras ? .5 : .35+.4*Math.sin(t*0.0012+s.fas);
+      ctx.globalAlpha = .25+.45*tv;
+      ctx.fillRect(s.x, s.y, s.s, s.s);
+    });
+    ctx.globalAlpha = 1;
+
+    /* drift */
+    if (!reduceras){
+      noder.forEach(function(n){
+        n.x = n.hemX + Math.cos(t*n.fart+n.fas)*n.bana;
+        n.y = n.hemY + Math.sin(t*n.fart*1.3+n.fas)*n.bana*0.7;
+      });
+    }
+
+    /* kanter */
+    byggdaKanter.forEach(function(k){
+      var a=noder[k.a], b=noder[k.b];
+      var tänd = a.lyser && b.lyser;
+      var nära = Math.min(Math.hypot(a.x-mus.x,a.y-mus.y), Math.hypot(b.x-mus.x,b.y-mus.y));
+      var alfa = tänd ? (nära<160 ? .34 : .10) : .02;
+      ctx.strokeStyle = "rgba(170,190,230,"+alfa+")";
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    });
+
+    /* noder */
+    narmast = hitta(mus.x,mus.y,46);
+    noder.forEach(function(n){
+      var f = FARG[n.g];
+      var bas = n.lyser ? 1 : 0.07;
+      var d = Math.hypot(n.x-mus.x, n.y-mus.y);
+      var när = Math.max(0, 1-d/200);
+      var s = n.storlek*(1+.7*när) + (n===vald?1.6:0);
+
+      /* glöd */
+      var g = ctx.createRadialGradient(n.x,n.y,0, n.x,n.y, s*5);
+      g.addColorStop(0, f);
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalAlpha = bas*(.16+.3*när);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(n.x,n.y,s*5,0,7); ctx.fill();
+
+      /* kärna */
+      ctx.globalAlpha = bas*(.75+.25*när);
+      ctx.fillStyle = f;
+      ctx.beginPath(); ctx.arc(n.x,n.y,s,0,7); ctx.fill();
+
+      if (n===vald){
+        ctx.globalAlpha = .9;
+        ctx.strokeStyle = f; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(n.x,n.y,s+5,0,7); ctx.stroke();
+      }
+    });
+    ctx.globalAlpha = 1;
+
+    /* etikett vid närmaste stjärna */
+    if (narmast){
+      duk.style.cursor = "pointer";
+      etikett(narmast);
+    } else {
+      duk.style.cursor = "";
+    }
+  }
+
+  function etikett(n){
+    var text = n.r.titel;
+    ctx.font = "500 13.5px 'Instrument Sans', sans-serif";
+    var br = ctx.measureText(text).width;
+    var x = Math.min(Math.max(n.x+14, 8), W-br-28);
+    var y = Math.max(n.y-34, 10);
+    ctx.fillStyle = "rgba(7,12,25,.86)";
+    ctx.strokeStyle = "rgba(236,239,249,.18)";
+    ctx.lineWidth = 1;
+    rund(x, y, br+20, 26, 13);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ECEFF9";
+    ctx.fillText(text, x+10, y+17.5);
+  }
+  function rund(x,y,b,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.arcTo(x+b,y,x+b,y+h,r);
+    ctx.arcTo(x+b,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);
+    ctx.arcTo(x,y,x+b,y,r);
+    ctx.closePath();
+  }
+
+  function band(fas, grundY, farg, alfa){
+    var steg = Math.max(28, W/36);
+    ctx.beginPath();
+    ctx.moveTo(-50, grundY);
+    for (var x=-50; x<=W+50; x+=steg){
+      var y = grundY + Math.sin(x*0.004+fas*8)*H*0.06 + Math.sin(x*0.0012-fas*5)*H*0.04;
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(W+50, -60); ctx.lineTo(-50, -60);
+    ctx.closePath();
+    var g = ctx.createLinearGradient(0, grundY-H*0.3, 0, grundY+H*0.12);
+    g.addColorStop(0, "rgba(0,0,0,0)");
+    g.addColorStop(.75, hexA(farg, alfa));
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+    ctx.fill();
+  }
+  function hexA(hex, a){
+    var r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+    return "rgba("+r+","+g+","+b+","+a+")";
+  }
+
+  /* ---- loop, pausad när himlen inte syns ---- */
+  var synlig = true, rafId = null;
+  function loop(t){
+    rita(t);
+    if (!reduceras && synlig && !document.hidden){ rafId = requestAnimationFrame(loop); }
+    else { rafId = null; }
+  }
+  function starta(){ if (rafId===null){ rafId = requestAnimationFrame(loop); } }
+  new IntersectionObserver(function(p){
+    synlig = p[0].isIntersecting;
+    if (synlig) starta();
+  }).observe(scen);
+  document.addEventListener("visibilitychange", function(){ if(!document.hidden) starta(); });
+
+  /* reduceras: rita om bara vid interaktion */
+  if (reduceras){
+    duk.addEventListener("pointermove", function(){ rita(performance.now()); }, {passive:true});
+    duk.addEventListener("click", function(){ rita(performance.now()); });
+  }
+
+  function allt(){
+    storlek(); bygg(); byggStjarnor(); rita(performance.now());
+  }
+  addEventListener("resize", allt);
+  allt();
+  starta();
+
+  /* ---- listan under himlen ---- */
+  var lista = document.getElementById("lista");
+  var plock = [];
+  for (var i=0; i<alla.length && plock.length<5; i+=Math.max(1,Math.floor(alla.length/5))) plock.push(alla[i]);
+  plock.forEach(function(r){
+    var a = document.createElement("a");
+    a.className="post"; a.href="#";
+    a.innerHTML = '<i></i><h3><small></small></h3><span class="kalla"></span>';
+    a.querySelector("i").style.color = FARG[grupp(r)];
+    a.querySelector("i").style.background = FARG[grupp(r)];
+    var b = (r.beskrivning||"");
+    if (b.length>110) b = b.slice(0,107).replace(/\s+\S*$/,"")+" …";
+    a.querySelector("h3").insertBefore(document.createTextNode(r.titel), a.querySelector("small"));
+    a.querySelector("small").textContent = b;
+    a.querySelector(".kalla").textContent = r.kalla_namn || namn("kalla", r.kalla);
+    lista.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>

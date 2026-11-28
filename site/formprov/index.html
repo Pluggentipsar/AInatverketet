@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Formprov — tre nya designriktningar</title>
+<title>Formprov — fem designriktningar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital@1&family=Gabarito:wght@700;800&family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital@1&family=Gabarito:wght@700;800&family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
 :root{ --bg:#f6f4ef; --ink:#23211c; --dis:#6e695e; --kant:#ddd8cc }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -32,6 +32,14 @@ h1{font-size:clamp(28px,4.5vw,40px); font-weight:700; letter-spacing:-.015em; ma
 .kort--c p,.kort--c .bokstav,.kort--c .pil{color:#9aa0b0}
 .kort--c:hover{border-color:#f2a65a}
 .kort--c:hover .pil{color:#f2a65a}
+.kort--d h2{font-family:"Bricolage Grotesque",sans-serif; font-weight:700; letter-spacing:-.02em; color:#2433C6}
+.kort--d:hover{border-color:#2433C6}
+.kort--d:hover .pil{color:#2433C6}
+.kort--e{background:#070C19; color:#ECEFF9; border-color:#070C19}
+.kort--e h2{font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-style:italic}
+.kort--e p,.kort--e .bokstav,.kort--e .pil{color:#8E97AF}
+.kort--e:hover{border-color:#6FE7B2}
+.kort--e:hover .pil{color:#6FE7B2}
 .nuvarande{margin-top:34px; padding-top:26px; border-top:1.5px solid var(--kant); color:var(--dis); font-size:16px}
 .nuvarande a{color:var(--ink); font-weight:600}
 @media(max-width:560px){ .kort{grid-template-columns:minmax(0,1fr)} .kort .pil{display:none} }
@@ -40,8 +48,8 @@ h1{font-size:clamp(28px,4.5vw,40px); font-weight:700; letter-spacing:-.015em; ma
 </head>
 <body>
 <div class="yta">
-  <h1>Tre nya designriktningar att känna på</h1>
-  <p class="ingress">Samma innehåll, tre helt olika formspråk. Alla är mockuper av startsidan — knapparna går ingenstans, det är känslan som utvärderas. Jämför gärna med <a href="../">nuvarande design</a> och rösta sedan i Utvärderingsrummet.</p>
+  <h1>Fem designriktningar att känna på</h1>
+  <p class="ingress">Samma innehåll, helt olika formspråk. Alla är mockuper av startsidan — knapparna går ingenstans, det är känslan som utvärderas. Jämför gärna med <a href="../">nuvarande design</a> och rösta sedan i Utvärderingsrummet.</p>
 
   <div class="prov">
     <a class="kort kort--a" href="tidskriften.html">
@@ -68,6 +76,24 @@ h1{font-size:clamp(28px,4.5vw,40px); font-weight:700; letter-spacing:-.015em; ma
         <h2>Kvällskursen</h2>
         <p>Mörk och koncentrerad — läslampan tänd efter skoldagen. Blåsvart botten, varmt bärnstenssken, resurserna som en upplyst bokhylla. Signalerar: fördjupning, lugn, egen tid.</p>
         <span class="palett"><i style="background:#111624"></i><i style="background:#202940"></i><i style="background:#f2a65a"></i><i style="background:#e9e5da"></i></span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+    <a class="kort kort--d" href="affischen.html">
+      <span>
+        <span class="bokstav">Formprov D</span>
+        <h2>Affischen</h2>
+        <p>Kinetisk och grafisk — en svensk kulturaffisch som lever. Variabel typografi som reagerar på pekaren, bläckblått, katalogen som jätteregister med svävande förhandsvisningar. Signalerar: självförtroende, rörelse, modernitet.</p>
+        <span class="palett"><i style="background:#F3F2EB"></i><i style="background:#1A1B20"></i><i style="background:#2433C6"></i><i style="background:#E53D2E"></i></span>
+      </span>
+      <span class="pil">→</span>
+    </a>
+    <a class="kort kort--e" href="norrskenet.html">
+      <span>
+        <span class="bokstav">Formprov E</span>
+        <h2>Norrskenet</h2>
+        <p>Levande och rumslig — hela katalogen som en interaktiv stjärnhimmel där varje stjärna är en riktig resurs, sammanlänkad av sina teman. Sök tänder himlen, klick öppnar resursen. Signalerar: nätverket, upptäckarglädje, omsorg.</p>
+        <span class="palett"><i style="background:#070C19"></i><i style="background:#6FE7B2"></i><i style="background:#7CC6EF"></i><i style="background:#A99BFF"></i></span>
       </span>
       <span class="pil">→</span>
     </a>
